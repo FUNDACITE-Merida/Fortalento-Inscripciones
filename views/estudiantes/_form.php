@@ -1,0 +1,56 @@
+<?php
+
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Estudiantes */
+/* @var $form yii\widgets\ActiveForm */
+?>
+
+<div class="estudiantes-form">
+    <?php $form = ActiveForm::begin(); ?>
+
+	<div class="row">
+	  <div class="col-lg-5 col-md-10">
+		<?= $form->field($model, 'apellido')->textInput(['maxlength' => true])->hint('Escriba el primer apellido e inicial del segundo') ?>
+	  </div>
+	  <div class="col-lg-5 col-md-10">
+		<?= $form->field($model, 'nombre')->textInput(['maxlength' => true])->hint('Escriba el primer nombre e inicial del segundo') ?>
+	  </div>	  
+	</div>
+    
+    <div class="row">
+	  <div class="col-lg-5 col-md-10">
+		<?= $form->field($model, 'cedula')->textInput(['maxlength' => true]) ?>
+	  </div>
+	  <div class="col-lg-5 col-md-10">
+		<?= $form->field($model, 'es_venezolano')->radioList(['1' => 'Venezolana', '0' => 'Extranjera']) ?>
+	  </div>	  
+	</div>
+    
+	<div class="row">
+	  <div class="col-lg-5 col-md-10">
+		<?= $form->field($model, 'fecha_nacimiento')->textInput()->hint('Ejemplo: 16-07-1980') ?>
+	  </div>
+	  <div class="col-lg-5 col-md-10">
+		<?= $form->field($model, 'lugar_nacimiento')->textInput(['maxlength' => true])?>
+	  </div>	  
+	</div>
+	
+    <div class="row">
+	  <div class="col-lg-5 col-md-10">
+		<?= $form->field($model, 'genero')->radioList(['F' => 'Femenino', 'M' => 'Masculino']) ?>
+	  </div>
+	</div>    
+
+    <?//= $form->field($model, 'id_user')->textInput() ?>
+
+    <div class="form-group">
+        <?//= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton('Siguiente <span class="glyphicon glyphicon-arrow-right"></span>', ['class' => 'btn btn-primary']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
+
+</div>
