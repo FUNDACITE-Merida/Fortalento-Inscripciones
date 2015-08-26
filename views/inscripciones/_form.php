@@ -5,6 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\ActiveForm;
 use yii\bootstrap\Alert;
 use yii\web\View;
+//use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Inscripciones */
@@ -12,7 +13,72 @@ use yii\web\View;
 ?>
 
 <?php
+
+$urlEscuelas = Yii::$app->urlManager->createUrl(['inscripciones/get-planteles']);
 $this->registerJs("
+
+		function verificaGrado(valor)
+		{
+			var grados = ['6','9','11','12'];
+			if ($.inArray(valor, grados) != -1)
+				return true;
+		}
+		
+		function cambiaLabelNotas(valor)
+		{
+			if (valor == '6')
+			{
+				$('#nota1').text('Promedio Global 4to Grado');
+				$('#nota2').text('Promedio Global 5to Grado');
+				$('#nota3').text('Promedio Global 6to Grado');
+			}
+			if (valor == '9')
+			{
+				$('#nota1').text('Promedio Global 1er Año');
+				$('#nota2').text('Promedio Global 2do Año');
+				$('#nota3').text('Promedio Global 3er Año');
+			}
+			if ((valor == '11'))
+			{
+				$('#nota1').text('Promedio Global 4to Año');
+				$('#nota2').text('Promedio Global 5to Año');
+				$('#nota3').text('Promedio Global 6to Año');
+			}
+			
+			if ((valor == '12'))
+			{
+				
+				$('#nota1').text('Promedio Global 4to Año');
+				$('#nota2').text('Promedio Global 5to Año');
+				$('#nota3').text('Promedio Global 6to Año');
+			}
+		}
+		
+		$('#inscripciones-codigo_ultimo_grado').data('lastValue', $('#inscripciones-codigo_ultimo_grado').val() ).change(function() {
+			
+			if ($('#inscripciones-postulado_para_premio').is(':checked'))
+			{
+				if (verificaGrado($(this).val()))
+				{
+					//alert('Esta dentro'+ this.value);
+					cambiaLabelNotas($('#inscripciones-codigo_ultimo_grado').val());
+				}else
+				{
+					alert('Optan por el Premio de reconocimiento a la excelencia los alumnos que hayan finalizado 6to. Grado '
+								+'de Educación Bolivariana, 3er. Año de Educación Secundaria Bolivariana, 5to. Año de Educación Secundaria Bolivariana o '
+								+'6to. Año de Educación Secundaria Bolivariana');
+					
+					//alert('Valor anterior'+ $(this).data('lastValue'));					
+					
+					$('#inscripciones-codigo_ultimo_grado').val($(this).data('lastValue'));
+					$('option[value='+$(this).data('lastValue')+']', this).attr('selected',true);
+					
+					//alert('Valor select'+ $('#inscripciones-codigo_ultimo_grado').val()	);					
+				}
+			}
+			$(this).data('lastValue', $(this).val());
+		});
+		
 		$('#inscripciones-postulado_para_beca').change(function() {
 			if ($(this).is(':checked')) 
 			{
@@ -23,15 +89,64 @@ $this->registerJs("
 				$('#promedio').css('display', 'none');
 			}			
 		});
+		
+		$('#inscripciones-postulado_para_premio').change(function() {
+			if ($(this).is(':checked')) 
+			{
+				if (verificaGrado($('#inscripciones-codigo_ultimo_grado').val()))
+				{
+					$('#notas').css('display', 'block');
+					cambiaLabelNotas($('#inscripciones-codigo_ultimo_grado').val());
+				}else
+				{
+					alert('Optan por el Premio de reconocimiento a la excelencia los alumnos que hayan finalizado 6to. Grado '
+							+'de Educación Bolivariana, 3er. Año de Educación Secundaria Bolivariana, 5to. Año de Educación Secundaria Bolivariana o '
+							+'6to. Año de Educación Secundaria Bolivariana');
+					$(this).prop('checked', false);
+				}
+				
+			}
+			else
+			{
+				$('#notas').css('display', 'none');
+			}			
+		});
+		
+		// Carga de Escuelas según Municipio
+		$('#municipios').bind('change',function(){
+			var datos='{'
+					+'\"id_municipio\": \"'+$('#municipios').val()+'\"'
+					+'}';
+			jQuery.ajax({
+				url: '".$urlEscuelas."',
+				type: 'post',
+				async: true,
+				contentType: 'application/json',
+				data: datos,
+				success: function(resp){
+					$('#inscripciones-codigo_plantel').html(resp);
+					$('#inscripciones-codigo_plantel').trigger('chosen:updated');
+				}
+			});
+
+		});
 		", 
 		View::POS_READY, 
-		'my-options');
+		'my-options');		
+		
 		
 // Se visualizan los elemento del formulario si las variables son verdaderas
 $mostrarPromedio = "style='display: none;'";
 if ($model->postulado_para_beca)
 {
 	$mostrarPromedio = "style='display: block;'";
+}
+
+// Se visualizan los elemento del formulario si las variables son verdaderas
+$mostrarNotas = "style='display: none;'";
+if ($model->postulado_para_premio)
+{
+	$mostrarNotas = "style='display: block;'";
 }
 //$model->postulado_para_premio
 
@@ -145,8 +260,23 @@ $grados = array(
 	  </div>
 	</div>
     
+	<div id="mensajePremio" class="row">
+	  <div class="col-lg-12 col-md-10">
+		<?= Alert::widget([
+				'options' => [
+					'class' => 'alert-warning',
+				],
+				'body' => 'Optan por el <strong>Premio de reconocimiento a la excelencia</strong> los alumnos que hayan finalizado 6to. Grado
+							de Educación Bolivariana, 3er. Año de Educación Secundaria Bolivariana, 5to. Año de Educación Secundaria Bolivariana o
+							6to. Año de Educación Secundaria Bolivariana',
+				'closeButton' => false,
+			]);
+		 ?>
+	  </div>
+	</div>
 
-	<div class="row">
+
+	<div id="notas" class="row" <?= $mostrarNotas; ?>>
 	  <?= Alert::widget([
 				'options' => [
 					'class' => 'alert-info',
@@ -156,13 +286,13 @@ $grados = array(
 			]);
 		 ?>
 	  <div class="col-lg-4 col-md-10">
-		<?= $form->field($model, 'nota1')->textInput()->hint('Escriba el promedio con 3 decimales'); ?>
+		<?= $form->field($model, 'nota1')->textInput()->hint('Escriba el promedio con 3 decimales')->label(null,['id'=>'nota1']); ?>
 	  </div>
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota2')->textInput()->hint('Escriba el promedio con 3 decimales'); ?>
+		<?= $form->field($model, 'nota2')->textInput()->hint('Escriba el promedio con 3 decimales')->label(null,['id'=>'nota2']); ?>
 	  </div>	  
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota3')->textInput()->hint('Escriba el promedio con 3 decimales. Sólo debe llenarlo si cursó sexto año'); ?>
+		<?= $form->field($model, 'nota3')->textInput()->hint('Escriba el promedio con 3 decimales.')->label(null,['id'=>'nota3']); ?>
 	  </div>
 	</div>
 	</br></br>
@@ -207,7 +337,7 @@ $grados = array(
 	</div>
 
     <div class="form-group">
-        <?//= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Datos del estudiante', ['estudiantes/create'], ['class' => 'btn btn-default', 'role' => 'button']) ?>
         <?= Html::submitButton('Siguiente <span class="glyphicon glyphicon-arrow-right"></span>', ['class' => 'btn btn-primary']) ?>
     </div>
 

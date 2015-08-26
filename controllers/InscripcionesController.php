@@ -8,6 +8,8 @@ use app\models\InscripcionesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
+
 use app\models\Estudiantes;
 use app\models\Procesos;
 use app\models\Municipios;
@@ -186,6 +188,37 @@ class InscripcionesController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    /**
+     * Obtiene una lista de planteles según el municipio
+     * @param integer $id
+     * @return mixed
+     */
+    public function actionGetPlanteles()
+    {
+        if (Yii::$app->request->isAjax)
+		{
+            if (Yii::$app->request->isPost)
+            {
+				
+				$jsondata = trim(file_get_contents('php://input'));
+				//$jsondata = Yii::$app->request->post();
+				$s = json_decode($jsondata);
+				$planteles = Plantel::find()
+							->where(['cod_municipio' => $s->id_municipio])
+							->orderBy('cod_pla')
+							->all();
+                
+                $option = sprintf("<option value=''>-- Seleccione --</option>");
+                foreach($planteles as $plantel)
+                {
+					$option .= sprintf("<option value='%d'>%s</option>", $plantel->cod_pla, $plantel->nom_pla);
+					
+				}
+			}
+		}
+		echo $option;
     }
 
     /**

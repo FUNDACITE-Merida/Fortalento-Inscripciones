@@ -19,7 +19,7 @@ class InscripcionesSearch extends Inscripciones
     {
         return [
             [['id', 'id_proceso', 'id_estudiante', 'codigo_profesion_jefe_familia', 'codigo_nivel_instruccion_madre', 'codigo_fuente_ingreso_familia', 'codigo_vivienda_familia', 'codigo_ingreso_familia', 'codigo_grupo_familiar'], 'integer'],
-            [['fecha_inscripcion', 'codigo_plantel', 'localidad_plantel', 'codigo_ultimo_grado', 'postulado_para'], 'safe'],
+            [['fecha_inscripcion', 'codigo_plantel', 'localidad_plantel', 'codigo_ultimo_grado', 'postulado_para_beca', 'postulado_para_premio'], 'safe'],
             [['promedio', 'nota1', 'nota2', 'nota3'], 'number'],
         ];
     }
@@ -76,7 +76,8 @@ class InscripcionesSearch extends Inscripciones
         $query->andFilterWhere(['like', 'codigo_plantel', $this->codigo_plantel])
             ->andFilterWhere(['like', 'localidad_plantel', $this->localidad_plantel])
             ->andFilterWhere(['like', 'codigo_ultimo_grado', $this->codigo_ultimo_grado])
-            ->andFilterWhere(['like', 'postulado_para', $this->postulado_para]);
+            ->andFilterWhere(['like', 'postulado_para_beca', $this->postulado_para_beca])
+            ->andFilterWhere(['like', 'postulado_para_premio', $this->postulado_para_premio]);
 
         return $dataProvider;
     }
