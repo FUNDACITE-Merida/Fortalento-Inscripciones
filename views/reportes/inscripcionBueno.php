@@ -1,4 +1,22 @@
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/xhtml-math11-f.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><!--This file was converted to xhtml by LibreOffice - see http://cgit.freedesktop.org/libreoffice/core/tree/filter/source/xslt for the code.-->
+<head profile="http://dublincore.org/documents/dcmi-terms/">
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
+	<!-- <title xml:lang="en-US">- no title specified</title> -->
+	<meta name="DCTERMS.title" content="" xml:lang="en-US"/>
+	<meta name="DCTERMS.language" content="en-US" scheme="DCTERMS.RFC4646"/>
+	<meta name="DCTERMS.source" content="http://xml.openoffice.org/odf2xhtml"/>
+	<meta name="DCTERMS.issued" content="2015-06-29T14:59:40.115451994" scheme="DCTERMS.W3CDTF"/>
+	<meta name="DCTERMS.modified" content="2015-08-12T12:12:36.785552757" scheme="DCTERMS.W3CDTF"/>
+	<meta name="DCTERMS.provenance" content="" xml:lang="en-US"/>
+	<meta name="DCTERMS.subject" content="," xml:lang="en-US"/>
+	<link rel="schema.DC" href="http://purl.org/dc/elements/1.1/" hreflang="en"/>
+	<link rel="schema.DCTERMS" href="http://purl.org/dc/terms/" hreflang="en"/>
+	<link rel="schema.DCTYPE" href="http://purl.org/dc/dcmitype/" hreflang="en"/>
+	<link rel="schema.DCAM" href="http://purl.org/dc/dcam/" hreflang="en"/>
+	
+	</head>
+	<body dir="ltr" style="margin-top:1cm; margin-bottom:1cm; margin-left:1cm; margin-right:1cm; background-color:transparent; writing-mode:lr-tb; ">
 		<table border="0" cellspacing="0" cellpadding="0" class="ta1" width="100%">
 			<colgroup><col width="124"/>
 			<col width="99"/>
@@ -41,13 +59,13 @@
 				<td colspan="2" style="text-align:right;width:2.831cm; " class="ce3">
 					<p>FECHA DE SOLICITUD:</p></td>
 					<td colspan="2" style="text-align:left;width:2.258cm;" class="ce9">
-						<p> &nbsp; <?= $inscripcion->fecha_inscripcion; ?></p></td>
+						<?= $inscripcion->fecha_inscripcion; ?></td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td colspan="2" style="text-align:right;width:2.258cm; " class="ce3">
 						<p>Nº PLANILLA:</p></td>
 					<td style="text-align:left;width:3.54cm; " class="ce26">
-						&nbsp;<?= $inscripcion->id; ?> </td>
+						<?= $inscripcion->id; ?> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro1">
@@ -74,12 +92,11 @@
 				<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td>-->
 			</tr>
-			<tr class="ro3">
-				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce5">
-					&nbsp;<?= $inscripcion->localidad_plantel; ?> </td>
+			<tr class="ro3"><td colspan="4" style="text-align:left;width:2.831cm; " class="ce5">
+				<?= $inscripcion->localidad_plantel; ?> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td colspan="4" style="text-align:left;width:2.258cm; " class="ce5">
-					&nbsp;<?= $plantel->codMunicipio->municipio; ?> </td>
+					<?= $plantel->codMunicipio->municipio; ?> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro2">
@@ -126,11 +143,11 @@
 			</tr>
 			<tr class="ro3">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce9">
-					&nbsp;<?= $inscripcion->idEstudiante->apellido; ?>
+					<?= $inscripcion->idEstudiante->apellido; ?>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"></td>
 				<td colspan="4" style="text-align:left;width:2.258cm; " class="ce9">
-					&nbsp;<?= $inscripcion->idEstudiante->nombre; ?>
+					<?= $inscripcion->idEstudiante->nombre; ?>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
@@ -165,13 +182,13 @@
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				<td colspan="5" rowspan="2" style="text-align:left;width:2.258cm; " class="ce37"> 
-					&nbsp;<?=$estudianteCorreo->email;?>
+					<?=$estudianteCorreo->email;?>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro5">
 				<td colspan="3" style="text-align:left;width:2.831cm; " class="ce9">
-					&nbsp;<?= $inscripcion->idEstudiante->cedula ?> 
+					<?= $inscripcion->idEstudiante->cedula ?> 
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
@@ -232,7 +249,7 @@
 					</td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="ce2"> </td> -->
 					<td colspan="3" style="text-align:left;width:2.258cm; " class="ce9">
-						&nbsp;<?= $inscripcion->idEstudiante->lugar_nacimiento ?> 
+						<?= $inscripcion->idEstudiante->lugar_nacimiento ?> 
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
@@ -251,7 +268,7 @@
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
-					<td style="text-align:left;width:3.54cm; " class="ce2"> <br><br><br></td>
+					<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
 				<tr class="ro2">
@@ -283,7 +300,7 @@
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
-					<td style="text-align:left;width:3.54cm; " class="ce2"><br> </td>
+					<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
 				<tr class="ro6">
@@ -325,7 +342,7 @@
 					<td style="text-align:left;width:2.258cm; " class="ce40"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce40"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce40"> </td>
-					<td style="text-align:left;width:3.54cm; " class="ce40"><br> </td>
+					<td style="text-align:left;width:3.54cm; " class="ce40"> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
 				<tr class="ro1">
@@ -348,17 +365,14 @@
 							<span class="T3">Premio Beca – Estímulo</span>, indique el promedio de notas obtenido en el grado/año culminado en julio 2015. Ejemplo: 18,358
 						</p>
 					</td>
-					<td colspan="2" style="text-align:center;width:2.258cm; " class="ce42">
-						<p><strong>PROMEDIO:</strong></p>
+					<td colspan="2" style="text-align:left;width:2.258cm; " class="ce42">
+						<p><span><strong>PROMEDIO:</strong></span>  <?= $inscripcion->promedio?></p>
 					</td>
-					<td style="text-align:left;width:3.54cm; " class="ce26">
-						&nbsp;<?= $inscripcion->promedio?> 
-					</td>
+					<td style="text-align:left;width:3.54cm; " class="ce26"> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
 				<tr class="ro8">
 					<td colspan="9" style="text-align:left;width:2.831cm; " class="ce14">
-						<br>
 						<p>Optan por el Premio Beca-Estímulo los estudiantes que han culminado el 6to. Grado de Educación Secundaria Bolivariana hasta los que han culminado el 5to. Año de Educación Secundaria  Bolivariana y/o el sexto Año de Educación Secundaria Bolivariana (Escuelas Técnicas).
 						</p>
 					</td>
@@ -399,18 +413,18 @@
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
-					<td style="text-align:left;width:3.54cm; " class="ce2"><br> </td>
+					<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
 				<tr class="ro1">
-					<td colspan="2" style="text-align:center;width:2.831cm; " class="ce15">
+					<td colspan="2" style="text-align:left;width:2.831cm; " class="ce15">
 						<p>Por Sexto Grado</p></td>
 					<td style="text-align:left;width:2.258cm; " class="ce2">
 					</td>
-					<td colspan="2" style="text-align:center;width:2.258cm; " class="ce15">
+					<td colspan="2" style="text-align:left;width:2.258cm; " class="ce15">
 						<p>Por Tercer Año</p></td>
-					<td style="text-align:center;width:2.258cm; " class="ce2"> </td>
-					<td colspan="2" style="text-align:center;width:2.258cm; " class="ce15">
+					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
+					<td colspan="2" style="text-align:left;width:2.258cm; " class="ce15">
 						<p>Por Quinto y Sexto Año</p>
 					</td>
 					<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
@@ -420,19 +434,19 @@
 					<td style="text-align:left;width:2.831cm; " class="ce16">
 						<p>Promedio Global 4to grado:</p></td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 6) ?  $inscripcion->nota1 : null?> 
+						<?= ($inscripcion->codigo_ultimo_grado == 6) ?  $inscripcion->nota1 : null?> 
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce16">
 						<p>Promedio Global 1<span class="T8">er</span> año:</p></td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 9) ?  $inscripcion->nota1 : null?>
+						<?= ($inscripcion->codigo_ultimo_grado == 9) ?  $inscripcion->nota1 : null?>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"></td>
 					<td style="text-align:left;width:2.258cm; " class="ce16">
 						<p>Promedio Global 4to año:</p></td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 11 || $inscripcion->codigo_ultimo_grado == 12) ?  $inscripcion->nota1 : null?>
+						<?= ($inscripcion->codigo_ultimo_grado == 11 || $inscripcion->codigo_ultimo_grado == 12) ?  $inscripcion->nota1 : null?>
 					</td>
 					<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
@@ -442,22 +456,22 @@
 						<p>Promedio Global 5to grado:</p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 6) ?  $inscripcion->nota2 : null?>
+						<?= ($inscripcion->codigo_ultimo_grado == 6) ?  $inscripcion->nota2 : null?>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce16">
 						<p>Promedio Global 2do año:</p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 9) ?  $inscripcion->nota2 : null?>
+						<?= ($inscripcion->codigo_ultimo_grado == 9) ?  $inscripcion->nota2 : null?>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce16">
 						<p>Promedio Global 5to año:</p>
 					</td>
-					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 11 || $inscripcion->codigo_ultimo_grado == 12) ?  $inscripcion->nota2 : null?>
-					</td>
+						<td style="text-align:left;width:2.258cm; " class="ce26">
+							<?= ($inscripcion->codigo_ultimo_grado == 11 || $inscripcion->codigo_ultimo_grado == 12) ?  $inscripcion->nota2 : null?>
+						</td>
 					<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
@@ -465,20 +479,19 @@
 					<p>Promedio Global 6to grado:</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce26">
-					&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 6) ?  $inscripcion->nota3 : null?>
+					<?= ($inscripcion->codigo_ultimo_grado == 6) ?  $inscripcion->nota3 : null?>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce16">
 					<p>Promedio Global 3<span class="T8">er</span> año:</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce26">
-					&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 9) ?  $inscripcion->nota3 : null?>
+					<?= ($inscripcion->codigo_ultimo_grado == 9) ?  $inscripcion->nota3 : null?>
 				</td><td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce16">
 					<p>Promedio Global 6to año:</p>
 				</td>
-				<td style="text-align:left;width:2.258cm; " class="ce26">
-					&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 12) ?  $inscripcion->nota3 : null?> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce26"><?= ($inscripcion->codigo_ultimo_grado == 12) ?  $inscripcion->nota3 : null?> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce44">
 					<p>Solo si cursó sexto año</p>
 				</td>
@@ -508,31 +521,31 @@
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce2"> <br></td>
+				<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro2">
 				<td colspan="9" style="text-align:center;width:2.831cm; " class="ce7">
 					<p>DATOS DEL PLANTEL</p>
 				</td>
-				<td style="text-align:left;width:2.258cm; " class="ce45"><br> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce45"> </td>
 			</tr>
 			<tr class="ro2">
 				<td colspan="2" style="text-align:left;width:2.831cm; " class="ce4">
 					<p>CÓDIGO DEL MUNICIPIO:</p>
 				</td>
-				<td style="text-align:left;width:2.258cm; " class="ce9">
-					&nbsp;<?= $plantel->cod_municipio; ?>
+				<td style="text-align:left;width:2.258cm; " class="ce2">
+					<?= $plantel->cod_municipio; ?>
 				</td>
-				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce2"> </td>
+				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce9"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce4">
 					<p>CÓDIGO DEL PLANTEL:</p>
 				</td>
-				<td style="text-align:left;width:2.258cm; " class="ce9"> 
-					&nbsp;<?= $inscripcion->codigo_plantel; ?>
+				<td style="text-align:left;width:2.258cm; " class="ce2"> 
+					<?= $inscripcion->codigo_plantel; ?>
 				</td>
-				<!-- <td colspan="2" style="text-align:left;width:2.258cm; " class="ce2"> </td> -->
+				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce9"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro1">
@@ -544,7 +557,7 @@
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce2"> <br><br><br></td>
+				<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro2">
@@ -558,7 +571,7 @@
 				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
 				<td colspan="6" rowspan="2" style="text-align:left;width:2.258cm; " class="ce5">
 					<p><strong>NOMBRE DEL PLANTEL:</strong></p>
-					<p>&nbsp;<?= $plantel->nom_pla; ?></p>
+					<p><?= $plantel->nom_pla; ?></p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
@@ -578,7 +591,7 @@
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce2"><br><br><br><br><br><br><br><br><br><br><br><br><br> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro1">
@@ -1054,7 +1067,7 @@
 			<tr class="ro1">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce24"> </td>
 				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-				<td colspan="4" style="text-align:left;width:2.258cm; " class="ce24"><br><br> </td>
+				<td colspan="4" style="text-align:left;width:2.258cm; " class="ce24"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro1">
@@ -1067,4 +1080,5 @@
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 		</table>
-
+	</body>
+</html>

@@ -14,6 +14,23 @@ use yii\web\View;
 
 <?php
 
+$labelNota1 = 'Promedio Global 4to Grado';
+$labelNota2 = 'Promedio Global 5to Grado';
+$labelNota3 = 'Promedio Global 6to Grado';
+if ($model->codigo_ultimo_grado == 9)
+{
+	$labelNota1 = 'Promedio Global 1er Año';
+	$labelNota2 = 'Promedio Global 2do Año';
+	$labelNota3 = 'Promedio Global 3er Año';
+}
+
+if ($model->codigo_ultimo_grado == 11 || $model->codigo_ultimo_grado == 12)
+{
+	$labelNota1 = 'Promedio Global 4to Año';
+	$labelNota2 = 'Promedio Global 5to Año';
+	$labelNota3 = 'Promedio Global 6to Año';
+}	
+
 $urlEscuelas = Yii::$app->urlManager->createUrl(['inscripciones/get-planteles']);
 $this->registerJs("
 
@@ -286,13 +303,13 @@ $grados = array(
 			]);
 		 ?>
 	  <div class="col-lg-4 col-md-10">
-		<?= $form->field($model, 'nota1')->textInput()->hint('Escriba el promedio con 3 decimales')->label(null,['id'=>'nota1']); ?>
+		<?= $form->field($model, 'nota1')->textInput()->hint('Escriba el promedio con 3 decimales')->label($labelNota1,['id'=>'nota1']); ?>
 	  </div>
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota2')->textInput()->hint('Escriba el promedio con 3 decimales')->label(null,['id'=>'nota2']); ?>
+		<?= $form->field($model, 'nota2')->textInput()->hint('Escriba el promedio con 3 decimales')->label($labelNota2,['id'=>'nota2']); ?>
 	  </div>	  
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota3')->textInput()->hint('Escriba el promedio con 3 decimales.')->label(null,['id'=>'nota3']); ?>
+		<?= $form->field($model, 'nota3')->textInput()->hint('Escriba el promedio con 3 decimales.')->label($labelNota3,['id'=>'nota3']); ?>
 	  </div>
 	</div>
 	</br></br>
