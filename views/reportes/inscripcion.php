@@ -1,4 +1,23 @@
-
+<?php
+// Grados se amarró a código ya que en la tabla hay grados que no 
+// están participando en este proceso. Es necesario adecuar el código
+// en este sistema para excluir esos grados y lograr eliminar este código
+// amarrado
+$grados = array(
+			'6' => '6to. Grado',
+			'7' => '1er. Año',
+			'8' => '2do. Año',
+			'9' => '3er. Año',
+			'10' => '4to. Año',
+			'11' => '5to. Año',
+			'12' => '6to. Año',
+		  );
+$nivelInstruccion = array(
+			'1' => 'Primaria',
+			'2' => 'Secundaria',
+			'3' => 'Superior',
+		  );
+?>
 		<table border="0" cellspacing="0" cellpadding="0" class="ta1" width="100%">
 			<colgroup><col width="124"/>
 			<col width="99"/>
@@ -1054,7 +1073,7 @@
 			<tr class="ro1">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce24"> </td>
 				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-				<td colspan="4" style="text-align:left;width:2.258cm; " class="ce24"><br><br> </td>
+				<td colspan="4" style="text-align:left;width:2.258cm; " class="ce24"><br><br><br /> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro1">
@@ -1067,4 +1086,823 @@
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 		</table>
-
+		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<table border="0" cellspacing="0" cellpadding="0" class="ta1">
+			<colgroup>
+				<col width="99"/>
+				<col width="99"/>
+				<col width="34"/>
+				<col width="99"/>
+				<col width="99"/>
+				<col width="34"/>
+				<col width="99"/>
+				<col width="99"/>
+				<col width="33"/>
+				<col width="99"/>
+				<col width="111"/>
+				<col width="99"/>
+			</colgroup>
+			<tr class="ro1">
+				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce1">
+					<p>PLANILLA DE ESTUDIO SOCIO ECONOMICO</p>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> 
+				</td> -->
+			</tr>
+			<tr class="ro1">
+				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce102">
+					<p>PROGRAMA DE FORTALECIMIENTO AL TALENTO Y LIDERAZGO ESTUDIANTIL</p>
+				</td>
+				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+			</tr>
+			<tr class="ro1">
+				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce102">
+					<p>-FORTALENTO-</p>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<br />
+			<tr class="ro1">
+				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce102">
+					<p>DATOS DEL SOLICITANTE</p></td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce34"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce3"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro3">
+				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>APELLIDOS:</p>
+					<span class="textoNormal">&nbsp;<?= $inscripcion->idEstudiante->apellido; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>NOMBRES:</p>
+					<span class="textoNormal">&nbsp;<?= $inscripcion->idEstudiante->nombre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="ce42"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro4">
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>CEDULA DE IDENTIDAD:</p>
+					<span class="textoNormal">&nbsp;<?= $inscripcion->idEstudiante->cedula; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce23"> </td>
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>TELEFONO FIJO:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->telefono_fijo_solicitante; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>TELEFONO CELULAR:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->telefono_celular_solicitante; ?></span>
+				</td>
+				<td style="text-align:left;width:0.762cm; " class="ce23"> </td>
+				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce23">
+					<p>¿VIVE CON LOS PADRES?</p>
+				</td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro4">
+				<td style="text-align:left;width:0.788cm; " class="ce23"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce23"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce41">
+					<p>SI <span class="textoNormal"><strong><?= $estudio->vive_con_padres_solicitante ? '[*]' : null; ?></strong></span></p>
+				</td>
+				<td style="text-align:left;width:2.531cm; " class="ce41">
+					<p>NO <span class="textoNormal"><strong><?= !$estudio->vive_con_padres_solicitante ? '[*]' : null; ?></strong></span></p>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro4">
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>Nº DE LA PLANILLA DE SOLICITUD:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->n_planilla_inscripcion; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>GRADO O AÑO FINALIZADO:</p>
+					<span class="textoNormal">&nbsp;<?= $grados[$estudio->codigo_ultimo_grado]; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td colspan="5" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>CORREO ELECTRONICO:</p>
+					<span class="textoNormal">&nbsp;<?= $estudianteCorreo->email; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro4">
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr><tr class="ro1">
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro1">
+				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce109">
+					<p>DATOS DE LOS PADRES</p>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro1">
+				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce110">
+					<p>DATOS DEL PADRE:</p>
+				</td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce110"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro3">
+				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>APELLIDOS:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->apellidos_padre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>NOMBRES:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->nombres_padre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro5">
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>CEDULA DE IDENTIDAD:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->cedula_padre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce11">
+					<p>GRADO DE INSTRUCCIÓN:</p>
+				</td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="ce11"> </td> -->
+				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
+					<p>TELEFONO FIJO:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->telefono_fijo_padre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro5">
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce29">
+					<p>PRIMARIA <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_padre == 1) ? '[*]' : null; ?></strong></span></p>
+				</td>
+				<td style="text-align:left;width:2.258cm; " class="ce29">
+					<p>SECUNDARIA<span class="textoNormal"><strong><?= ($estudio->grado_instruccion_padre == 2) ? '[*]' : null; ?></strong></span></p>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce33"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce29">
+					<p>SUPERIOR <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_padre == 3) ? '[*]' : null; ?></strong></span></p>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
+					<p>TELEFONO CELULAR:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->telefono_celular_padre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro4">
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>PROFESION:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->profesion_padre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>OCUPACION:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->ocupacion_padre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>LUGAR DE TRABAJO:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->lugar_trabajo_padre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>INGRESO MENSUAL:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->ingreso_mensual_padre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro4">
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce30"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro5">
+				<td colspan="7" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>DIRECCION DE TRABAJO:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->direccion_trabajo_padre; ?></span>
+				</td>
+				<td colspan="4" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>  CORREO ELECTRONICO:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->correo_e_padre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro5">
+				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro6">
+				<td colspan="11" style="text-align:left;width:2.258cm; " class="ce114">
+					<p>DIRECCION DE HABITACION (INDIQUE UN PUNTO DE REFERENCIA):</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->direccion_habitacion_padre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+			<tr class="ro1">
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td>-->
+			</tr>
+			<tr class="ro1">
+				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce110">
+					<p>DATOS DE LA MADRE:</p>
+				</td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce110"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro3">
+				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>APELLIDOS:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->apellidos_madre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>NOMBRES:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->nombres_madre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro5">
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>CEDULA DE IDENTIDAD:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->cedula_madre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce11">
+					<p>GRADO DE INSTRUCCIÓN:</p>
+				</td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="ce11"> </td> -->
+				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
+					<p>TELEFONO FIJO:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->telefono_fijo_madre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+			<tr class="ro5">
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce29">
+					<p>PRIMARIA <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_madre == 1) ? '[*]' : null; ?></strong></span></p>
+				</td>
+				<td style="text-align:left;width:2.258cm; " class="ce29">
+					<p>SECUNDARIA<span class="textoNormal"><strong><?= ($estudio->grado_instruccion_madre == 2) ? '[*]' : null; ?></strong></span></p>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce33"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce29">
+					<p>SUPERIOR <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_madre == 3) ? '[*]' : null; ?></strong></span></p>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce33"> </td>
+				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
+					<p>TELEFONO CELULAR:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->telefono_celular_madre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro2">
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			</tr>
+			<tr class="ro5">
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>PROFESION:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->profesion_madre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>OCUPACION:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->ocupacion_madre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>LUGAR DE TRABAJO:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->lugar_trabajo_madre; ?></span>
+				</td>
+				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<p>INGRESO MENSUAL:</p>
+					<span class="textoNormal">&nbsp;<?= $estudio->ingreso_mensual_madre; ?></span>
+				</td>
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro5">
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce30"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+				</tr>
+				<tr class="ro2">
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td>-->
+				</tr>
+				<tr class="ro3">
+					<td colspan="7" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>DIRECCION DE TRABAJO:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->direccion_trabajo_madre; ?></span>
+					</td>
+					<td colspan="4" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>  CORREO ELECTRONICO:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->correo_e_madre; ?></span>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro2">
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro3">
+					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce15">
+						<p>DIRECCION DE HABITACION (INDIQUE UN PUNTO DE REFERENCIA):</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->direccion_habitacion_madre; ?></span>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro1">
+					<td style="text-align:left;width:2.258cm; " class="ce116"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce126"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce30"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce30"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro1">
+					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce109">
+						<p>DATOS DEL REPRESENTANTE</p>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro2">
+					<td style="text-align:left;width:2.258cm; " class="ce110"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro3">
+					<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>APELLIDOS:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->apellidos_representante; ?></span>
+					</td>
+					<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+					<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>NOMBRES:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->nombres_representante; ?></span>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro2">
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro5">
+					<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>CEDULA DE IDENTIDAD:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->cedula_representante; ?></span>
+					</td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td colspan="3" style="text-align:left;width:2.258cm; " class="ce11">
+						<p>GRADO DE INSTRUCCIÓN:</p>
+					</td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td> -->
+					<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
+						<p>TELEFONO FIJO:</p>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro5">
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce29">
+						<p>PRIMARIA <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_representante == 1) ? '[*]' : null; ?></strong></span></p>						
+					</td>
+					<td style="text-align:left;width:2.258cm; " class="ce29">
+						<p>SECUNDARIA<span class="textoNormal"><strong><?= ($estudio->grado_instruccion_representante == 2) ? '[*]' : null; ?></strong></span></p>
+					</td>
+					<td style="text-align:left;width:0.788cm; " class="ce33"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce29">
+						<p>SUPERIOR <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_representante == 3) ? '[*]' : null; ?></strong></span> </p>
+					</td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
+						<p>TELEFONO CELULAR:</p>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro2">
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+				</tr>
+				<tr class="ro5">
+					<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>PROFESION:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->profesion_representante; ?></span>
+					</td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>OCUPACION:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->ocupacion_representante; ?></span>
+					</td>
+					<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+					<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>LUGAR DE TRABAJO:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->lugar_trabajo_representante; ?></span>
+					</td>
+					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+					<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>INGRESO MENSUAL:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->ingreso_mensual_representante; ?></span>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro5">
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce30"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+				</tr>
+				<tr class="ro2">
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro3">
+					<td colspan="7" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>DIRECCION DE TRABAJO:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->direccion_trabajo_representante; ?></span>
+					</td>
+					<td colspan="4" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>  CORREO ELECTRONICO:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->correo_e_representante; ?></span>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro1">
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro7">
+					<td colspan="6" rowspan="2" style="text-align:left;width:2.258cm; " class="ce117">
+						<p>DECLARO QUE LA INFORMACION SUMINISTRADA EN ESTA SOLICITUD ES VERDADERA, COMPLETA Y EXACTA Y AUTORIZO LA INVESTIGACION DE LA MISMA EN CASO DE SER NECESARIO</p>
+					</td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td colspan="4" style="text-align:left;width:2.258cm; " class="ce125">
+						<p>FIRMA DEL SOLICITANTE</p>
+						<br /><br /><br /><br />
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro7">
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td colspan="4" style="text-align:left;width:2.258cm; " class="ce125">
+						<p>FIRMA DEL REPRESENTANTE</p>
+						<br /><br /><br /><br />
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro1">
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:0.788cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:0.788cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:0.762cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.531cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+				</tr>
+				<tr class="ro1">
+					<td colspan="11" style="text-align:center;width:2.258cm; " class="ce18">
+						<p>DOCUMENTOS QUE DEBEN ACOMPAÑAR ESTA SOLICITUD</p>
+					</td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+				</tr>
+				<tr class="ro1">
+					<td colspan="3" style="text-align:left;width:2.258cm; " class="ce20">
+						<p>1) Planilla de solicitud de beca.</p>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+					<!-- <td style="text-align:left;width:0.788cm; " class="Default"> </td> -->
+					<td colspan="8" style="text-align:left;width:2.258cm; " class="ce20">
+						<p>2) Copia de la cédula de Identidad (aspirante y representante).</p>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+					<!-- <td style="text-align:left;width:0.788cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td> 
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:0.762cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.531cm; " class="Default"> </td> -->
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro1">
+					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce20">
+						<p>3) Constancia de notas del grado finalizado, selladas y firmadas por el Director del plantel donde se especifique el promedio global obtenido.</p>
+					</td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+				</tr>
+				<tr class="ro1">
+					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce20">
+						<p>4) Constancia de Ingresos de los representantes (en su defecto carta de desempleo expedida por la prefectura).</p>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:0.788cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:0.788cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:0.762cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.531cm; " class="Default"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+			</table>

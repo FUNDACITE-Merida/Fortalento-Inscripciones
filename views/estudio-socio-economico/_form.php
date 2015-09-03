@@ -21,6 +21,7 @@ $grados = array(
 			'12' => '6to. Año',
 		  );
 $nivelInstruccion = array(
+			'0' => '-- Seleccione --',
 			'1' => 'Primaria',
 			'2' => 'Secundaria',
 			'3' => 'Superior',
@@ -286,7 +287,7 @@ $nivelInstruccion = array(
     
     <div class="form-group">
 		<?= Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Datos de inscripción', ['inscripciones/create'], ['class' => 'btn btn-default', 'role' => 'button']) ?>
-        <?= Html::submitButton('Finalizar inscripción', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Finalizar e imprimir inscripción', ['class' => 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

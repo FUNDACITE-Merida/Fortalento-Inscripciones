@@ -23,7 +23,8 @@ class PasswordResetRequestForm extends Model
             ['email', 'exist',
                 'targetClass' => '\app\models\User',
                 'filter' => ['status' => User::STATUS_ACTIVE],
-                'message' => 'There is no user with such email.'
+                //'message' => 'There is no user with such email.'
+                'message' => 'No existe un usuario con este correo electrónico.'
             ],
         ];
     }

@@ -11,6 +11,7 @@ use yii\grid\GridView;
 
 $this->title = 'Reportes';
 $this->params['breadcrumbs'][] = $this->title;
+//print_r($dataProviderInscripciones);
 ?>
 <div class="estudio-socio-economico-index">
 
@@ -18,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 <div class="row">
-  <div class="col-lg-6 col-md-10">		
+  <div class="col-lg-12 col-md-10">		
 	<div class="form-group">
 	  <h3>Inscripciones</h3>
 	  <?= GridView::widget([
@@ -100,7 +101,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 	</div>
   </div>
-  
+ 
+<!--  
   <div class="col-lg-6 col-md-10">
 	<h3>Estudios socio económicos</h3>
 	<?= GridView::widget([
@@ -181,7 +183,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			],
         ],
     ]); ?>  
-  </div>
+  </div> -->
   
   	  
 </div>

@@ -55,7 +55,7 @@ class InscripcionesSearch extends Inscripciones
             // $query->where('0=1');
             return $dataProvider;
         }
-
+        
         $query->andFilterWhere([
             'id' => $this->id,
             'id_proceso' => $this->id_proceso,

@@ -36,7 +36,9 @@ class Estudiantes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cedula', 'nombre', 'apellido', 'fecha_nacimiento', 'lugar_nacimiento', 'genero', 'es_venezolano', 'id_user'], 'required'],
+            //[['cedula', 'nombre', 'apellido', 'fecha_nacimiento', 'lugar_nacimiento', 'genero', 'es_venezolano', 'id_user'], 'required'],
+            [['nombre', 'apellido', 'fecha_nacimiento', 'lugar_nacimiento', 'genero', 'es_venezolano', 'id_user'], 'required'],
+            
             [['fecha_nacimiento'], 'safe'],
             [['fecha_nacimiento'], 'date', 'max' => Yii::$app->formatter->asDate('now')],
             //[['fecha_nacimiento'], 'match', 'pattern' => '/^[1-31]-[0-12]-[1900-2021]*$/'],
@@ -133,5 +135,11 @@ class Estudiantes extends \yii\db\ActiveRecord
 		$this->fecha_nacimiento = Yii::$app->formatter->asDate($this->fecha_nacimiento);
 		
 		parent::afterFind();
+	}
+	
+	public function beforeValidate()
+	{
+		
+		return true;
 	}
 }

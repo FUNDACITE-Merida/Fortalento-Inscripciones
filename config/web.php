@@ -4,9 +4,11 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'name' => 'FORTALENTO',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'language' => 'es-VE',
+    //'defaultRoute' => '/site/login',
     'modules' => [
         'admin' => [
             'class' => 'mdm\admin\Module',

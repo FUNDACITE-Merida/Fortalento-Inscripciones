@@ -25,11 +25,10 @@ class ReportesController extends \yii\web\Controller
     {
 		$estudiante = Estudiantes::getEstudianteUser();
 		$searchModel = new EstudioSocioEconomicoSearch();
-        $dataProvider = $searchModel->search(['id_estudiante' => $estudiante->id]);
-        
+        $dataProvider = $searchModel->search(['EstudioSocioEconomicoSearch' => ['id_estudiante' => $estudiante->id]]);
         $searchModelInscripciones = new InscripcionesSearch();
-        $dataProviderInscripciones = $searchModelInscripciones->search(['id_estudiante' => $estudiante->id]);
-
+		$dataProviderInscripciones = $searchModelInscripciones->search(['InscripcionesSearch' => ['id_estudiante' => $estudiante->id]]);
+		
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -42,10 +41,11 @@ class ReportesController extends \yii\web\Controller
     public function actionInscripcion($id_proceso)
     {
 		$estudiante = Estudiantes::getEstudianteUser();
-		$inscripcion =  Inscripciones::find()
+		$inscripcion = $estudiante->getInscripcion();/*Inscripciones::find()
 							->where(['id_proceso' => $id_proceso, 
 									'id_estudiante' => $estudiante->id])
-							->one();
+							->one();*/
+		$estudio = $estudiante->getEstudioSocioEconomico();
 		$plantel = Plantel::find()
 						->where(['cod_pla' => $inscripcion->codigo_plantel])
 						->one();
@@ -57,6 +57,7 @@ class ReportesController extends \yii\web\Controller
 										->select(['email'])
 										->where(['id' => Yii::$app->user->id])
 										->one(),
+			'estudio' => $estudio,
 		]);
 		$style = '@page {  }
 	table { border-collapse:collapse; border-spacing:0; empty-cells:show }
@@ -77,15 +78,20 @@ class ReportesController extends \yii\web\Controller
 	.Default { font-family:Liberation Sans; }
 	.ce1 { font-family:Nimbus Sans L; vertical-align:middle; text-align:center ! important; font-size:10pt; font-weight:bold; }
 	.ce10 { font-family:Nimbus Sans L; border-style:none; vertical-align:middle; text-align:center ! important; font-size:10pt; }
+	.ce110 { font-family:Nimbus Sans L; font-weight:bold; }
 	.ce11 { font-family:Nimbus Sans L; vertical-align:top; font-size:10pt; font-style:normal; font-weight:bold; }
 	.ce12 { font-family:Nimbus Sans L; vertical-align:middle; text-align:left ! important; margin-left:0cm; font-size:10pt; font-weight:bold; }
 	.ce13 { font-family:Nimbus Sans L; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:10pt; font-weight:normal; }
 	.ce14 { font-family:Nimbus Sans L; vertical-align:middle; text-align:justify ! important; margin-left:0cm; font-size:8pt; font-style:normal; text-shadow:none; text-decoration:none ! important; font-weight:normal; }
+	.ce114 { font-family:Nimbus Sans L; background-color:transparent; border-width:0.01,0261cm; border-style:solid; border-color:#000000; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:8pt; font-weight:bold; }
 	.ce15 { font-family:Nimbus Sans L; border-width:0.01; border-style:solid; border-color:#000000; vertical-align:middle; text-align:center ! important; font-size:10pt; font-weight:bold; }
 	.ce16 { font-family:Nimbus Sans L; border-width:0.01; border-style:solid; border-color:#000000; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:8pt; font-weight:normal; }
+	.ce116 { font-family:Nimbus Sans L; border-style:none; vertical-align:middle; text-align:center ! important; margin-left:0cm; font-size:8pt; font-weight:bold; }
 	.ce17 { font-family:Nimbus Sans L; vertical-align:middle; text-align:center ! important; font-size:8pt; font-weight:normal; }
+	.ce117 { font-family:Nimbus Sans L; border-width:0.01,0261cm; border-style:solid; border-color:#000000; vertical-align:middle; text-align:left ! important; margin-left:0cm; font-size:8pt; }
 	.ce18 { font-family:Nimbus Sans L; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:10pt; font-weight:bold; }
 	.ce19 { font-family:Nimbus Sans L; vertical-align:middle; text-align:left ! important; margin-left:0cm; font-size:10pt; font-weight:bold; }
+	.ce102 { font-family:Nimbus Sans L; vertical-align:middle; text-align:center ! important; font-size:10pt; font-weight:bold; }
 	.ce2 { font-family:Nimbus Sans L; vertical-align:top; font-size:10pt; }
 	.ce20 { font-family:Nimbus Sans L; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:10pt; font-style:normal; text-shadow:none; text-decoration:none ! important; font-weight:normal; }
 	.ce21 { font-family:Nimbus Sans L; font-size:10pt; }
@@ -93,7 +99,9 @@ class ReportesController extends \yii\web\Controller
 	.ce23 { font-family:Nimbus Sans L; vertical-align:middle; text-align:left ! important; margin-left:0cm; font-size:10pt; font-weight:bold; }
 	.ce24 { font-family:Liberation Sans; border-bottom-width:0,0349cm; border-bottom-style:solid; border-bottom-color:#000000; border-left-style:none; border-right-style:none; border-top-style:none; vertical-align:middle; text-align:center ! important; }
 	.ce25 { font-family:Nimbus Sans L; vertical-align:middle; text-align:center ! important; margin-left:0cm; }
+	.ce125 { font-family:Nimbus Sans L; border-width:0.01,0261cm; border-style:solid; border-color:#000000; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:8pt; }
 	.ce26 { font-family:Nimbus Sans L; border-width:0.01,0261cm; border-style:solid; border-color:#000000; vertical-align:top; font-size:10pt; }
+	.ce126 { font-family:Nimbus Sans L; text-align:justify ! important; margin-left:0cm; font-size:8pt; font-weight:bold; }
 	.ce27 { font-family:Nimbus Sans L; vertical-align:top; font-size:10pt; }
 	.ce28 { font-family:Nimbus Sans L; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:10pt; }
 	.ce29 { font-family:Nimbus Sans L; }
@@ -106,9 +114,11 @@ class ReportesController extends \yii\web\Controller
 	.ce35 { font-family:Nimbus Sans L; background-color:transparent; border-style:none; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:10pt; }
 	.ce36 { font-family:Nimbus Sans L; vertical-align:bottom; text-align:left ! important; margin-left:0cm; font-size:10pt; font-weight:bold; }
 	.ce37 { font-family:Liberation Sans; border-width:0.01,0261cm; border-style:solid; border-color:#000000; vertical-align:middle; text-align:center ! important; }
+	.ce137 { font-family:Nimbus Sans L; border-width:0.01,0261cm; border-style:solid; border-color:#000000; vertical-align:middle; text-align:left ! important; margin-left:0cm; font-size:8pt; font-weight:bold; }
 	.ce38 { font-family:Nimbus Sans L; border-width:0.01,0261cm; border-style:solid; border-color:#000000; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:10pt; }
 	.ce39 { font-family:Nimbus Sans L; border-width:0,0021cm; border-style:solid; border-color:#000000; vertical-align:middle; text-align:center ! important; font-size:10pt; }
 	.ce4 { font-family:Nimbus Sans L; vertical-align:top; font-size:10pt; font-weight:bold; }
+	.ce104 { font-family:Nimbus Sans L; border-width:0.01,0261cm; border-style:solid; border-color:#000000; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:8pt; font-weight:bold; }
 	.ce40 { font-family:Nimbus Sans L; background-color:transparent; border-style:none; vertical-align:top; font-size:10pt; }
 	.ce41 { font-family:Nimbus Sans L; vertical-align:middle; text-align:center ! important; }
 	.ce42 { font-family:Nimbus Sans L; border-width:0.01; border-style:solid; border-color:#000000; vertical-align:top; text-align:right ! important; margin-left:0cm; font-size:10pt; font-weight:normal; }
@@ -118,8 +128,10 @@ class ReportesController extends \yii\web\Controller
 	.ce5 { font-family:Nimbus Sans L; border-width:0.01; border-style:solid; border-color:#000000; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:10pt; font-weight:normal; }
 	.ce6 { font-family:Nimbus Sans L; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:8pt; font-style:normal; text-shadow:none; text-decoration:none ! important; font-weight:normal; }
 	.ce7 { font-family:Nimbus Sans L; vertical-align:top; text-align:center ! important; font-size:10pt; font-weight:bold; }
+    .ce107 { font-family:Nimbus Sans L; border-width:0,0261cm; border-style:solid; border-color:#000000; vertical-align:top; text-align:left ! important; margin-left:0cm; color:#000000; font-size:8pt; font-weight:bold; }
 	.ce8 { font-family:Nimbus Sans L; vertical-align:top; text-align:left ! important; margin-left:0cm; font-size:10pt; font-weight:bold; }
 	.ce9 { font-family:Nimbus Sans L; border-width:0.01; border-style:solid; border-color:#000000; vertical-align:middle; text-align:center ! important; font-size:10pt; }
+	.ce109 { font-family:Nimbus Sans L; vertical-align:middle; text-align:center ! important; font-weight:bold; }
 	.co1 { width:2.831cm; }
 	.co2 { width:2.258cm; }
 	.co3 { width:3.54cm; }
@@ -144,7 +156,8 @@ class ReportesController extends \yii\web\Controller
 	.T6 { font-size:10pt; font-weight:bold; font-style:normal; }
 	.T7 { font-size:10pt; font-style:normal; font-weight:normal; }
 	<!-- ODF styles with no properties representable as CSS -->
-	.T8  { }';
+	.T8  { }
+	.textoNormal{font-size:10pt; font-style: normal; font-weight:normal;}';
 	
 		$pdf = new Pdf([
 			// set to use core fonts only
@@ -152,9 +165,11 @@ class ReportesController extends \yii\web\Controller
 			// A4 paper format
 			'format' => Pdf::FORMAT_LETTER, 
 			// portrait orientation
-			'orientation' => Pdf::ORIENT_PORTRAIT, 
+			'orientation' => Pdf::ORIENT_PORTRAIT,
+			'filename' => 'inscripcionFORTALENTO.pdf',
 			// stream to browser inline
-			'destination' => Pdf::DEST_BROWSER, 
+			//'destination' => Pdf::DEST_BROWSER,
+			'destination' => Pdf::DEST_DOWNLOAD, 
 			// your html content input
 			'content' => $content,  
 			// format content from your own css file if needed or use the

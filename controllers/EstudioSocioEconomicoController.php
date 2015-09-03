@@ -87,7 +87,7 @@ class EstudioSocioEconomicoController extends Controller
 		}
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['/reportes/inscripcion','id_proceso' => $model->id_proceso]);
         } else {
             return $this->render('create', [
                 'model' => $model,

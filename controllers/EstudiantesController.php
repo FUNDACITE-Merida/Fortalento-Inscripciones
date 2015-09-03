@@ -41,7 +41,7 @@ class EstudiantesController extends Controller
     {
         $searchModel = new EstudiantesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
+       
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
