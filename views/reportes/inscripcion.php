@@ -229,7 +229,7 @@ $nivelInstruccion = array(
 					</td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="ce2"> </td> -->
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						<?php list($mes, $dia, $anio) = split('[/.-]', $inscripcion->idEstudiante->fecha_nacimiento);?>
+						<?php list($dia, $mes, $anio) = split('[/.-]', $inscripcion->idEstudiante->fecha_nacimiento);?>
 						<p>Día: <?= $dia ?></p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
@@ -239,7 +239,7 @@ $nivelInstruccion = array(
 						<p>Año: <?= $anio ?></p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
-					<td style="text-align:left;width:2.258cm; " class="ce26"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce26"><?= $inscripcion->getEdadEstudiante();?></td>
 					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
 					<td style="text-align:left;width:3.54cm; " class="ce34">
 						<p>FEMENINO: <?= ($inscripcion->idEstudiante->genero == 'F') ? "<span><strong>[*]</strong></span>" : null?></p></td>

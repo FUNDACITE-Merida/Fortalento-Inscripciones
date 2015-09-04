@@ -50,7 +50,9 @@ class Inscripciones extends \yii\db\ActiveRecord
             [['id_proceso', 'id_estudiante', 'codigo_profesion_jefe_familia', 'codigo_nivel_instruccion_madre', 'codigo_fuente_ingreso_familia', 'codigo_vivienda_familia', 'codigo_ingreso_familia', 'codigo_grupo_familiar'], 'integer'],
             [['fecha_inscripcion'], 'safe'],
             [['fecha_inscripcion'], 'date', 'max' => Yii::$app->formatter->asDate('now')],
-            [['promedio', 'nota1', 'nota2', 'nota3'], 'number'],
+            [['promedio', 'nota1', 'nota2', 'nota3'], 'number', 
+				'numberPattern' => '/^\s*[-+]?[0-9]*\,?[0-9]+([eE][-+]?[0-9]+)?\s*$/',
+				'min' => 10, 'max' => 20],
             [['codigo_plantel'], 'string', 'max' => 10],
             [['localidad_plantel'], 'string', 'max' => 256],
             [['codigo_ultimo_grado'], 'string', 'max' => 4],
@@ -131,5 +133,10 @@ class Inscripciones extends \yii\db\ActiveRecord
 		$this->fecha_inscripcion = Yii::$app->formatter->asDate($this->fecha_inscripcion);
 		
 		parent::afterFind();
+	}
+	
+	public function getEdadEstudiante() {
+		list($d,$m,$Y) = explode("-",$this->idEstudiante->fecha_nacimiento);
+		return( date("md") < $m.$d ? date("Y")-$Y-1 : date("Y")-$Y );
 	}
 }

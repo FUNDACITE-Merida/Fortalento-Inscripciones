@@ -16,12 +16,14 @@ use Yii;
  * @property string $genero
  * @property boolean $es_venezolano
  * @property integer $id_user
+ * @property boolean $no_cedula
  *
  * @property EstudioSocioEconomico[] $estudioSocioEconomicos
  * @property Inscripciones[] $inscripciones
  */
 class Estudiantes extends \yii\db\ActiveRecord
 {
+	public $no_cedula = false;
     /**
      * @inheritdoc
      */
@@ -39,7 +41,7 @@ class Estudiantes extends \yii\db\ActiveRecord
             //[['cedula', 'nombre', 'apellido', 'fecha_nacimiento', 'lugar_nacimiento', 'genero', 'es_venezolano', 'id_user'], 'required'],
             [['nombre', 'apellido', 'fecha_nacimiento', 'lugar_nacimiento', 'genero', 'es_venezolano', 'id_user'], 'required'],
             
-            [['fecha_nacimiento'], 'safe'],
+            [['fecha_nacimiento', 'no_cedula'], 'safe'],
             [['fecha_nacimiento'], 'date', 'max' => Yii::$app->formatter->asDate('now')],
             //[['fecha_nacimiento'], 'match', 'pattern' => '/^[1-31]-[0-12]-[1900-2021]*$/'],
             [['es_venezolano'], 'boolean'],
@@ -48,8 +50,17 @@ class Estudiantes extends \yii\db\ActiveRecord
             [['cedula'], 'match', 'pattern' => '/^[0-9]*$/'],
             [['nombre', 'apellido', 'lugar_nacimiento'], 'string', 'max' => 256],
             [['genero'], 'string', 'max' => 1],
-            [['id_user'], 'unique']
-        ];
+            [['id_user', 'cedula'], 'unique'],
+            
+            //caso especial cuando no se tiene cédula, el campo (cédula) no será requerido
+            
+            ['cedula', 'required', 'when' => function ($model) {
+				return $model->no_cedula == false;
+			}, 'whenClient' => "function (attribute, value) {
+					return $('#estudiantes-no_cedula').is(':checked') == false;
+				}"],
+			
+		];
     }
 
     /**
@@ -67,6 +78,7 @@ class Estudiantes extends \yii\db\ActiveRecord
             'genero' => 'Sexo',
             'es_venezolano' => 'Nacionalidad',
             'id_user' => 'Id User',
+            'no_cedula' => 'No tengo cédula',
         ];
     }
 
@@ -127,6 +139,9 @@ class Estudiantes extends \yii\db\ActiveRecord
 	{
 		if (!$this->es_venezolano)
 			$this->es_venezolano = 0;
+		
+		if (empty($this->cedula))
+			$this->no_cedula = true;
 		// Formatea la fecha según se ha configurado en config/web.php
 		// 'formatter' => [
         //	   'dateFormat' => 'dd-MM-yyyy',
@@ -137,9 +152,18 @@ class Estudiantes extends \yii\db\ActiveRecord
 		parent::afterFind();
 	}
 	
-	public function beforeValidate()
+	public function beforeSave()
 	{
-		
+		if ($this->no_cedula)
+		{
+			//$this->cedula = '00000'.rand(1, 999);
+			//echo $this->validate(array('cedula'));
+			do
+			{
+				//$this->cedula = '00000'.rand(1, 999);
+				$this->cedula = '00000'.rand(1, 999);
+			}while (!($this->validate(array('cedula'))));
+		}
 		return true;
 	}
 }
