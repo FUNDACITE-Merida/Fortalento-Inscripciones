@@ -12,6 +12,9 @@ use app\models\Estudiantes;
 use app\models\Procesos;
 use app\models\User;
 
+use app\filters\ProcesoCerrado;
+use app\filters\InscripcionCerrada;
+
 /**
  * EstudioSocioEconomicoController implements the CRUD actions for EstudioSocioEconomico model.
  */
@@ -25,6 +28,16 @@ class EstudioSocioEconomicoController extends Controller
                 'actions' => [
                     'delete' => ['post'],
                 ],
+            ],
+            'proceso' => [
+                'class' => ProcesoCerrado::className(),
+                'denyActions' => ['estudio-socio-economico/create'],
+                'returnPath' => '/procesos/proceso-cerrado',
+            ],
+            'inscripcion' => [
+                'class' => InscripcionCerrada::className(),
+                'denyActions' => ['estudio-socio-economico/create'],
+                'returnPath' => '/inscripciones/inscripcion-cerrada',
             ],
         ];
     }
@@ -87,7 +100,9 @@ class EstudioSocioEconomicoController extends Controller
 		}
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['/reportes/inscripcion','id_proceso' => $model->id_proceso]);
+            //return $this->redirect(['/reportes/inscripcion','id_proceso' => $model->id_proceso]);
+            Yii::$app->session->setFlash('guardado', 'La inscripción se ha guardado exitosamente', true);
+            return $this->redirect(['/estudio-socio-economico/create']);
         } else {
             return $this->render('create', [
                 'model' => $model,

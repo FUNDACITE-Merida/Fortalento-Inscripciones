@@ -8,7 +8,8 @@ use app\models\EstudiantesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\filters\ProcesoAbierto;
+use app\filters\ProcesoCerrado;
+use app\filters\InscripcionCerrada;
 
 
 /**
@@ -26,9 +27,14 @@ class EstudiantesController extends Controller
                 ],
             ],
             'proceso' => [
-                'class' => ProcesoAbierto::className(),
+                'class' => ProcesoCerrado::className(),
                 'denyActions' => ['estudiantes/create', 'estudiantes/view'],
-                'returnPath' => '/site/about',
+                'returnPath' => '/procesos/proceso-cerrado',
+            ],
+            'inscripcion' => [
+                'class' => InscripcionCerrada::className(),
+                'denyActions' => ['estudiantes/create', 'estudiantes/view'],
+                'returnPath' => '/inscripciones/inscripcion-cerrada',
             ],
         ];
     }

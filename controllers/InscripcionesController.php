@@ -21,14 +21,16 @@ use app\models\NseAlojamientoYVivienda;
 use app\models\NseIngresoFamiliar;
 use app\models\NseGrupoFamiliar;
 
-use app\filters\ProcesoAbierto;
+use app\filters\ProcesoCerrado;
+use app\filters\InscripcionCerrada;
+
 
 /**
  * InscripcionesController implements the CRUD actions for Inscripciones model.
  */
 class InscripcionesController extends Controller
 {
-    public function behaviors()
+	public function behaviors()
     {
         return [
             'verbs' => [
@@ -38,10 +40,14 @@ class InscripcionesController extends Controller
                 ],
             ],
             'proceso' => [
-            /* Se debe renombrar ProcesoAbierto a ProcesoCerrado que es lo realmente correcto*/
-                'class' => ProcesoAbierto::className(),
+                'class' => ProcesoCerrado::className(),
                 'denyActions' => ['inscripciones/create', 'inscripciones/view'],
-                'returnPath' => '/site/about',
+                'returnPath' => '/procesos/proceso-cerrado',
+            ],
+            'inscripcion' => [
+                'class' => InscripcionCerrada::className(),
+                'denyActions' => ['inscripciones/create'],
+                'returnPath' => '/inscripciones/inscripcion-cerrada',
             ],
         ];
     }
@@ -101,12 +107,30 @@ class InscripcionesController extends Controller
 			$model->id_proceso =  Procesos::getIdProcesoAbierto();
 			$model->fecha_inscripcion = Yii::$app->formatter->asDate('now');
 			
-			$municipios = Municipios::find()->all();
+			$municipios = Municipios::find()
+									->where(['not',['cod_municipio' => '04']])
+									->andWhere(['not',['cod_municipio' => '05']])
+									->andWhere(['not',['cod_municipio' => '08']])
+									->andWhere(['not',['cod_municipio' => '09']])
+									->andWhere(['not',['cod_municipio' => '10']])
+									->andWhere(['not',['cod_municipio' => '11']])
+									->andWhere(['not',['cod_municipio' => '15']])
+									->andWhere(['not',['cod_municipio' => '22']])
+									->all();
 			$planteles = array();
 			$cod_municipio = null;			
 		}else
 		{
-			$municipios = Municipios::find()->all();
+			$municipios = Municipios::find()
+									->where(['not',['cod_municipio' => '04']])
+									->andWhere(['not',['cod_municipio' => '05']])
+									->andWhere(['not',['cod_municipio' => '08']])
+									->andWhere(['not',['cod_municipio' => '09']])
+									->andWhere(['not',['cod_municipio' => '10']])
+									->andWhere(['not',['cod_municipio' => '11']])
+									->andWhere(['not',['cod_municipio' => '15']])
+									->andWhere(['not',['cod_municipio' => '22']])
+									->all();
 			$plantel = Plantel::findOne(['cod_pla' => $model->codigo_plantel]);
 			$cod_municipio = $plantel->cod_municipio;
 			$planteles = Plantel::find()
@@ -117,9 +141,12 @@ class InscripcionesController extends Controller
 		
 		/* 
 		 * TODO: 1.- Antes de guardar se debe setear en el modelo el campo fecha_inscripcion
-		 * con la fecha actual
+		 * con la fecha actual. (Esto ya está arreglado con la impresión de la fecha en el formulario
+		 * usando un campo no relacionado con la base de datos)
+		 * 
 		 */ 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+			Yii::info("Pimpoyo => ". $model->postulado_para_premio . " -- ". $model->postulado_para_beca);
             return $this->redirect(['/estudio-socio-economico/create']);
         } else {
 			$profesionJefeFamilia = NseProfesionJefeFamilia::find()->all();
@@ -127,7 +154,7 @@ class InscripcionesController extends Controller
 			$fuenteIngreso = NseFuenteDeIngreso::find()->all();
 			$alojamientoVivienda = NseAlojamientoYVivienda::find()->all();
 			$ingresoFamiliar = NseIngresoFamiliar::find()
-									->where(['cod_proceso' => 'p-2012']) // Se debe colocar esto Procesos::getCodigoProcesoAbierto()
+									->where(['cod_proceso' => Procesos::getCodigoProcesoAbierto()]) // Se debe colocar esto Procesos::getCodigoProcesoAbierto()
 									->orderBy('cod_ing_fam')
 									->all();
 			$grupoFamiliar = NseGrupoFamiliar::find()->all();
@@ -192,7 +219,6 @@ class InscripcionesController extends Controller
     
     /**
      * Obtiene una lista de planteles según el municipio
-     * @param integer $id
      * @return mixed
      */
     public function actionGetPlanteles()
@@ -235,5 +261,57 @@ class InscripcionesController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+    
+    /**
+     * Cierra la inscripción y redirije hacía la impresión de ésta.
+     * @return mixed
+     */
+    public function actionCerrarEImprimir()
+    {
+        if (!($estudiante = Estudiantes::getEstudianteUser()))
+        {
+			return $this->redirect(['/estudiantes/create']);
+		}
+		
+		if (!($inscripcion = $estudiante->getInscripcion()))
+        {
+			return $this->redirect(['/inscripciones/create']);
+		}
+		
+		if (!($estudioSE = $estudiante->getEstudioSocioEconomico()))
+        {
+			return $this->redirect(['/estudio-socio-economico/create']);
+		}
+		
+		$id_proceso = Procesos::getIdProcesoAbierto();
+		$inscripcion->cerrada = true;
+		if ($inscripcion->save()) {
+			return $this->render('inscripcionFinalizada', [
+                'id_proceso' => $id_proceso,
+            ]);
+        }		
+    }
+    
+    /**
+     * Muestra la página de mensaje de inscripción cerrada.
+     * @return mixed
+     */
+    public function actionInscripcionCerrada()
+    {
+        if (!($estudiante = Estudiantes::getEstudianteUser()))
+        {
+			return $this->redirect(['/estudiantes/create']);
+		}
+		
+		if (!($inscripcion = $estudiante->getInscripcion()))
+        {
+			return $this->redirect(['/inscripciones/create']);
+		}
+		
+		
+		if ($inscripcion->estatusInscripcion()) {
+			return $this->render('inscripcion_cerrada');
+        }		
     }
 }

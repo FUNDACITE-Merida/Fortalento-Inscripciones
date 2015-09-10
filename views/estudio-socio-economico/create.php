@@ -7,8 +7,8 @@ use yii\helpers\Html;
 /* @var $model app\models\EstudioSocioEconomico */
 
 $this->title = 'Datos de estudio socio económico';
-$this->params['breadcrumbs'][] = ['label' => 'Estudio Socio Economicos', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+/*$this->params['breadcrumbs'][] = ['label' => 'Estudio Socio Economicos', 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;*/
 ?>
 <div class="estudio-socio-economico-create">
 

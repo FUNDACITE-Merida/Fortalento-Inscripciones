@@ -23,22 +23,25 @@ AppAsset::register($this);
 <body>
 
 <?php $this->beginBody() ?>
+	<div style="text-align: center;"><?= Html::img('@web/images/cabecera.png',['width' => '100%'])?></div>
     <div class="wrap">
         <?php
             NavBar::begin([
+                //'brandLabel' => Yii::$app->name,
                 'brandLabel' => Yii::$app->name,
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
-                    'class' => 'navbar-inverse navbar-fixed-top my-nav',
+                    //'class' => 'navbar-inverse navbar-fixed-top my-nav',
+                    'class' => 'navbar-inverse my-nav',
                 ],
             ]);
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
-                    ['label' => 'Home', 'url' => ['/site/index']],
-                    ['label' => 'Inscripción', 'url' => ['/estudiantes/create']],
+                    ['label' => 'Reportes', 'url' => ['/reportes/index'], 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => 'Inscripción', 'url' => ['/estudiantes/create'], 'visible' => !Yii::$app->user->isGuest],
                     //['label' => 'Contact', 'url' => ['/site/contact']],
-                        ['label' => 'Login', 'url' => ['/site/login'], 'visible' => Yii::$app->user->isGuest],
+                        ['label' => 'Ingresar', 'url' => ['/site/login'], 'visible' => Yii::$app->user->isGuest],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Registrarse', 'url' => ['/site/signup']]:
                         ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
@@ -60,7 +63,7 @@ AppAsset::register($this);
     <footer class="footer">
         <div class="container">
             <p class="pull-left">&copy; FUNDACITE Mérida <?= date('Y') ?></p>
-            <p class="pull-right"><?= Yii::powered() ?></p>
+            <p class="pull-right"><?//= Html::img('@web/images/logo.png')?><?= Yii::powered() ?></p>
         </div>
     </footer>
 

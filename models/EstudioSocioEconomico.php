@@ -139,7 +139,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             'ocupacion_representante' => 'Ocupación del representante',
             'lugar_trabajo_representante' => 'Lugar de trabajo del representante',
             'ingreso_mensual_representante' => 'Ingreso mensual del representante',
-            'direccion_trabajo_representante' => 'Direccion rrabajo del representante',
+            'direccion_trabajo_representante' => 'Direccion de trabajo del representante',
             'correo_e_representante' => 'Correo electrónico del representante',
         ];
     }

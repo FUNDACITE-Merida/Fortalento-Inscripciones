@@ -25,6 +25,7 @@ use Yii;
  * @property integer $codigo_vivienda_familia
  * @property integer $codigo_ingreso_familia
  * @property integer $codigo_grupo_familiar
+ * @property boolean $cerrada
  *
  * @property EstudioSocioEconomico[] $estudioSocioEconomicos
  * @property Estudiantes $idEstudiante
@@ -32,6 +33,7 @@ use Yii;
  */
 class Inscripciones extends \yii\db\ActiveRecord
 {
+	private $_patronNumero = '/^\s*[-+]?[0-9]*\,?[0-9]+([eE][-+]?[0-9]+)?\s*$/';
     /**
      * @inheritdoc
      */
@@ -50,14 +52,66 @@ class Inscripciones extends \yii\db\ActiveRecord
             [['id_proceso', 'id_estudiante', 'codigo_profesion_jefe_familia', 'codigo_nivel_instruccion_madre', 'codigo_fuente_ingreso_familia', 'codigo_vivienda_familia', 'codigo_ingreso_familia', 'codigo_grupo_familiar'], 'integer'],
             [['fecha_inscripcion'], 'safe'],
             [['fecha_inscripcion'], 'date', 'max' => Yii::$app->formatter->asDate('now')],
-            [['promedio', 'nota1', 'nota2', 'nota3'], 'number', 
-				'numberPattern' => '/^\s*[-+]?[0-9]*\,?[0-9]+([eE][-+]?[0-9]+)?\s*$/',
-				'min' => 10, 'max' => 20],
+            
             [['codigo_plantel'], 'string', 'max' => 10],
             [['localidad_plantel'], 'string', 'max' => 256],
             [['codigo_ultimo_grado'], 'string', 'max' => 4],
             [['postulado_para_beca'], 'string', 'max' => 1],
-            [['postulado_para_premio'], 'string', 'max' => 1]
+            [['postulado_para_premio'], 'string', 'max' => 1],
+            
+            
+            ['promedio', 'number', 
+				'numberPattern' => $this->_patronNumero,
+				'min' => 10, 'max' => 20,
+				'when' => function ($model) {
+							return $model->postulado_para_beca == true;
+				}, 'whenClient' => "function (attribute, value) {
+						return $('#inscripciones-postulado_para_beca').is(':checked') == true;
+					}"
+			],
+			
+			[['nota1', 'nota2', 'nota3'], 'number', 
+				'numberPattern' => $this->_patronNumero,
+				'min' => 10, 'max' => 20,
+				'when' => function ($model) {
+							return $model->postulado_para_premio == true;
+				}, 'whenClient' => "function (attribute, value) {
+						return $('#inscripciones-postulado_para_premio').is(':checked') == true;
+					}"
+			],
+			
+			['promedio', 'required', 
+				'when' => function ($model) {
+							return $model->postulado_para_beca == true;
+				}, 'whenClient' => "function (attribute, value) {
+						return $('#inscripciones-postulado_para_beca').is(':checked') == true;
+					}"
+			],
+			
+			[['nota1', 'nota2', 'nota3'], 'required',
+				'when' => function ($model) {
+							return $model->postulado_para_premio == true;
+				}, 'whenClient' => "function (attribute, value) {
+						return $('#inscripciones-postulado_para_premio').is(':checked') == true;
+					}"
+			],
+			
+			[['postulado_para_beca'], 'required', 'requiredValue' => 'B', 'message' => 'Debe seleccionar al menos una postulación',
+				'when' => function ($model) {
+							return $model->postulado_para_premio == false;
+				}, 'whenClient' => "function (attribute, value) {
+						return $('#inscripciones-postulado_para_premio').is(':checked') == false;
+					}"
+			],
+			
+			[['postulado_para_premio'], 'required', 'requiredValue' => 'P', 'message' => 'Debe seleccionar al menos una postulación',
+				'when' => function ($model) {
+							return $model->postulado_para_beca == false;
+				}, 'whenClient' => "function (attribute, value) {
+						return $('#inscripciones-postulado_para_beca').is(':checked') == false;
+					}"
+			],
+			
         ];
     }
 
@@ -80,12 +134,13 @@ class Inscripciones extends \yii\db\ActiveRecord
             'nota1' => 'Promedio global 1',
             'nota2' => 'Promedio global 2',
             'nota3' => 'Promedio global 3',
-            'codigo_profesion_jefe_familia' => 'Profesion del jefe familia',
-            'codigo_nivel_instruccion_madre' => 'Nivel de instruccion madre',
+            'codigo_profesion_jefe_familia' => 'Profesion del jefe de la familia',
+            'codigo_nivel_instruccion_madre' => 'Nivel de instruccion de la madre',
             'codigo_fuente_ingreso_familia' => 'Fuente de ingreso familiar',
             'codigo_vivienda_familia' => 'Alojamiento y vivienda',
-            'codigo_ingreso_familia' => 'Ingreso familiar',
+            'codigo_ingreso_familia' => 'Ingreso familiar (sin deducciones)',
             'codigo_grupo_familiar' => 'Grupo familiar',
+            'cerrada' => 'Inscripción cerrada',
         ];
     }
 
@@ -122,21 +177,45 @@ class Inscripciones extends \yii\db\ActiveRecord
         return new InscripcionesQuery(get_called_class());
     }
     
+    public function beforeSave()
+    {
+		$this->promedio = str_replace(',','.',$this->promedio);
+		$this->promedio = Yii::$app->formatter->asDecimal(floatval($this->promedio), 3);
+		
+		$this->nota1 = str_replace(',','.',$this->nota1);
+		$this->nota1 = Yii::$app->formatter->asDecimal(floatval($this->nota1), 3);
+		$this->nota2 = str_replace(',','.',$this->nota2);
+		$this->nota2 = Yii::$app->formatter->asDecimal(floatval($this->nota2), 3);
+		$this->nota3 = str_replace(',','.',$this->nota3);
+		$this->nota3 = Yii::$app->formatter->asDecimal(floatval($this->nota3), 3);
+		
+		return true;
+	}
+    
     public function afterFind()
 	{
 		
 		// Formatea la fecha según se ha configurado en config/web.php
 		// 'formatter' => [
         //	   'dateFormat' => 'dd-MM-yyyy',
-        // ]
-            
+        // ]            
 		$this->fecha_inscripcion = Yii::$app->formatter->asDate($this->fecha_inscripcion);
 		
+		$this->promedio = str_replace('.',',',$this->promedio);
+		$this->nota1 = str_replace('.',',',$this->nota1);
+		$this->nota2 = str_replace('.',',',$this->nota2);
+		$this->nota3 = str_replace('.',',',$this->nota3);
+				
 		parent::afterFind();
 	}
 	
 	public function getEdadEstudiante() {
 		list($d,$m,$Y) = explode("-",$this->idEstudiante->fecha_nacimiento);
 		return( date("md") < $m.$d ? date("Y")-$Y-1 : date("Y")-$Y );
+	}
+	
+	public function estatusInscripcion()
+    {		
+		return $this->cerrada;
 	}
 }

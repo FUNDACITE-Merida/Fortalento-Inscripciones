@@ -118,4 +118,17 @@ class ProcesosController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+    
+    /**
+     * Muestra una página informando que no hay ningún proceso abierto
+     * en estos momentos.
+     * @return mixed
+     */
+    public function actionProcesoCerrado()
+    {
+        if (!(Procesos::getProcesoAbierto()))
+			return $this->render('proceso_cerrado');
+		
+		return $this->redirect(['/estudiantes/create']);
+    }
 }

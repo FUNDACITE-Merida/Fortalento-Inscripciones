@@ -61,8 +61,8 @@ $config = [
         ],
         'formatter' => [
             'dateFormat' => 'dd-MM-yyyy',
-            'decimalSeparator' => ',',
-            'thousandSeparator' => '.',
+            'decimalSeparator' => '.',
+            'thousandSeparator' => ',',
             'currencyCode' => 'Bs',
         ],
         'db' => require(__DIR__ . '/db.php'),
@@ -78,8 +78,8 @@ $config = [
         // agregar acciones para permitir acceso a todos
             'site/*', 
             // Eliminar cuando ya se haya configurado un usuario administrador
-            'admin/*', 
-            'gii/*', 
+            //'admin/*', 
+            //'gii/*', 
             // Eliminar todo abajo cuando se haya configurado el acceso a usuarios
             /*'procesos/*',
             'estudiantes/*',

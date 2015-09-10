@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\bootstrap\Alert;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\EstudioSocioEconomico */
@@ -29,7 +30,15 @@ $nivelInstruccion = array(
 ?>
 
 <div class="estudio-socio-economico-form">
-
+	<?php if (Yii::$app->session->hasFlash('guardado')):?>
+		<?= Alert::widget([
+				'options' => [
+					'class' => 'alert-info',
+				],
+				'body' => 'La inscripción se ha guardado exitosamente. Para cerrar e imprimir las planillas de inscripción haga click en el siguiente enlace ' . Html::a('Cerrar e imprimir inscripción', ['inscripciones/cerrar-e-imprimir'], ['class' => 'btn btn-danger', 'role' => 'button']),
+				'closeButton' => false,
+			]);?>
+	<?php endif; ?>
     <?php $form = ActiveForm::begin(); ?>
 
     <fieldset>
@@ -287,7 +296,7 @@ $nivelInstruccion = array(
     
     <div class="form-group">
 		<?= Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Datos de inscripción', ['inscripciones/create'], ['class' => 'btn btn-default', 'role' => 'button']) ?>
-        <?= Html::submitButton('Finalizar e imprimir inscripción', ['class' => 'btn btn-primary']) ?>
+        <?= Html::submitButton('Guardar inscripción', ['class' => 'btn btn-primary']) ?>        
     </div>
 
     <?php ActiveForm::end(); ?>

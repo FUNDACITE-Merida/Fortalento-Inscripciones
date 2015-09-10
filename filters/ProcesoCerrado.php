@@ -5,9 +5,8 @@ use Yii;
 use yii\base\ActionFilter;
 use app\models\Procesos;
 
-/* Se debe renombrar ProcesoAbierto a ProcesoCerrado que es lo realmente correcto*/
 
-class ProcesoAbierto extends ActionFilter
+class ProcesoCerrado extends ActionFilter
 {
     private $_startTime;
     public $denyActions = [];

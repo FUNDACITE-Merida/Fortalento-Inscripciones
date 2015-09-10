@@ -216,7 +216,8 @@ $grados = array(
 			<?= Html::dropDownList('municipios', $cod_municipio,
 								ArrayHelper::map($municipios, 'cod_municipio', 'municipio'), 
 								['class' => 'form-control',
-								 'id' => 'municipios']) ?>
+								 'id' => 'municipios',
+								 'prompt' => '-- Seleccione --']) ?>
 		</div>
 	  </div>	  
 	</div>
@@ -229,13 +230,19 @@ $grados = array(
 			);
 		?>
 	  </div>
-	  <div class="col-lg-6 col-md-10">		
-		<div class="form-group">
-			<?= Html::label('Postulado para', 'postuladoPara', ['class' => 'control-label']) ?>
+	  <div class="col-lg-6 col-md-10">
+		  <?= Html::label('Postulado para', 'postuladoPara', ['class' => 'control-label']) ?>
+		  <?= $form->field($model, 'postulado_para_premio')->checkbox(['value' => 'P']) ?>	  
+		  <?= $form->field($model, 'postulado_para_beca')->checkbox(['value' => 'B']) ?>	  
+		<!-- <div class="form-group field-inscripciones-postulado_para_premio field-inscripciones-postulado_para_beca">
+			
 			<div class="checkbox">
 				<?= Html::activeCheckbox($model, 'postulado_para_premio', ['value' => 'P']) ?>
+				<?//= Html::error($model, 'postulado_para_premio') ?>
 				<?= Html::activeCheckbox($model, 'postulado_para_beca', ['value' => 'B']) ?>
-			</div>
+				<?//= Html::error($model, 'postulado_para_beca') ?>
+			</div> -->
+			<div class="help-block"></div>
 		</div>
 	  </div>	  
 	</div>
@@ -262,7 +269,7 @@ $grados = array(
 
 	<div id="promedio" class="row" <?= $mostrarPromedio; ?>>
 	  <div class="col-lg-6 col-md-10">
-		<?= $form->field($model, 'promedio')->textInput()->hint('Escriba el promedio con 3 decimales'); ?>
+		<?= $form->field($model, 'promedio')->textInput()->hint('Ejemplo: 19,457'); ?>
 	  </div>
 	  <div class="col-lg-6 col-md-10">
 		  <?= Alert::widget([
@@ -303,13 +310,13 @@ $grados = array(
 			]);
 		 ?>
 	  <div class="col-lg-4 col-md-10">
-		<?= $form->field($model, 'nota1')->textInput()->hint('Escriba el promedio con 3 decimales')->label($labelNota1,['id'=>'nota1']); ?>
+		<?= $form->field($model, 'nota1')->textInput()->hint('Ejemplo: 19,457')->label($labelNota1,['id'=>'nota1']); ?>
 	  </div>
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota2')->textInput()->hint('Escriba el promedio con 3 decimales')->label($labelNota2,['id'=>'nota2']); ?>
+		<?= $form->field($model, 'nota2')->textInput()->hint('Ejemplo: 19,457')->label($labelNota2,['id'=>'nota2']); ?>
 	  </div>	  
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota3')->textInput()->hint('Escriba el promedio con 3 decimales.')->label($labelNota3,['id'=>'nota3']); ?>
+		<?= $form->field($model, 'nota3')->textInput()->hint('Ejemplo: 19,457')->label($labelNota3,['id'=>'nota3']); ?>
 	  </div>
 	</div>
 	</br></br>
@@ -348,7 +355,7 @@ $grados = array(
 	  </div>
 	  <div class="col-lg-6 col-md-10">		
 		<?= $form->field($model, 'codigo_grupo_familiar')->dropdownList(
-			ArrayHelper::map($grupoFamiliar, 'cod_grupo_fam', 'descripcion')
+			array_reverse(ArrayHelper::map($grupoFamiliar, 'cod_grupo_fam', 'descripcion'), true)
 			); ?>
 	  </div>	  
 	</div>

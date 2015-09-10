@@ -23,11 +23,15 @@ class ReportesController extends \yii\web\Controller
 
     public function actionIndex()
     {
-		$estudiante = Estudiantes::getEstudianteUser();
+		if (!($estudiante = Estudiantes::getEstudianteUser()))
+        {
+			return $this->redirect(['/estudiantes/create']);
+		}
+		//$estudiante = Estudiantes::getEstudianteUser();
 		$searchModel = new EstudioSocioEconomicoSearch();
         $dataProvider = $searchModel->search(['EstudioSocioEconomicoSearch' => ['id_estudiante' => $estudiante->id]]);
         $searchModelInscripciones = new InscripcionesSearch();
-		$dataProviderInscripciones = $searchModelInscripciones->search(['InscripcionesSearch' => ['id_estudiante' => $estudiante->id]]);
+		$dataProviderInscripciones = $searchModelInscripciones->search(['InscripcionesSearch' => ['id_estudiante' => $estudiante->id, 'cerrada' => true]]);
 		
         return $this->render('index', [
             'searchModel' => $searchModel,
@@ -40,12 +44,29 @@ class ReportesController extends \yii\web\Controller
 
     public function actionInscripcion($id_proceso)
     {
-		$estudiante = Estudiantes::getEstudianteUser();
-		$inscripcion = $estudiante->getInscripcion();/*Inscripciones::find()
+		if (!($estudiante = Estudiantes::getEstudianteUser()))
+        {
+			return $this->redirect(['/estudiantes/create']);
+		}
+		
+		
+		if (!($inscripcion = Inscripciones::find()
+							->where(['id_proceso' => $id_proceso, 
+									'id_estudiante' => $estudiante->id,
+									'cerrada' => true])
+							->one()))
+		{
+			return $this->render('errorReporte');
+		}
+							
+		if (!($estudio = EstudioSocioEconomico::find()
 							->where(['id_proceso' => $id_proceso, 
 									'id_estudiante' => $estudiante->id])
-							->one();*/
-		$estudio = $estudiante->getEstudioSocioEconomico();
+							->one()))
+		{
+			return $this->render('errorReporte');
+		}
+		
 		$plantel = Plantel::find()
 						->where(['cod_pla' => $inscripcion->codigo_plantel])
 						->one();

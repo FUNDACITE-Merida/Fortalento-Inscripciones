@@ -10,7 +10,7 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Reportes';
-$this->params['breadcrumbs'][] = $this->title;
+//$this->params['breadcrumbs'][] = $this->title;
 //print_r($dataProviderInscripciones);
 ?>
 <div class="estudio-socio-economico-index">
