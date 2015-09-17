@@ -25,6 +25,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 	<div style="text-align: center;"><?= Html::img('@web/images/cabecera.png',['width' => '100%'])?></div>
     <div class="wrap">
+		<?php if (!array_key_exists('Administrador', Yii::$app->authManager->getRolesByUser(Yii::$app->user->id))):?>
         <?php
             NavBar::begin([
                 //'brandLabel' => Yii::$app->name,
@@ -32,7 +33,7 @@ AppAsset::register($this);
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     //'class' => 'navbar-inverse navbar-fixed-top my-nav',
-                    'class' => 'navbar-inverse my-nav',
+                    'class' => 'navbar-inverse',
                 ],
             ]);
             echo Nav::widget([
@@ -44,14 +45,41 @@ AppAsset::register($this);
                         ['label' => 'Ingresar', 'url' => ['/site/login'], 'visible' => Yii::$app->user->isGuest],
                     Yii::$app->user->isGuest ?
                         ['label' => 'Registrarse', 'url' => ['/site/signup']]:
-                        ['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['label' => 'Salir (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],
                 ],
             ]);
             NavBar::end();
         ?>
-
+		<?php endif ?>
+		
+		
+		<?php /* Menú para el usuario administrador */
+		if (array_key_exists('Administrador', Yii::$app->authManager->getRolesByUser(Yii::$app->user->id))):?>
+        <?php
+            NavBar::begin([
+                //'brandLabel' => Yii::$app->name,
+                'brandLabel' => Yii::$app->name . " - <span style='color:red'>Administrador</span>",
+                'brandUrl' => Yii::$app->homeUrl,
+                'options' => [
+                    //'class' => 'navbar-inverse navbar-fixed-top my-nav',
+                    'class' => 'navbar-inverse',
+                ],
+            ]);
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav navbar-right'],
+                'items' => [
+                    //['label' => 'Reportes', 'url' => ['/reportes/index'], 'visible' => !Yii::$app->user->isGuest],
+                    ['label' => 'Estadísticas', 'url' => null],
+					['label' => 'Salir (' . Yii::$app->user->identity->username . ')',
+                            'url' => ['/site/logout'],
+                            'linkOptions' => ['data-method' => 'post']],
+                ],
+            ]);
+            NavBar::end();
+        ?>
+		<?php endif ?>
         <div class="container">
             <?= Breadcrumbs::widget([
                 'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
