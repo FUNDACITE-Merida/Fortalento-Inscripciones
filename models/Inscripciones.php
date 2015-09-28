@@ -218,4 +218,33 @@ class Inscripciones extends \yii\db\ActiveRecord
     {		
 		return $this->cerrada;
 	}
+	
+	public function getConsolidadoMunicipios()
+	{
+		$municipios = Municipios::find()->all();
+		
+		foreach($municipios as $municipio)
+		{
+			$planteles = $municipio->plantels;
+			$cerradas = 0;
+			$abiertas = 0;
+			foreach($planteles as $plantel)
+			{
+				$cerradas += Inscripciones::find()
+										->where(['codigo_plantel' => $plantel->cod_pla])
+										->andWhere(['cerrada' => true])
+										->count();
+										
+				$abiertas += Inscripciones::find()
+										->where(['codigo_plantel' => $plantel->cod_pla])
+										->andWhere(['cerrada' => false])
+										->count();
+			}
+			$datos[$municipio->municipio]['nombre'] = $municipio->municipio;
+			$datos[$municipio->municipio]['cerradas'] = $cerradas;
+			$datos[$municipio->municipio]['abiertas'] = $abiertas;
+		}
+		
+		return $datos;
+	}
 }

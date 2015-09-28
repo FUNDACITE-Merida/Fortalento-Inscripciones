@@ -71,7 +71,7 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav navbar-right'],
                 'items' => [
                     //['label' => 'Reportes', 'url' => ['/reportes/index'], 'visible' => !Yii::$app->user->isGuest],
-                    ['label' => 'Estadísticas', 'url' => null],
+                    ['label' => 'Estadísticas', 'url' => ['/inscripciones/consolidado']],
 					['label' => 'Salir (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],
