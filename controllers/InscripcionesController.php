@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Inscripciones;
 use app\models\InscripcionesSearch;
+use app\models\MunicipiosSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -215,6 +216,27 @@ class InscripcionesController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    /**
+     * Muestra un reporte consolidado de las inscripciones en general.
+     * @return mixed
+     */
+    public function actionConsolidado()
+    {
+		$totalModel['tEstudiantesInscritos'] = Inscripciones::find()->count();
+        $totalModel['tInscripcionesCerradas'] = Inscripciones::find()
+													->where(['cerrada' => true])
+													->count();
+        $totalModel['tInscripcionesAbiertas'] = Inscripciones::find()
+													->where(['cerrada' => false])
+													->count();
+		$data =  Inscripciones::getConsolidadoMunicipios();
+
+        return $this->render('consolidado', [
+            'totalModel' => $totalModel,
+            'data' => $data,
+        ]);
     }
     
     /**

@@ -79,7 +79,7 @@ $config = [
             'site/*', 
             // Eliminar cuando ya se haya configurado un usuario administrador
             //'admin/*', 
-            //'gii/*', 
+            'gii/*', 
             // Eliminar todo abajo cuando se haya configurado el acceso a usuarios
             /*'procesos/*',
             'estudiantes/*',

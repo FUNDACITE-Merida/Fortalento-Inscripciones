@@ -1005,7 +1005,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_grupo_familiar == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    Dos (2) personas</p>
+					<p> <?= ($inscripcion->codigo_grupo_familiar == 5) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    Dos (2) personas</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -1016,7 +1016,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_grupo_familiar == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    Tres (3) a seis (6) personas </p>
+					<p> <?= ($inscripcion->codigo_grupo_familiar == 4) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    Tres (3) a seis (6) personas </p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -1038,7 +1038,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_grupo_familiar == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    Diez (10) a doce (12) personas </p>
+					<p> <?= ($inscripcion->codigo_grupo_familiar == 2) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    Diez (10) a doce (12) personas </p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -1049,7 +1049,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_grupo_familiar == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    Trece (13) personas o más</p>
+					<p> <?= ($inscripcion->codigo_grupo_familiar == 1) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    Trece (13) personas o más</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
