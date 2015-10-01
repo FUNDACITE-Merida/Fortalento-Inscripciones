@@ -81,7 +81,12 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             //return $this->goBack();
-            return $this->redirect(['/estudiantes/create']);
+            $urlReturn = $this->redirect(['/estudiantes/create']);
+            
+            $roles = Yii::$app->authManager->getRolesByUser(Yii::$app->user->id);
+            if (array_key_exists('Administrador', $roles))
+				$urlReturn = $this->redirect(['/inscripciones/abrir-cerrar-lista']);
+            return $urlReturn;
         } else {
             return $this->render('login', [
                 'model' => $model,
