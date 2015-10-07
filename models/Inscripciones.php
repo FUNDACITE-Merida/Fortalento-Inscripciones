@@ -167,6 +167,15 @@ class Inscripciones extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Procesos::className(), ['id' => 'id_proceso']);
     }
+    
+    /**
+     * by LJAH
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCodPlantel()
+    {
+        return $this->hasOne(Plantel::className(), ['cod_pla' => 'codigo_plantel']);
+    }
 
     /**
      * @inheritdoc
