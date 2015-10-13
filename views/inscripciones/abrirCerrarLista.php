@@ -10,6 +10,7 @@ use app\models\Procesos;
 
 $this->title = 'Abrir / Cerrar inscripción';
 //$this->params['breadcrumbs'][] = $this->title;
+
 ?>
 <div class="inscripciones-index">
 
@@ -31,6 +32,7 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'header' => 'Nº Planilla',
 				'attribute' => 'id',
 			],
+			'codPlantel.codMunicipio.municipio',
 			'idEstudiante.cedula',
             //'id_proceso',
             //'idEstudiante.nombre',
@@ -43,6 +45,7 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'header' => 'Apellido',
 				'attribute' => 'idEstudiante.apellido',
 			],
+			'estudioSocioEconomico.telefono_fijo_solicitante',
             //'fecha_inscripcion',
             //'codigo_plantel',
             // 'localidad_plantel',

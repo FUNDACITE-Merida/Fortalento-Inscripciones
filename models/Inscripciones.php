@@ -147,9 +147,9 @@ class Inscripciones extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEstudioSocioEconomicos()
+    public function getEstudioSocioEconomico()
     {
-        return $this->hasMany(EstudioSocioEconomico::className(), ['n_planilla_inscripcion' => 'id']);
+        return $this->hasOne(EstudioSocioEconomico::className(), ['n_planilla_inscripcion' => 'id']);
     }
 
     /**
