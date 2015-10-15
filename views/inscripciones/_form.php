@@ -203,6 +203,16 @@ $grados = array(
 		<?//= $form->field($model, 'fecha_inscripcion')->textInput() ?>
 	  </div>
 	  <div class="col-lg-6 col-md-10">
+		 <?= Alert::widget([
+				'options' => [
+					'class' => 'alert-danger',
+				],
+				'body' => '<strong>¡Importante!</strong> Para el caso de 4to, 5to y 6to grado de Educación Básica Bolivariana 
+							se deben hacer las siguientes equivalencias según el literal de calificación obtenido: 
+							A: entre 19 y 20 / B: entre 17 y 18 / C: entre 15 y 16 / D: entre 10 y 14',
+				'closeButton' => false,
+			]);
+		 ?>
 	  </div>	  
 	</div>    
     
@@ -224,7 +234,6 @@ $grados = array(
 	
 	<div class="row">
 	  <div class="col-lg-6 col-md-10">
-		  <!-- TODO: Con el municipio se carga el plantel, se debe hacer consulta Ajax-->
 		<?= $form->field($model, 'codigo_plantel')->dropdownList(
 			ArrayHelper::map($planteles, 'cod_pla', 'nom_pla')
 			);

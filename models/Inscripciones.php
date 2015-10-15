@@ -147,9 +147,9 @@ class Inscripciones extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getEstudioSocioEconomicos()
+    public function getEstudioSocioEconomico()
     {
-        return $this->hasMany(EstudioSocioEconomico::className(), ['n_planilla_inscripcion' => 'id']);
+        return $this->hasOne(EstudioSocioEconomico::className(), ['n_planilla_inscripcion' => 'id']);
     }
 
     /**
@@ -166,6 +166,15 @@ class Inscripciones extends \yii\db\ActiveRecord
     public function getIdProceso()
     {
         return $this->hasOne(Procesos::className(), ['id' => 'id_proceso']);
+    }
+    
+    /**
+     * by LJAH
+     * @return \yii\db\ActiveQuery
+     */
+    public function getCodPlantel()
+    {
+        return $this->hasOne(Plantel::className(), ['cod_pla' => 'codigo_plantel']);
     }
 
     /**

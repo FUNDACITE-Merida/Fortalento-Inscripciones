@@ -29,7 +29,17 @@ class SignupForm extends Model
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\app\models\User', 'message' => 'Este correo electrónico ya está registrado'],
+            /* Para validar el correo como único fue necesario realizar
+             * un trabajo extra agregando 'targetAttribute' => ['EmailUppercase' => 'upper(email)'],
+             * ya que el validador Unique en Yii2.0, a diferencia de Yii1.1.16 no permite 
+			 * el parámetro caseSensitive.
+			 * La sentencia 'upper(email)' podría no trabajar en manejadores de base de datos
+			 * distintos a PostgreSQL, esto debe verificarse.
+             */
+            ['email', 'unique', 
+					'targetAttribute' => ['EmailUppercase' => 'upper(email)'],
+					'targetClass' => '\app\models\User', 
+					'message' => 'Este correo electrónico ya está registrado'],
             //This email address has already been taken.
 
             ['password', 'required'],
@@ -39,6 +49,17 @@ class SignupForm extends Model
 			['captcha', 'captcha']
         ];
     }
+    
+    /*
+     * Se creó este campo virtual para solucionar
+     * la deficiencia del validador Unique en Yii2.0 con respecto 
+     * al case sensitive. Yii2.0, a diferencia de Yii1.1.16 no permite 
+     * el parámetro caseSensitive en el validador Unique
+     */
+    public function getEmailUppercase()
+	{
+		return strtoupper($this->email);
+	}
 
     /**
      * Signs user up.

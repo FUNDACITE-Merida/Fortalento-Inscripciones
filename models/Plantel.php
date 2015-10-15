@@ -106,7 +106,16 @@ class Plantel extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Municipios::className(), ['cod_municipio' => 'cod_municipio']);
     }
-
+    
+    /**
+     * by LJAH
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInscripciones()
+    {
+        return $this->hasMany(Inscripciones::className(), ['codigo_plantel' => 'cod_pla']);
+    }
+    
     /**
      * @inheritdoc
      * @return PlantelQuery the active query used by this AR class.
