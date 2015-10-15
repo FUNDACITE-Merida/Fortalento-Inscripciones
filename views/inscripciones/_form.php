@@ -14,6 +14,7 @@ use yii\web\View;
 
 <?php
 
+
 $labelNota1 = 'Promedio Global 4to Grado';
 $labelNota2 = 'Promedio Global 5to Grado';
 $labelNota3 = 'Promedio Global 6to Grado';
@@ -29,7 +30,8 @@ if ($model->codigo_ultimo_grado == 11 || $model->codigo_ultimo_grado == 12)
 	$labelNota1 = 'Promedio Global 4to Año';
 	$labelNota2 = 'Promedio Global 5to Año';
 	$labelNota3 = 'Promedio Global 6to Año';
-}	
+}
+
 
 $urlEscuelas = Yii::$app->urlManager->createUrl(['inscripciones/get-planteles']);
 $this->registerJs("
@@ -129,6 +131,42 @@ $this->registerJs("
 			}			
 		});
 		
+		/*
+			En este bloque se valida si el alumno seleccionó en Último grado/año culminado la opción: 5to año 
+			y además está seleccionada la opción: Premio de reconocimiento a la excelencia.
+			Si ambas están seleccionadas entonces no se debe solicitar notas de 6to año. esto tiene una validación
+			adicional en las reglas del modelo.
+		*/
+		
+		$('#inscripciones-postulado_para_premio').change(function() {
+			if ($(this).is(':checked')) 
+			{
+				if ($('#inscripciones-codigo_ultimo_grado').val() == 11)
+				{
+					$('.field-inscripciones-nota3').css('display', 'none');
+				}else
+				{
+					$('.field-inscripciones-nota3').css('display', 'block');
+				}
+				
+			}			
+		});
+		
+		
+		$('#inscripciones-codigo_ultimo_grado').change(function() {
+			if ($('#inscripciones-postulado_para_premio').is(':checked')) 
+			{
+				if ($(this).val() == 11)
+				{
+					$('.field-inscripciones-nota3').css('display', 'none');
+				}else
+				{
+					$('.field-inscripciones-nota3').css('display', 'block');
+				}
+				
+			}			
+		});
+		/********/
 		// Carga de Escuelas según Municipio
 		$('#municipios').bind('change',function(){
 			var datos='{'
@@ -150,22 +188,35 @@ $this->registerJs("
 		", 
 		View::POS_READY, 
 		'my-options');		
-		
-		
-// Se visualizan los elemento del formulario si las variables son verdaderas
+/*
+ * Cuando es llamado por el action Update se precargan
+ * valores según lo que el usuario tenga ya guardado
+ * en base de datos
+ */
+ 		
 $mostrarPromedio = "style='display: none;'";
 if ($model->postulado_para_beca)
 {
 	$mostrarPromedio = "style='display: block;'";
 }
 
-// Se visualizan los elemento del formulario si las variables son verdaderas
 $mostrarNotas = "style='display: none;'";
 if ($model->postulado_para_premio)
 {
 	$mostrarNotas = "style='display: block;'";
 }
-//$model->postulado_para_premio
+
+
+$mostrar6to = 'display: block;';
+if (isset($model->postulado_para_premio) && isset($model->codigo_ultimo_grado) && ($model->codigo_ultimo_grado == 11))
+{
+	$this->registerJs("
+		$('.field-inscripciones-nota3').css('display', 'none');
+	", 
+	View::POS_LOAD, 
+	'my-options');
+}
+/****************/
 
 // Variables que sólo deben ser de lectura
 $fechaInscripcion =  $model->fecha_inscripcion;
@@ -325,7 +376,7 @@ $grados = array(
 		<?= $form->field($model, 'nota2')->textInput()->hint('Ejemplo: 19,457')->label($labelNota2,['id'=>'nota2']); ?>
 	  </div>	  
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota3')->textInput()->hint('Ejemplo: 19,457')->label($labelNota3,['id'=>'nota3']); ?>
+		<?= $form->field($model, 'nota3')->textInput(['style' => $mostrar6to])->hint('Ejemplo: 19,457')->label($labelNota3,['id'=>'nota3']); ?>
 	  </div>
 	</div>
 	</br></br>
