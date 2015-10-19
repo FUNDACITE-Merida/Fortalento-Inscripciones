@@ -166,6 +166,8 @@ class Inscripciones extends \yii\db\ActiveRecord
             'codigo_ingreso_familia' => 'Ingreso familiar (sin deducciones)',
             'codigo_grupo_familiar' => 'Grupo familiar',
             'cerrada' => 'Inscripción cerrada',
+            
+            'cedula' => 'Cédula de identidad',
         ];
     }
 
@@ -210,6 +212,17 @@ class Inscripciones extends \yii\db\ActiveRecord
     {
         return new InscripcionesQuery(get_called_class());
     }
+    
+    /**
+     * by LJAH
+     * Getter para realizar búsquedas por número de cédula del estudiante
+     * return cédula de estudiante
+     */
+     /*
+    public function getCedulaEstudiante()
+    {
+		return $this->idEstudiante->cedula;
+	}*/
     
     public function beforeSave()
     {

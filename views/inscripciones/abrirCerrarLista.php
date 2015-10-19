@@ -33,7 +33,10 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'attribute' => 'id',
 			],
 			'codPlantel.codMunicipio.municipio',
-			'idEstudiante.cedula',
+			[
+				'attribute' => 'cedula',
+				'value' => 'idEstudiante.cedula'
+			],
             //'id_proceso',
             //'idEstudiante.nombre',
             //'idEstudiante.apellido',
