@@ -70,7 +70,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 					}"
 			],
 			
-			[['nota1', 'nota2', 'nota3'], 'number', 
+			[['nota1', 'nota2'], 'number', 
 				'numberPattern' => $this->_patronNumero,
 				'min' => 10, 'max' => 20,
 				'when' => function ($model) {
@@ -88,13 +88,38 @@ class Inscripciones extends \yii\db\ActiveRecord
 					}"
 			],
 			
-			[['nota1', 'nota2', 'nota3'], 'required',
+			[['nota1', 'nota2'], 'required',
 				'when' => function ($model) {
 							return $model->postulado_para_premio == true;
 				}, 'whenClient' => "function (attribute, value) {
 						return $('#inscripciones-postulado_para_premio').is(':checked') == true;
 					}"
 			],
+			
+			/* Validación especial para nota3 ya que hay algunas restricciones cuando el 
+			 * estudiante está cursando 5to año en un Liceo que no gradúa 6to año sino 
+			 * únicamente hasta 5to año
+			 */
+			 
+			 [['nota3'], 'number', 
+				'numberPattern' => $this->_patronNumero,
+				'min' => 10, 'max' => 20,
+				'when' => function ($model) {
+							return ($model->postulado_para_premio == true && $model->codigo_ultimo_grado != 11);
+				}, 'whenClient' => "function (attribute, value) {
+						return ($('#inscripciones-postulado_para_premio').is(':checked') == true && $('#inscripciones-codigo_ultimo_grado').val != 11);
+					}"
+			],
+						
+			[['nota3'], 'required',
+				'when' => function ($model) {
+							return ($model->postulado_para_premio == true && $model->codigo_ultimo_grado != 11);
+				}, 'whenClient' => "function (attribute, value) {
+						return ($('#inscripciones-postulado_para_premio').is(':checked') == true && $('#inscripciones-codigo_ultimo_grado').val != 11);
+					}"
+			],
+			 /***********************/ 
+			 
 			
 			[['postulado_para_beca'], 'required', 'requiredValue' => 'B', 'message' => 'Debe seleccionar al menos una postulación',
 				'when' => function ($model) {
@@ -141,6 +166,8 @@ class Inscripciones extends \yii\db\ActiveRecord
             'codigo_ingreso_familia' => 'Ingreso familiar (sin deducciones)',
             'codigo_grupo_familiar' => 'Grupo familiar',
             'cerrada' => 'Inscripción cerrada',
+            
+            'cedula' => 'Cédula de identidad',
         ];
     }
 
@@ -185,6 +212,17 @@ class Inscripciones extends \yii\db\ActiveRecord
     {
         return new InscripcionesQuery(get_called_class());
     }
+    
+    /**
+     * by LJAH
+     * Getter para realizar búsquedas por número de cédula del estudiante
+     * return cédula de estudiante
+     */
+     /*
+    public function getCedulaEstudiante()
+    {
+		return $this->idEstudiante->cedula;
+	}*/
     
     public function beforeSave()
     {

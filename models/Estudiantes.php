@@ -97,6 +97,16 @@ class Estudiantes extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Inscripciones::className(), ['id_estudiante' => 'id']);
     }
+    
+    /**
+     * by LJAH
+     * Relación con el modelo User
+     * @return \yii\db\ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'id_user']);
+    }
 
     /**
      * @inheritdoc
