@@ -32,8 +32,12 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'header' => 'Nº Planilla',
 				'attribute' => 'id',
 			],
-			'codPlantel.codMunicipio.municipio',
 			[
+				'header' => 'Municipio',
+				'attribute' => 'codPlantel.codMunicipio.municipio',
+			],
+			[
+				'header' => 'Cédula',
 				'attribute' => 'cedula',
 				'value' => 'idEstudiante.cedula'
 			],
@@ -48,7 +52,18 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'header' => 'Apellido',
 				'attribute' => 'idEstudiante.apellido',
 			],
-			'estudioSocioEconomico.telefono_fijo_solicitante',
+			[
+				'header' => 'Teléfono representante',
+				'attribute' => 'estudioSocioEconomico.telefono_fijo_representante',
+			],
+			[
+				'header' => 'Celular representante',
+				'attribute' => 'estudioSocioEconomico.telefono_celular_representante',
+			],
+			[
+				'header' => 'Correo electrónico',
+				'attribute' => 'idEstudiante.user.email',
+			],
             //'fecha_inscripcion',
             //'codigo_plantel',
             // 'localidad_plantel',
