@@ -11,6 +11,7 @@ use app\models\InscripcionesSearch;
 use app\models\Plantel;
 use app\models\Municipios;
 use app\models\User;
+use yii\web\NotFoundHttpException;
 
 use kartik\mpdf\Pdf;
 
@@ -42,17 +43,26 @@ class ReportesController extends \yii\web\Controller
         //return $this->render('index');
     }
 
-    public function actionInscripcion($id_proceso)
+    public function actionInscripcion($id_estudiante = NULL)
     {
-		if (!($estudiante = Estudiantes::getEstudianteUser()))
-        {
-			return $this->redirect(['/estudiantes/create']);
+		
+		if (array_key_exists('Administrador', Yii::$app->authManager->getRolesByUser(Yii::$app->user->id)))
+		{
+			$estudiante = Estudiantes::findOne($id_estudiante);
+			if ($estudiante === null)
+			{
+				throw new NotFoundHttpException('La página solicitada no existe.');
+			}
+		}else
+		{
+			if (!($estudiante = Estudiantes::getEstudianteUser()))
+			{
+				return $this->redirect(['/estudiantes/create']);
+			}
 		}
 		
-		
 		if (!($inscripcion = Inscripciones::find()
-							->where(['id_proceso' => $id_proceso, 
-									'id_estudiante' => $estudiante->id,
+							->where(['id_estudiante' => $estudiante->id,
 									'cerrada' => true])
 							->one()))
 		{
@@ -60,8 +70,7 @@ class ReportesController extends \yii\web\Controller
 		}
 							
 		if (!($estudio = EstudioSocioEconomico::find()
-							->where(['id_proceso' => $id_proceso, 
-									'id_estudiante' => $estudiante->id])
+							->where(['id_estudiante' => $estudiante->id])
 							->one()))
 		{
 			return $this->render('errorReporte');
@@ -74,10 +83,7 @@ class ReportesController extends \yii\web\Controller
         $content = $this->renderPartial('inscripcion', [
 			'inscripcion' => $inscripcion,
 			'plantel' => $plantel,
-			'estudianteCorreo' => User::find()
-										->select(['email'])
-										->where(['id' => Yii::$app->user->id])
-										->one(),
+			'estudianteCorreo' => $estudiante->user->email,
 			'estudio' => $estudio,
 		]);
 		$style = '@page {  }

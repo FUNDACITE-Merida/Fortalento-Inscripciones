@@ -92,23 +92,33 @@ $this->title = 'Abrir / Cerrar inscripción';
 
             [
 				'class' => 'yii\grid\ActionColumn',
-				'template' => '{view}',
+				'template' => '{view} {imprimir}',
 				'buttons' => [
 					'view' => function ($url, $model) {
-						$label = $model->cerrada ? 'Abrir' : 'Cerrar';
+						$label = $model->cerrada ? '<strong>A</strong>' : '<strong>C</strong>';
+						$title = $model->cerrada ? 'Abrir la inscripción' : 'Cerrar la inscripción';
 						$boton = $model->cerrada ? 'btn-warning' : 'btn-primary';
 						return Html::a($label, $url, [
-                                        'title' => $label,
+                                        'title' => $title,
                                         'class' => 'btn '.$boton,
-                                        'data-confirm' => '¿Está seguro de '.$label.' la inscripción?',
+                                        'data-confirm' => '¿Está seguro de '.$title.'?',
                                         //'data-method' => 'post',
                                         //'data' => ['id'=>$model->id],
+                                ]);
+					},
+					'imprimir' => function ($url, $model) {
+						return Html::a('<span class="glyphicon glyphicon-print"></span>', $url, [
+                                        'title' => 'Imprimir Inscripción',
                                 ]);
 					},					
 				],
 				'urlCreator' => function ($action, $model, $key) {
 					if ($action === 'view') {
 						return Yii::$app->urlManager->createUrl(['/inscripciones/abrir-cerrar', 'id'=>$model->id]);
+					}
+					
+					if ($action === 'imprimir') {
+						return Yii::$app->urlManager->createUrl(['/reportes/inscripcion', 'id_estudiante'=>$model->id_estudiante]);
 					}
 				}
 			],
