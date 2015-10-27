@@ -268,6 +268,10 @@ class Inscripciones extends \yii\db\ActiveRecord
 	
 	public function getConsolidadoMunicipios()
 	{
+		/*
+		 * Acá se puede mejorar el tiempo de las consultas
+		 * usando la relación creada en los modelos: inscripciones <-> planteles <-> municipios
+		 */
 		$municipios = Municipios::find()->all();
 		
 		foreach($municipios as $municipio)

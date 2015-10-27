@@ -108,6 +108,10 @@ class InscripcionesController extends Controller
 			$model->id_proceso =  Procesos::getIdProcesoAbierto();
 			$model->fecha_inscripcion = Yii::$app->formatter->asDate('now');
 			
+			// Buscar todos los municipios excepto los que están en la claúsula 
+			// where, se usó para sacar del listado los municipios que tuvieron
+			// inscripciones manuales
+			/*
 			$municipios = Municipios::find()
 									->where(['not',['cod_municipio' => '04']])
 									->andWhere(['not',['cod_municipio' => '05']])
@@ -117,12 +121,16 @@ class InscripcionesController extends Controller
 									->andWhere(['not',['cod_municipio' => '11']])
 									->andWhere(['not',['cod_municipio' => '15']])
 									->andWhere(['not',['cod_municipio' => '22']])
-									->all();
+									->all();*/
+			$municipios = Municipios::find()->all();
 			$planteles = array();
 			$cod_municipio = null;			
 		}else
 		{
-			$municipios = Municipios::find()
+			// Buscar todos los municipios excepto los que están en la claúsula 
+			// where, se usó para sacar del listado los municipios que tuvieron
+			// inscripciones manuales
+			/*$municipios = Municipios::find()
 									->where(['not',['cod_municipio' => '04']])
 									->andWhere(['not',['cod_municipio' => '05']])
 									->andWhere(['not',['cod_municipio' => '08']])
@@ -131,7 +139,9 @@ class InscripcionesController extends Controller
 									->andWhere(['not',['cod_municipio' => '11']])
 									->andWhere(['not',['cod_municipio' => '15']])
 									->andWhere(['not',['cod_municipio' => '22']])
-									->all();
+									->all();*/
+			$municipios = Municipios::find()->all();
+									
 			$plantel = Plantel::findOne(['cod_pla' => $model->codigo_plantel]);
 			$cod_municipio = $plantel->cod_municipio;
 			$planteles = Plantel::find()
@@ -240,7 +250,8 @@ class InscripcionesController extends Controller
     }
     
     /**
-     * Obtiene una lista de planteles según el municipio
+     * Obtiene una lista de planteles según el municipio.
+     * Este es un action usado vía ajax
      * @return mixed
      */
     public function actionGetPlanteles()
@@ -369,4 +380,133 @@ class InscripcionesController extends Controller
             return $this->redirect(['abrir-cerrar-lista']);
         }
     }
+    
+    /**
+     * Generar un archivo csv de los alumnos inscritos en el municipio
+     * pasado como parámetro
+     * @param id_municipio
+     * @return mixed
+     */
+    public function actionImprimirCsv($cod_municipio)
+    {
+		$simbolos = array(    'Š'=>'S', 'š'=>'s', 'Ž'=>'Z', 'ž'=>'z', 'À'=>'A', 'Á'=>'A', 'Â'=>'A', 'Ã'=>'A', 'Ä'=>'A', 'Å'=>'A', 'Æ'=>'A', 'Ç'=>'C', 'È'=>'E', 'É'=>'E',
+                            'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
+                            'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
+                            'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
+                            'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y' );
+        $model = Municipios::find()
+			->with('plantels.inscripciones')
+			->where(['cod_municipio'=>$cod_municipio])
+			->all();
+		$archivo = null;
+		foreach ($model[0]->plantels as $plantel)
+		{
+			foreach ($plantel->inscripciones as $inscripcion)
+			{
+				// Solo se imprimen inscripciones que estén cerradas
+				if ($inscripcion->cerrada)
+				{
+					$archivo .= str_pad(strval($inscripcion->id), 5, '0', STR_PAD_LEFT);
+					$archivo .= $inscripcion->idEstudiante->es_venezolano?'V':'E';
+					// Si la cédula es menor a 8 caracteres se completa con espacios a la derecha
+					$archivo .= str_pad(trim($inscripcion->idEstudiante->cedula), 8, ' ',  STR_PAD_RIGHT);
+					//Si el nombre es menor a 14 caracteres se completa con espacios a la derecha
+					$archivo .= substr(str_pad(strtoupper(strtr(trim($inscripcion->idEstudiante->nombre), $simbolos)),14, ' ',STR_PAD_RIGHT), 0, 14);
+					//Si el apellido es menor a 14 caracteres se completa con espacios a la derecha
+					$archivo .= substr(str_pad(strtoupper(strtr(trim($inscripcion->idEstudiante->apellido), $simbolos)), 14, ' ',STR_PAD_RIGHT), 0, 14);					
+					
+					list($d,$m,$Y) = explode("-",$inscripcion->idEstudiante->fecha_nacimiento);
+					$archivo .= $d.$m.substr($Y, 2, 3);
+					
+					list($d,$m,$Y) = explode("-",$inscripcion->fecha_inscripcion);
+					$archivo .= $d.$m.substr($Y, 2, 3);
+					
+					$archivo .= $model[0]->cod_municipio;
+					$archivo .= $plantel->cod_pla;
+					
+					// En el sistema de FORTALENTO se lee 10=1, 11=2, 12=3
+					// por lo tanto se debe cambiar acá el valor a imprimir
+					$codigo_ultimo_grado = $inscripcion->codigo_ultimo_grado;
+					if ($inscripcion->codigo_ultimo_grado == 10)
+					{
+						$codigo_ultimo_grado = 1;
+					}elseif($inscripcion->codigo_ultimo_grado == 11)
+					{
+						$codigo_ultimo_grado = 2;
+					}elseif($inscripcion->codigo_ultimo_grado == 12)
+					{
+						$codigo_ultimo_grado = 3;
+					}
+					/**/
+					
+					// Se imprimen algunos datos dependiendo de si el estudiante se postuló para beca
+					// o para premio
+					if ($inscripcion->postulado_para_beca && $inscripcion->postulado_para_premio)
+					{
+						// Se imprimen las tres notas
+						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota1)), 5, '0',STR_PAD_RIGHT);
+						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota2)), 5, '0',STR_PAD_RIGHT);
+						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota3)), 5, '0',STR_PAD_RIGHT);						
+						$archivo .= $codigo_ultimo_grado;
+						$archivo .= "*";
+					}elseif($inscripcion->postulado_para_beca)
+					{
+						// Se imprime el promedio ya que el estudiante no habrá cargado nota3 si sólo se postuló por Beca
+						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->promedio)), 5, '0',STR_PAD_RIGHT);
+						$archivo .= "          ";
+						$archivo .= $codigo_ultimo_grado;
+						$archivo .= "B";
+					}elseif($inscripcion->postulado_para_premio)
+					{
+						// Se imprimen las tres notas
+						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota1)), 5, '0',STR_PAD_RIGHT);
+						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota2)), 5, '0',STR_PAD_RIGHT);
+						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota3)), 5, '0',STR_PAD_RIGHT);
+						$archivo .= $codigo_ultimo_grado;
+						$archivo .= "P";
+					}
+					$archivo .= $plantel->tip_pla;
+					$archivo .= $inscripcion->idEstudiante->genero;
+					
+					$archivo .= $inscripcion->codigo_profesion_jefe_familia;
+					$archivo .= $inscripcion->codigo_nivel_instruccion_madre;
+					$archivo .= $inscripcion->codigo_fuente_ingreso_familia;
+					$archivo .= $inscripcion->codigo_vivienda_familia;
+					$archivo .= $inscripcion->codigo_ingreso_familia;
+					$archivo .= $inscripcion->codigo_grupo_familiar;
+					
+					$archivo .= "\n";
+				}
+			}
+		}
+        header("Cache-Control: public");
+		header("Content-Description: File Transfer");
+		header("Content-Disposition: attachment; filename=".str_replace(" ", "_", $model[0]->municipio).".csv");
+		header("Content-Type: application/octet-stream");
+		header("Content-Transfer-Encoding: binary");
+		if ($archivo)
+		{
+			print_r($archivo);
+		}else
+		{
+			echo "No hay información para mostrar";
+		}
+    }
+    
+    /*
+     * Muestra un listado de Municipios con la opción de imprimir todas las
+     * inscripciones en un archivo .csv 
+     * @param id_municipio
+     * @return mixed
+     */
+    public function actionListadoMunicipiosCsv()
+    {
+		$model = Municipios::find()->all();
+
+        return $this->render('listadoMunicipioCsv', [
+            'model' => $model,
+        ]);
+		
+	}
+    
 }
