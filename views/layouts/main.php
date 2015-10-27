@@ -73,7 +73,7 @@ AppAsset::register($this);
                     //['label' => 'Reportes', 'url' => ['/reportes/index'], 'visible' => !Yii::$app->user->isGuest],
                     ['label' => 'Abrir/Cerrar inscripción', 'url' => ['inscripciones/abrir-cerrar-lista']],
                     ['label' => 'Estadísticas', 'url' => ['/inscripciones/consolidado']],
-                    ['label' => 'Imprimir CSV', 'url' => ['/inscripciones/listado-municipios-csv']],
+                    ['label' => 'Imprimir Datos', 'url' => ['/inscripciones/listado-municipios-csv']],
 					['label' => 'Salir (' . Yii::$app->user->identity->username . ')',
                             'url' => ['/site/logout'],
                             'linkOptions' => ['data-method' => 'post']],

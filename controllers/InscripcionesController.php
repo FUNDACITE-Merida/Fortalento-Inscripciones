@@ -481,7 +481,7 @@ class InscripcionesController extends Controller
 		}
         header("Cache-Control: public");
 		header("Content-Description: File Transfer");
-		header("Content-Disposition: attachment; filename=".str_replace(" ", "_", $model[0]->municipio).".csv");
+		header("Content-Disposition: attachment; filename=".str_replace(" ", "_", $model[0]->municipio).".dat");
 		header("Content-Type: application/octet-stream");
 		header("Content-Transfer-Encoding: binary");
 		if ($archivo)

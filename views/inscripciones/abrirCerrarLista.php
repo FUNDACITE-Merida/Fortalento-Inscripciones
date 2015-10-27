@@ -14,7 +14,7 @@ $this->title = 'Abrir / Cerrar inscripción';
 ?>
 <div class="inscripciones-index">
 
-    <h1><?= Html::encode($this->title) . " " . Html::encode(Procesos::getProcesoAbierto()->nombre)?></h1>
+    <h1><?= Html::encode($this->title)?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 <!--    <p>
