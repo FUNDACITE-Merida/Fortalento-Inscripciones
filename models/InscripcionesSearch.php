@@ -68,7 +68,7 @@ class InscripcionesSearch extends Inscripciones
         }
         
         $query->andFilterWhere([
-            'id' => $this->id,
+            'inscripciones.id' => $this->id,
             'id_proceso' => $this->id_proceso,
             'id_estudiante' => $this->id_estudiante,
             'fecha_inscripcion' => $this->fecha_inscripcion,
