@@ -410,10 +410,10 @@ class InscripcionesController extends Controller
 					$archivo .= $inscripcion->idEstudiante->es_venezolano?'V':'E';
 					// Si la cédula es menor a 8 caracteres se completa con espacios a la derecha
 					$archivo .= str_pad(trim($inscripcion->idEstudiante->cedula), 8, ' ',  STR_PAD_RIGHT);
+					//Si el apellido es menor a 14 caracteres se completa con espacios a la derecha
+					$archivo .= substr(str_pad(strtoupper(strtr(trim($inscripcion->idEstudiante->apellido), $simbolos)), 14, ' ',STR_PAD_RIGHT), 0, 14);
 					//Si el nombre es menor a 14 caracteres se completa con espacios a la derecha
 					$archivo .= substr(str_pad(strtoupper(strtr(trim($inscripcion->idEstudiante->nombre), $simbolos)),14, ' ',STR_PAD_RIGHT), 0, 14);
-					//Si el apellido es menor a 14 caracteres se completa con espacios a la derecha
-					$archivo .= substr(str_pad(strtoupper(strtr(trim($inscripcion->idEstudiante->apellido), $simbolos)), 14, ' ',STR_PAD_RIGHT), 0, 14);					
 					
 					list($d,$m,$Y) = explode("-",$inscripcion->idEstudiante->fecha_nacimiento);
 					$archivo .= $d.$m.substr($Y, 2, 3);
