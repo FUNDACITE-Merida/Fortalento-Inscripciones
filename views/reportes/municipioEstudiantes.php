@@ -21,7 +21,7 @@ use yii\helpers\Html;
 	<td><?= $inscripcion->idEstudiante->nombre?></td>
 	<td><?= $inscripcion->idEstudiante->apellido?></td>
 	<td><?= $inscripcion->idEstudiante->user->email?></td>
-	<td><?= $inscripcion->cerrada? 'Abierta': 'Cerrada'?></td>
+	<td><?= $inscripcion->cerrada? 'Cerrada': 'Abierta'?></td>
 </tr>
 	<?php endforeach; ?>
 <?php endforeach; ?>

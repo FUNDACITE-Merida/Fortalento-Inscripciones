@@ -74,9 +74,9 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'header' => 'Cerrada/Abierta',
 				'attribute' => 'cerrada',
 				'value' => function ($model){
-								return $model->cerrada ? 'Abierta': 'Cerrada';
+								return $model->cerrada ? 'Cerrada': 'Abierta';
 							},
-				'filter' => Html::activeDropDownList($searchModel, 'cerrada', array('0' => 'Cerrada', '1' => 'Abierta'),['class'=>'form-control','prompt' => 'Seleccione']),
+				'filter' => Html::activeDropDownList($searchModel, 'cerrada', array('0' => 'Abierta', '1' => 'Cerrada'),['class'=>'form-control','prompt' => 'Seleccione']),
 			],
             //'fecha_inscripcion',
             //'codigo_plantel',
