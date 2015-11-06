@@ -52,9 +52,10 @@ class InscripcionesSearch extends Inscripciones
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['id'=>SORT_ASC]]
         ]);
         
-        $dataProvider->sort->attributes['idEstudiante'] = [
+       $dataProvider->sort->attributes['idEstudiante'] = [
 			'asc' => ['estudiantes.cedula' => SORT_ASC],
 			'desc' => ['estudiantes.cedula' => SORT_DESC],
 		];
@@ -92,7 +93,6 @@ class InscripcionesSearch extends Inscripciones
             ->andFilterWhere(['like', 'postulado_para_premio', $this->postulado_para_premio])
             ->andFilterWhere(['like', 'estudiantes.cedula', $this->cedula]);
 		
-
         return $dataProvider;
     }
 }

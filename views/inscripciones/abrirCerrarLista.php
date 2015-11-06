@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Procesos;
+use yii\web\View;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\InscripcionesSearch */
@@ -10,7 +11,6 @@ use app\models\Procesos;
 
 $this->title = 'Abrir / Cerrar inscripción';
 //$this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="inscripciones-index">
 
@@ -21,7 +21,13 @@ $this->title = 'Abrir / Cerrar inscripción';
         <?= Html::a('Create Inscripciones', ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
 
+<?php \yii\widgets\Pjax::begin([
+						'id' => 'pjax-a-c',
+						'timeout' => false,
+						'enablePushState' => false,
+					]); ?>
     <?= GridView::widget([
+		'id' => 'a-c',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -64,6 +70,14 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'header' => 'Correo electrónico',
 				'attribute' => 'idEstudiante.user.email',
 			],
+			[
+				'header' => 'Cerrada/Abierta',
+				'attribute' => 'cerrada',
+				'value' => function ($model){
+								return $model->cerrada ? 'Abierta': 'Cerrada';
+							},
+				'filter' => Html::activeDropDownList($searchModel, 'cerrada', array('0' => 'Cerrada', '1' => 'Abierta'),['class'=>'form-control','prompt' => 'Seleccione']),
+			],
             //'fecha_inscripcion',
             //'codigo_plantel',
             // 'localidad_plantel',
@@ -89,6 +103,7 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'header' => 'Teléfono celular',
 				'attribute' => 'EstudioSocioEconomicos',
 			],*/
+			
 
             [
 				'class' => 'yii\grid\ActionColumn',
@@ -102,6 +117,7 @@ $this->title = 'Abrir / Cerrar inscripción';
                                         'title' => $title,
                                         'class' => 'btn '.$boton,
                                         'data-confirm' => '¿Está seguro de '.$title.'?',
+                                        'data-pjax-container' => '#pjax-a-c',
                                         //'data-method' => 'post',
                                         //'data' => ['id'=>$model->id],
                                 ]);
@@ -124,5 +140,5 @@ $this->title = 'Abrir / Cerrar inscripción';
 			],
         ],
     ]); ?>
-
+<?php \yii\widgets\Pjax::end(); ?>
 </div>
