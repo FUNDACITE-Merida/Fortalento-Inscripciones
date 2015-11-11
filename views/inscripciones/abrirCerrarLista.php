@@ -47,9 +47,6 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'attribute' => 'cedula',
 				'value' => 'idEstudiante.cedula'
 			],
-            //'id_proceso',
-            //'idEstudiante.nombre',
-            //'idEstudiante.apellido',
             [
 				'header' => 'Nombre',
 				'attribute' => 'idEstudiante.nombre',
@@ -125,6 +122,7 @@ $this->title = 'Abrir / Cerrar inscripción';
 					'imprimir' => function ($url, $model) {
 						return Html::a('<span class="glyphicon glyphicon-print"></span>', $url, [
                                         'title' => 'Imprimir Inscripción',
+                                        'data-pjax' => 0,
                                 ]);
 					},					
 				],
