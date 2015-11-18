@@ -27,13 +27,21 @@ $this->title = 'Imprimir archivo .csv de inscripciones Fortalento';
 <?php foreach($model as $municipio): ?>
 		<tr data-key="3">
 			<td><?= $municipio->municipio?></td>
-			<td><?= Html::a('Imprimir', ['inscripciones/imprimir-csv','cod_municipio'=>$municipio->cod_municipio], [
+			<td><?= Html::a('Imprimir .dat', ['inscripciones/imprimir-csv','cod_municipio'=>$municipio->cod_municipio], [
                                         'title' => '',
                                         'class' => 'btn btn-warning',
                                         //'data-confirm' => '¿Está seguro de '.$label.' la inscripción?',
                                         //'data-method' => 'post',
                                         //'data' => ['id'=>$model->id],
-                                ]);?></td>
+                                ]);?>
+                 <?= Html::a('Imprimir Estudiantes', ['reportes/municipio-estudiantes','cod_municipio'=>$municipio->cod_municipio], [
+                                        'title' => '',
+                                        'class' => 'btn btn-success',
+                                        //'data-confirm' => '¿Está seguro de '.$label.' la inscripción?',
+                                        //'data-method' => 'post',
+                                        //'data' => ['id'=>$model->id],
+                                ]);?>
+            </td>
 		</tr>
 <?php endforeach; ?>
 </tbody></table>

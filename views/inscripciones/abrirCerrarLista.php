@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Procesos;
+use yii\web\View;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\InscripcionesSearch */
@@ -10,18 +11,23 @@ use app\models\Procesos;
 
 $this->title = 'Abrir / Cerrar inscripción';
 //$this->params['breadcrumbs'][] = $this->title;
-
 ?>
 <div class="inscripciones-index">
 
-    <h1><?= Html::encode($this->title) . " " . Html::encode(Procesos::getProcesoAbierto()->nombre)?></h1>
+    <h1><?= Html::encode($this->title)?></h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
 <!--    <p>
         <?= Html::a('Create Inscripciones', ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
 
+<?php \yii\widgets\Pjax::begin([
+						'id' => 'pjax-a-c',
+						'timeout' => false,
+						'enablePushState' => false,
+					]); ?>
     <?= GridView::widget([
+		'id' => 'a-c',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -41,9 +47,6 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'attribute' => 'cedula',
 				'value' => 'idEstudiante.cedula'
 			],
-            //'id_proceso',
-            //'idEstudiante.nombre',
-            //'idEstudiante.apellido',
             [
 				'header' => 'Nombre',
 				'attribute' => 'idEstudiante.nombre',
@@ -63,6 +66,14 @@ $this->title = 'Abrir / Cerrar inscripción';
 			[
 				'header' => 'Correo electrónico',
 				'attribute' => 'idEstudiante.user.email',
+			],
+			[
+				'header' => 'Cerrada/Abierta',
+				'attribute' => 'cerrada',
+				'value' => function ($model){
+								return $model->cerrada ? 'Cerrada': 'Abierta';
+							},
+				'filter' => Html::activeDropDownList($searchModel, 'cerrada', array('0' => 'Abierta', '1' => 'Cerrada'),['class'=>'form-control','prompt' => 'Seleccione']),
 			],
             //'fecha_inscripcion',
             //'codigo_plantel',
@@ -89,20 +100,29 @@ $this->title = 'Abrir / Cerrar inscripción';
 				'header' => 'Teléfono celular',
 				'attribute' => 'EstudioSocioEconomicos',
 			],*/
+			
 
             [
 				'class' => 'yii\grid\ActionColumn',
-				'template' => '{view}',
+				'template' => '{view} {imprimir}',
 				'buttons' => [
 					'view' => function ($url, $model) {
-						$label = $model->cerrada ? 'Abrir' : 'Cerrar';
+						$label = $model->cerrada ? '<strong>A</strong>' : '<strong>C</strong>';
+						$title = $model->cerrada ? 'Abrir la inscripción' : 'Cerrar la inscripción';
 						$boton = $model->cerrada ? 'btn-warning' : 'btn-primary';
 						return Html::a($label, $url, [
-                                        'title' => $label,
+                                        'title' => $title,
                                         'class' => 'btn '.$boton,
-                                        'data-confirm' => '¿Está seguro de '.$label.' la inscripción?',
+                                        'data-confirm' => '¿Está seguro de '.$title.'?',
+                                        'data-pjax-container' => '#pjax-a-c',
                                         //'data-method' => 'post',
                                         //'data' => ['id'=>$model->id],
+                                ]);
+					},
+					'imprimir' => function ($url, $model) {
+						return Html::a('<span class="glyphicon glyphicon-print"></span>', $url, [
+                                        'title' => 'Imprimir Inscripción',
+                                        'data-pjax' => 0,
                                 ]);
 					},					
 				],
@@ -110,9 +130,13 @@ $this->title = 'Abrir / Cerrar inscripción';
 					if ($action === 'view') {
 						return Yii::$app->urlManager->createUrl(['/inscripciones/abrir-cerrar', 'id'=>$model->id]);
 					}
+					
+					if ($action === 'imprimir') {
+						return Yii::$app->urlManager->createUrl(['/reportes/inscripcion', 'id_estudiante'=>$model->id_estudiante]);
+					}
 				}
 			],
         ],
     ]); ?>
-
+<?php \yii\widgets\Pjax::end(); ?>
 </div>

@@ -393,7 +393,7 @@ class InscripcionesController extends Controller
                             'Ê'=>'E', 'Ë'=>'E', 'Ì'=>'I', 'Í'=>'I', 'Î'=>'I', 'Ï'=>'I', 'Ñ'=>'N', 'Ò'=>'O', 'Ó'=>'O', 'Ô'=>'O', 'Õ'=>'O', 'Ö'=>'O', 'Ø'=>'O', 'Ù'=>'U',
                             'Ú'=>'U', 'Û'=>'U', 'Ü'=>'U', 'Ý'=>'Y', 'Þ'=>'B', 'ß'=>'Ss', 'à'=>'a', 'á'=>'a', 'â'=>'a', 'ã'=>'a', 'ä'=>'a', 'å'=>'a', 'æ'=>'a', 'ç'=>'c',
                             'è'=>'e', 'é'=>'e', 'ê'=>'e', 'ë'=>'e', 'ì'=>'i', 'í'=>'i', 'î'=>'i', 'ï'=>'i', 'ð'=>'o', 'ñ'=>'n', 'ò'=>'o', 'ó'=>'o', 'ô'=>'o', 'õ'=>'o',
-                            'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y' );
+                            'ö'=>'o', 'ø'=>'o', 'ù'=>'u', 'ú'=>'u', 'û'=>'u', 'ý'=>'y', 'þ'=>'b', 'ÿ'=>'y', '\''=>' ' );
         $model = Municipios::find()
 			->with('plantels.inscripciones')
 			->where(['cod_municipio'=>$cod_municipio])
@@ -410,10 +410,10 @@ class InscripcionesController extends Controller
 					$archivo .= $inscripcion->idEstudiante->es_venezolano?'V':'E';
 					// Si la cédula es menor a 8 caracteres se completa con espacios a la derecha
 					$archivo .= str_pad(trim($inscripcion->idEstudiante->cedula), 8, ' ',  STR_PAD_RIGHT);
+					//Si el apellido es menor a 14 caracteres se completa con espacios a la derecha
+					$archivo .= substr(str_pad(strtoupper(strtr(trim($inscripcion->idEstudiante->apellido), $simbolos)), 14, ' ',STR_PAD_RIGHT), 0, 14);
 					//Si el nombre es menor a 14 caracteres se completa con espacios a la derecha
 					$archivo .= substr(str_pad(strtoupper(strtr(trim($inscripcion->idEstudiante->nombre), $simbolos)),14, ' ',STR_PAD_RIGHT), 0, 14);
-					//Si el apellido es menor a 14 caracteres se completa con espacios a la derecha
-					$archivo .= substr(str_pad(strtoupper(strtr(trim($inscripcion->idEstudiante->apellido), $simbolos)), 14, ' ',STR_PAD_RIGHT), 0, 14);					
 					
 					list($d,$m,$Y) = explode("-",$inscripcion->idEstudiante->fecha_nacimiento);
 					$archivo .= $d.$m.substr($Y, 2, 3);
@@ -481,7 +481,7 @@ class InscripcionesController extends Controller
 		}
         header("Cache-Control: public");
 		header("Content-Description: File Transfer");
-		header("Content-Disposition: attachment; filename=".str_replace(" ", "_", $model[0]->municipio).".csv");
+		header("Content-Disposition: attachment; filename=".str_replace(" ", "_", $model[0]->municipio).".dat");
 		header("Content-Type: application/octet-stream");
 		header("Content-Transfer-Encoding: binary");
 		if ($archivo)

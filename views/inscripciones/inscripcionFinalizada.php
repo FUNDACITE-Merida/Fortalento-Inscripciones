@@ -4,7 +4,7 @@ use yii\web\View;
 
 $this->title="Inscripción Finalizada";
 
-$urlImprimir = Yii::$app->urlManager->createUrl(['/reportes/inscripcion', 'id_proceso' => $id_proceso]);
+$urlImprimir = Yii::$app->urlManager->createUrl(['/reportes/inscripcion']);
 $this->registerJS("
 	var url = '".$urlImprimir."';
     window.location.href = url;

@@ -184,7 +184,7 @@ $nivelInstruccion = array(
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				<td colspan="5" rowspan="2" style="text-align:left;width:2.258cm; " class="ce37"> 
-					&nbsp;<?=$estudianteCorreo->email;?>
+					&nbsp;<?=$estudianteCorreo;?>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
@@ -1242,7 +1242,7 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
 				<td colspan="5" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>CORREO ELECTRONICO:</p>
-					<span class="textoNormal">&nbsp;<?= $estudianteCorreo->email; ?></span>
+					<span class="textoNormal">&nbsp;<?= $estudianteCorreo; ?></span>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
