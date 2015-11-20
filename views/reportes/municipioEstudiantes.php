@@ -1,10 +1,11 @@
 <?php
 use yii\helpers\Html;
 ?>
-<h1><?= Html::encode($model[0]->municipio) ?></h1>
-<table border="1" cellspacing="0" cellpadding="0"width="100%">
+<h1><?= Html::encode($municipio->municipio) ?></h1>
+<table class="table table-striped table-bordered table-condensed" width="100%">
 <thead>
 <tr>
+	<th>#</th>
 	<th>Nº Planilla</th>
 	<th>Cédula</th>
 	<th>Nombre</th>
@@ -13,17 +14,18 @@ use yii\helpers\Html;
 	<th>Cerrada/Abierta</th>
 </thead>
 <tbody>
-<?php foreach ($model[0]->plantels as $plantel): ?>
-	<?php foreach ($plantel->inscripciones as $inscripcion): ?>
+<?php $i = 0;?>
+<?php foreach ($model as $inscripcion): ?>
+
 <tr>
-	<td><?= $inscripcion->id?></td>
-	<td><?= $inscripcion->idEstudiante->cedula?></td>
-	<td><?= $inscripcion->idEstudiante->nombre?></td>
-	<td><?= $inscripcion->idEstudiante->apellido?></td>
-	<td><?= $inscripcion->idEstudiante->user->email?></td>
-	<td><?= $inscripcion->cerrada? 'Cerrada': 'Abierta'?></td>
+	<td><?= $i += 1;?></td>
+	<td><?= $inscripcion['id']?></td>
+	<td><?= $inscripcion['idEstudiante']['cedula']?></td>
+	<td><?= $inscripcion['idEstudiante']['nombre']?></td>
+	<td><?= $inscripcion['idEstudiante']['apellido']?></td>
+	<td><?= $inscripcion['idEstudiante']['user']['email']?></td>
+	<td><?= $inscripcion['cerrada']? 'Cerrada': 'Abierta'?></td>
 </tr>
-	<?php endforeach; ?>
 <?php endforeach; ?>
 </tbody>
 </table>

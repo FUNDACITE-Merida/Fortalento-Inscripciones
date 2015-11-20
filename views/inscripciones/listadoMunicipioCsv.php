@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\InscripcionesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Imprimir archivo .csv de inscripciones Fortalento';
+$this->title = 'Lista de estudiantes por municipio';
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="inscripciones-index">
