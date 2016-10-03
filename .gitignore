@@ -4,7 +4,7 @@ runtime/*
 !runtime/.gitignore
 config/db.php
 .vscode
-vendor/*
-
+# composer vendor dir
+/vendor
 # yii console command
 /yii

@@ -251,68 +251,6 @@
         ]
     },
     {
-        "name": "cebe/markdown",
-        "version": "1.1.0",
-        "version_normalized": "1.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/cebe/markdown.git",
-            "reference": "54a2c49de31cc44e864ebf0500a35ef21d0010b2"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/cebe/markdown/zipball/54a2c49de31cc44e864ebf0500a35ef21d0010b2",
-            "reference": "54a2c49de31cc44e864ebf0500a35ef21d0010b2",
-            "shasum": ""
-        },
-        "require": {
-            "lib-pcre": "*",
-            "php": ">=5.4.0"
-        },
-        "require-dev": {
-            "cebe/indent": "*",
-            "facebook/xhprof": "*@dev",
-            "phpunit/phpunit": "4.1.*"
-        },
-        "time": "2015-03-06 05:28:07",
-        "bin": [
-            "bin/markdown"
-        ],
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.1.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "cebe\\markdown\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Carsten Brandt",
-                "email": "mail@cebe.cc",
-                "homepage": "http://cebe.cc/",
-                "role": "Creator"
-            }
-        ],
-        "description": "A super fast, highly extensible markdown parser for PHP",
-        "homepage": "https://github.com/cebe/markdown#readme",
-        "keywords": [
-            "extensible",
-            "fast",
-            "gfm",
-            "markdown",
-            "markdown-extra"
-        ]
-    },
-    {
         "name": "ezyang/htmlpurifier",
         "version": "v4.8.0",
         "version_normalized": "4.8.0.0",
@@ -455,58 +393,6 @@
         ]
     },
     {
-        "name": "yiisoft/yii2-swiftmailer",
-        "version": "2.0.5",
-        "version_normalized": "2.0.5.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
-            "reference": "e2c6315caff30a9271a7afad4d684627721dc69a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/e2c6315caff30a9271a7afad4d684627721dc69a",
-            "reference": "e2c6315caff30a9271a7afad4d684627721dc69a",
-            "shasum": ""
-        },
-        "require": {
-            "swiftmailer/swiftmailer": "~5.0",
-            "yiisoft/yii2": ">=2.0.4"
-        },
-        "time": "2016-03-17 03:58:49",
-        "type": "yii2-extension",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "2.0.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "yii\\swiftmailer\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "BSD-3-Clause"
-        ],
-        "authors": [
-            {
-                "name": "Paul Klimov",
-                "email": "klimov.paul@gmail.com"
-            }
-        ],
-        "description": "The SwiftMailer integration for the Yii framework",
-        "keywords": [
-            "email",
-            "mail",
-            "mailer",
-            "swift",
-            "swiftmailer",
-            "yii2"
-        ]
-    },
-    {
         "name": "yiisoft/yii2-codeception",
         "version": "2.0.5",
         "version_normalized": "2.0.5.0",
@@ -551,57 +437,6 @@
         "keywords": [
             "codeception",
             "yii2"
-        ]
-    },
-    {
-        "name": "bower-asset/bootstrap",
-        "version": "v3.3.6",
-        "version_normalized": "3.3.6.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/twbs/bootstrap.git",
-            "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/81df608a40bf0629a1dc08e584849bb1e43e0b7a",
-            "reference": "81df608a40bf0629a1dc08e584849bb1e43e0b7a",
-            "shasum": ""
-        },
-        "require": {
-            "bower-asset/jquery": ">=1.9.1,<3.0"
-        },
-        "type": "bower-asset-library",
-        "extra": {
-            "bower-asset-main": [
-                "less/bootstrap.less",
-                "dist/js/bootstrap.js"
-            ],
-            "bower-asset-ignore": [
-                "/.*",
-                "_config.yml",
-                "CNAME",
-                "composer.json",
-                "CONTRIBUTING.md",
-                "docs",
-                "js/tests",
-                "test-infra"
-            ]
-        },
-        "installation-source": "dist",
-        "license": [
-            "MIT"
-        ],
-        "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-        "keywords": [
-            "css",
-            "framework",
-            "front-end",
-            "js",
-            "less",
-            "mobile-first",
-            "responsive",
-            "web"
         ]
     },
     {
@@ -926,6 +761,171 @@
             "Fixture",
             "faker",
             "yii2"
+        ]
+    },
+    {
+        "name": "cebe/markdown",
+        "version": "1.1.1",
+        "version_normalized": "1.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cebe/markdown.git",
+            "reference": "c30eb5e01fe021cc5bba2f9ee0eeef96d4931166"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cebe/markdown/zipball/c30eb5e01fe021cc5bba2f9ee0eeef96d4931166",
+            "reference": "c30eb5e01fe021cc5bba2f9ee0eeef96d4931166",
+            "shasum": ""
+        },
+        "require": {
+            "lib-pcre": "*",
+            "php": ">=5.4.0"
+        },
+        "require-dev": {
+            "cebe/indent": "*",
+            "facebook/xhprof": "*@dev",
+            "phpunit/phpunit": "4.1.*"
+        },
+        "time": "2016-09-14 20:40:20",
+        "bin": [
+            "bin/markdown"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.1.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "cebe\\markdown\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Carsten Brandt",
+                "email": "mail@cebe.cc",
+                "homepage": "http://cebe.cc/",
+                "role": "Creator"
+            }
+        ],
+        "description": "A super fast, highly extensible markdown parser for PHP",
+        "homepage": "https://github.com/cebe/markdown#readme",
+        "keywords": [
+            "extensible",
+            "fast",
+            "gfm",
+            "markdown",
+            "markdown-extra"
+        ]
+    },
+    {
+        "name": "yiisoft/yii2-swiftmailer",
+        "version": "2.0.6",
+        "version_normalized": "2.0.6.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
+            "reference": "26b900767f1031ff3a4668dfa36c10595875f0a5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/26b900767f1031ff3a4668dfa36c10595875f0a5",
+            "reference": "26b900767f1031ff3a4668dfa36c10595875f0a5",
+            "shasum": ""
+        },
+        "require": {
+            "swiftmailer/swiftmailer": "~5.0",
+            "yiisoft/yii2": "~2.0.4"
+        },
+        "time": "2016-09-09 11:48:11",
+        "type": "yii2-extension",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.0.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "yii\\swiftmailer\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Paul Klimov",
+                "email": "klimov.paul@gmail.com"
+            }
+        ],
+        "description": "The SwiftMailer integration for the Yii framework",
+        "keywords": [
+            "email",
+            "mail",
+            "mailer",
+            "swift",
+            "swiftmailer",
+            "yii2"
+        ]
+    },
+    {
+        "name": "bower-asset/bootstrap",
+        "version": "v3.3.7",
+        "version_normalized": "3.3.7.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twbs/bootstrap.git",
+            "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twbs/bootstrap/zipball/0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+            "reference": "0b9c4a4007c44201dce9a6cc1a38407005c26c86",
+            "shasum": ""
+        },
+        "require": {
+            "bower-asset/jquery": ">=1.9.1,<4.0"
+        },
+        "type": "bower-asset-library",
+        "extra": {
+            "bower-asset-main": [
+                "less/bootstrap.less",
+                "dist/js/bootstrap.js"
+            ],
+            "bower-asset-ignore": [
+                "/.*",
+                "_config.yml",
+                "CNAME",
+                "composer.json",
+                "CONTRIBUTING.md",
+                "docs",
+                "js/tests",
+                "test-infra"
+            ]
+        },
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+        "keywords": [
+            "css",
+            "framework",
+            "front-end",
+            "js",
+            "less",
+            "mobile-first",
+            "responsive",
+            "web"
         ]
     }
 ]
