@@ -3,3 +3,8 @@ assets/*
 runtime/*
 !runtime/.gitignore
 config/db.php
+.vscode
+vendor/*
+
+# yii console command
+/yii
