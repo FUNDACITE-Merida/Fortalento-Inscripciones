@@ -1,54 +1,85 @@
-Yii 2 Advanced Project Template
-===============================
+Incripciones Fortalento.
+========================
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+Sistema automatizado para la inscripción de aspirantes al programa Fortalento de Fundacite Mérida.
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+Instalación en ambiente de desarrollo.
+--------------------------------------
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+## Instalando Composer.
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
-
-[![Latest Stable Version](https://poser.pugx.org/yiisoft/yii2-app-advanced/v/stable.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://poser.pugx.org/yiisoft/yii2-app-advanced/downloads.png)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Build Status](https://travis-ci.org/yiisoft/yii2-app-advanced.svg?branch=master)](https://travis-ci.org/yiisoft/yii2-app-advanced)
-
-DIRECTORY STRUCTURE
--------------------
-
+```bash
+$ curl -sS https://getcomposer.org/installer | php
+$ sudo mv composer.phar /usr/local/bin/composer
 ```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
-tests                    contains various tests for the advanced application
-    codeception/         contains tests developed with Codeception PHP Testing Framework
+
+## Instalando Composer asset plugin.
+
+```bash
+$ composer global require "fxp/composer-asset-plugin:^1.2.0"
 ```
+
+Composer asset plugin permite manejar las dependencias de los paquetes bower y npm
+a través de composer. Solo necesitas correr este comando una vez. 
+
+
+## Descargando el proyecto.
+
+```bash
+$ git clone https://github.com/FUNDACITE-Merida/Fortalento-Inscripciones.git
+```
+
+## Revisando los requerimientos.
+
+Revisa si tu configuración cumple con los requerimientos de Yii2. 
+
+```bash
+$ cd Fortalento-Inscripciones
+$ php requirements.php
+```
+
+## Estableciendo el ambiente de desarrollo.
+
+```bash
+$ cd Fortalento-Inscripciones
+$ php init
+```
+
+## Configurando la base de datos.
+
+Crea y configura la base de datos en common/config/main-local.php
+
+## Instalando paquetes de terceros.
+
+```bash
+$ cd Fortalento-Inscripciones
+$ composer install --prefer-dist -vvv --profile
+```
+
+## Cargando las migraciones.
+
+```bash
+$ cd Fortalento-Inscripciones
+$ ./yii migrate
+$ ./yii migrate --migrationPath=@yii/rbac/migrations
+```
+
+## Inicializando Rbac
+
+```bash
+$ cd Fortalento-Inscripciones
+$ ./yii rbac/init
+```
+
+
+## Corriendo el servidor de desarrollo.
+
+```bash
+$ cd Fortalento-Inscripciones
+$ php -S localhost:8000
+```
+
+## Probando el sistema.
+
+Para conectarse al backend: http//localhost/backend/web
+Para conectarse al frontend: http//localhost/frontend/web
