@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models;
+use backend\models\Procesos;
 
 use Yii;
 
