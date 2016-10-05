@@ -78,4 +78,35 @@ class Procesos extends \yii\db\ActiveRecord
     {
         return new ProcesosQuery(get_called_class());
     }
+    
+    public static function getProcesoAbierto()
+    {
+		$fechaActual = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+		return $model = Procesos::find()->where(['<=', 'fecha_inicio', $fechaActual])->andWhere(['>=', 'fecha_fin', $fechaActual])->one();
+	}
+	
+	/*
+	 * Retorna el Id del proceso abierto actualmente
+	 */
+	public static function getIdProcesoAbierto()
+	{
+		if ($proceso = self::getProcesoAbierto())
+		{
+			return $proceso->id;
+		}
+		
+		return null;
+	}
+	/*
+	 * Retorna el Codigo del proceso abierto actualmente
+	 */
+	public static function getCodigoProcesoAbierto()
+	{
+		if ($proceso = self::getProcesoAbierto())
+		{
+			return $proceso->codigo;
+		}
+		
+		return null;
+	}
 }
