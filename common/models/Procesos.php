@@ -12,6 +12,9 @@ use Yii;
  * @property string $nombre
  * @property integer $fecha_inicio
  * @property integer $fecha_fin
+ *
+ * @property EstudioSocioEconomico[] $estudioSocioEconomicos
+ * @property Inscripciones[] $inscripciones
  */
 class Procesos extends \yii\db\ActiveRecord
 {
@@ -49,6 +52,22 @@ class Procesos extends \yii\db\ActiveRecord
             'fecha_inicio' => Yii::t('app', 'Fecha de inicio del ptroceso'),
             'fecha_fin' => Yii::t('app', 'Fecha de fin del ptroceso'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getEstudioSocioEconomicos()
+    {
+        return $this->hasMany(EstudioSocioEconomico::className(), ['id_proceso' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getInscripciones()
+    {
+        return $this->hasMany(Inscripciones::className(), ['id_proceso' => 'id']);
     }
 
     /**
