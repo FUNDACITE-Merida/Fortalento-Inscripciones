@@ -2,9 +2,7 @@
 
 namespace common\models;
 
-
 use Yii;
-use backend\models\Procesos;
 
 /**
  * This is the model class for table "{{%inscripciones}}".
