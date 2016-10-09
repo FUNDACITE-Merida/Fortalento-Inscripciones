@@ -3,6 +3,7 @@ return [
     'modules' => [
         'admin' => [
             'class' => 'mdm\admin\Module',
+            'layout' => 'left-menu',
         ]
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
