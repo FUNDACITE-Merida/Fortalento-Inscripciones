@@ -11,9 +11,10 @@ class RbacController extends Controller
     {
         $auth = Yii::$app->authManager;
 
+        $this->stdout("*** Creando rol superadmin\n", Console::FG_YELLOW);
         // Create role superadmin
-        $admin = $auth->createRole('superadmin');
-        $auth->add($admin);
+        $role = $auth->createRole('superadmin');
+        $auth->add($role);
         
         // Create user superadmin
         $user = new User();
@@ -28,9 +29,10 @@ class RbacController extends Controller
         $authorRole = $auth->getRole('superadmin');
         $auth->assign($authorRole, $user->getId());
 
+        $this->stdout("*** Creando rol admin\n", Console::FG_YELLOW);
         // Create role admin
-        $admin = $auth->createRole('admin');
-        $auth->add($admin);
+        $role = $auth->createRole('admin');
+        $auth->add($role);
         
         // Create user admin
         $user = new User();
@@ -44,6 +46,11 @@ class RbacController extends Controller
         $auth = Yii::$app->authManager;
         $authorRole = $auth->getRole('admin');
         $auth->assign($authorRole, $user->getId());
+
+        $this->stdout("*** Creando rol estudiante\n", Console::FG_YELLOW);
+        // Create role estudiante
+        $role = $auth->createRole('estudiante');
+        $auth->add($role);
     }
 }
 
