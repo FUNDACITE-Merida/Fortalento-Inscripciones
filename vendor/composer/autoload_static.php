@@ -23,6 +23,10 @@ class ComposerStaticInitbafc79f799b9062bb4626dbcc8798ddd
             'yii\\bootstrap\\' => 14,
             'yii\\' => 4,
         ),
+        'm' => 
+        array (
+            'mdm\\admin\\' => 10,
+        ),
         'c' => 
         array (
             'cebe\\markdown\\' => 14,
@@ -65,6 +69,10 @@ class ComposerStaticInitbafc79f799b9062bb4626dbcc8798ddd
         'yii\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2',
+        ),
+        'mdm\\admin\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mdmsoft/yii2-admin',
         ),
         'cebe\\markdown\\' => 
         array (
