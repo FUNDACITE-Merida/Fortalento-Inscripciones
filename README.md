@@ -1,4 +1,4 @@
-Incripciones Fortalento.
+Inscripciones Fortalento.
 ========================
 
 Sistema automatizado para la inscripción de aspirantes al programa Fortalento de Fundacite Mérida.
