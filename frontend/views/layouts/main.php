@@ -24,33 +24,40 @@ AppAsset::register($this);
 </head>
 <body>
 <?php $this->beginBody() ?>
-
+	<div style="text-align: center;"><?= Html::img('@web/images/cabecera.png',['width' => '100%'])?></div>
 <div class="wrap">
     <?php
     NavBar::begin([
         'brandLabel' => 'My Company',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
-            'class' => 'navbar-inverse navbar-fixed-top',
+            //'class' => 'navbar-inverse navbar-fixed-top',
+	    'class' => 'navbar-inverse',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-        ['label' => 'Contact', 'url' => ['/site/contact']],
+        //['label' => 'Home', 'url' => ['/site/index']],
+        //['label' => 'About', 'url' => ['/site/about']],
+        //['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => 'Ingresar', 'url' => ['/site/login']];
     } else {
-        $menuItems[] = '<li>'
-            . Html::beginForm(['/site/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link']
-            )
-            . Html::endForm()
-            . '</li>';
+        $menuItems = [
+            ['label' => 'Reportes', 'url' => ['/reportes/index']],
+            ['label' => 'Inscripción', 'url' => ['/estudiantes/create']],
+        //['label' => 'Contact', 'url' => ['/site/contact']],
+        ];
+        $menuItems[] = 
+            '<li>'
+                . Html::beginForm(['/site/logout'], 'post')
+                . Html::submitButton(
+                    'Salir (' . Yii::$app->user->identity->username . ')',
+                    ['class' => 'btn btn-link']
+                )
+                . Html::endForm()
+                . '</li>';
     }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
@@ -60,9 +67,9 @@ AppAsset::register($this);
     ?>
 
     <div class="container">
-        <?= Breadcrumbs::widget([
+        <!-- <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-        ]) ?>
+        ]) ?> -->
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
@@ -70,7 +77,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Fundacite Mérida <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

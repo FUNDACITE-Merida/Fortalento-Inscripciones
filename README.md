@@ -61,6 +61,7 @@ $ composer install --prefer-dist -vvv --profile
 ```bash
 $ cd Fortalento-Inscripciones
 $ ./yii migrate
+$ ./yii migrate --migrationPath=@mdm/admin/migrations
 $ ./yii migrate --migrationPath=@yii/rbac/migrations
 ```
 
