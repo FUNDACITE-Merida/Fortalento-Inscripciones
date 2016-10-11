@@ -13,6 +13,12 @@ return [
         ],
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
-        ]
+        ],
+        'formatter' => [
+            'dateFormat' => 'dd-MM-yyyy',
+            'decimalSeparator' => '.',
+            'thousandSeparator' => ',',
+            'currencyCode' => 'Bs',
+        ],
     ],
 ];

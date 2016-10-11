@@ -38,7 +38,7 @@ class Estudiantes extends \yii\db\ActiveRecord
     {
         return [
 			[['nombre', 'apellido', 'fecha_nacimiento', 'lugar_nacimiento', 'genero', 'es_venezolano', 'id_user'], 'required'],
-            [['fecha_nacimiento', 'id_user'], 'integer'],
+            [['id_user'], 'integer'],
 			[['no_cedula'], 'safe'],
 			[['fecha_nacimiento'], 'date', 'max' => Yii::$app->formatter->asDate('now')],
             [['es_venezolano'], 'boolean'],
@@ -46,7 +46,7 @@ class Estudiantes extends \yii\db\ActiveRecord
             [['cedula'], 'match', 'pattern' => '/^[0-9]*$/'],
             [['nombre', 'apellido', 'lugar_nacimiento'], 'string', 'max' => 256],
             [['genero'], 'string', 'max' => 1],
-            [['cedula'], 'unique'],
+            [['cedula'], 'unique'], 
             [['id_user'], 'unique'],
 
 			//caso especial cuando no se tiene cédula, el campo (cédula) no será requerido
@@ -170,6 +170,7 @@ class Estudiantes extends \yii\db\ActiveRecord
 				$this->cedula = '00000'.rand(1, 999);
 			}while (!($this->validate(array('cedula'))));
 		}
+        $this->fecha_nacimiento = Yii::$app->formatter->asTimeStamp($this->fecha_nacimiento);
 		return true;
 	}
 }
