@@ -8,6 +8,12 @@ use common\models\EstudioSocioEconomicoSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use common\models\Estudiantes;
+use common\models\Procesos;
+use common\models\User;
+
+use app\filters\ProcesoCerrado;
+use app\filters\InscripcionCerrada;
 
 /**
  * EstudioSocioEconomicoController implements the CRUD actions for EstudioSocioEconomico model.
@@ -25,6 +31,16 @@ class EstudioSocioEconomicoController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            'proceso' => [
+                'class' => ProcesoCerrado::className(),
+                'denyActions' => ['estudio-socio-economico/create'],
+                'returnPath' => '/procesos/proceso-cerrado',
+            ],
+            'inscripcion' => [
+                'class' => InscripcionCerrada::className(),
+                'denyActions' => ['estudio-socio-economico/create'],
+                'returnPath' => '/inscripciones/inscripcion-cerrada',
             ],
         ];
     }
@@ -63,13 +79,42 @@ class EstudioSocioEconomicoController extends Controller
      */
     public function actionCreate()
     {
-        $model = new EstudioSocioEconomico();
+		/*
+		 * Verifica que el usuario actual ya haya llenado sus datos de estudiante, de lo contrario 
+		 * lo redirige hacia esa acción 
+		 */
+		if (!($estudiante = Estudiantes::getEstudianteUser()))
+        {
+			return $this->redirect(['/estudiantes/create']);
+		}
+		
+		if (!($estudianteInscripcion = $estudiante->getInscripcion()))
+        {
+			return $this->redirect(['/inscripciones/create']);
+		}
+		
+		if (!($model = $estudiante->getEstudioSocioEconomico()))
+        {
+			$model = new EstudioSocioEconomico();
+			$model->id_estudiante = $estudiante->id;
+			$model->id_proceso =  Procesos::getIdProcesoAbierto();
+			$model->n_planilla_inscripcion = $estudianteInscripcion->id;
+			$model->codigo_ultimo_grado = $estudianteInscripcion->codigo_ultimo_grado;
+		}
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            //return $this->redirect(['/reportes/inscripcion','id_proceso' => $model->id_proceso]);
+            Yii::$app->session->setFlash('guardado', 'La inscripción se ha guardado exitosamente', true);
+            return $this->redirect(['/estudio-socio-economico/create']);
         } else {
             return $this->render('create', [
                 'model' => $model,
+                'estudiante' => $estudiante,
+                'estudianteInscripcion' => $estudianteInscripcion,
+                'estudianteCorreo' => User::find()
+										->select(['email'])
+										->where(['id' => Yii::$app->user->id])
+										->one(),									 
             ]);
         }
     }
