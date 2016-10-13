@@ -81,7 +81,7 @@ class Procesos extends \yii\db\ActiveRecord
     
     public static function getProcesoAbierto()
     {
-		$fechaActual = Yii::$app->formatter->asDate('now', 'yyyy-MM-dd');
+		$fechaActual = Yii::$app->formatter->asTimeStamp('now', 'yyyy-MM-dd');
 		return $model = Procesos::find()->where(['<=', 'fecha_inicio', $fechaActual])->andWhere(['>=', 'fecha_fin', $fechaActual])->one();
 	}
 	

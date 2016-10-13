@@ -8,6 +8,9 @@ use common\models\EstudiantesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\filters\ProcesoCerrado;
+use app\filters\InscripcionCerrada;
+
 
 /**
  * EstudiantesController implements the CRUD actions for Estudiantes model.
@@ -25,6 +28,16 @@ class EstudiantesController extends Controller
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+            'proceso' => [
+                'class' => ProcesoCerrado::className(),
+                'denyActions' => ['estudiantes/create', 'estudiantes/view'],
+                'returnPath' => '/procesos/proceso-cerrado',
+            ],
+            'inscripcion' => [
+                'class' => InscripcionCerrada::className(),
+                'denyActions' => ['estudiantes/create', 'estudiantes/view'],
+                'returnPath' => '/inscripciones/inscripcion-cerrada',
             ],
         ];
     }
@@ -57,12 +70,28 @@ class EstudiantesController extends Controller
     }
 
     /**
-     * Creates a new Estudiantes model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Crea o actualiza un modelo Estudiante
+     * Si la creación o actualización es correcta se redirecciona a 
+     * la creación o actualización de la inscripción.
      * @return mixed
      */
     public function actionCreate()
     {
+        if (!($model = Estudiantes::getEstudianteUser()))
+        {
+			$model = new Estudiantes();
+			$model->id_user = Yii::$app->user->id;
+		}
+		
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['/inscripciones/create']);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+        
+        /*
         $model = new Estudiantes();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -71,7 +100,7 @@ class EstudiantesController extends Controller
             return $this->render('create', [
                 'model' => $model,
             ]);
-        }
+        }*/
     }
 
     /**
