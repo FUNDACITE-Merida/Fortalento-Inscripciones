@@ -236,6 +236,8 @@ class Inscripciones extends \yii\db\ActiveRecord
 		$this->nota3 = str_replace(',','.',$this->nota3);
 		$this->nota3 = Yii::$app->formatter->asDecimal(floatval($this->nota3), 3);
 		
+		$this->fecha_inscripcion = Yii::$app->formatter->asTimeStamp($this->fecha_inscripcion);
+		
 		return true;
 	}
     
