@@ -56,6 +56,7 @@ use Yii;
  * @property string $direccion_habitacion_representante
  *
  * @property Estudiantes $idEstudiante
+ * @property Inscripciones $nPlanillaInscripcion
  * @property Procesos $idProceso
  */
 class EstudioSocioEconomico extends \yii\db\ActiveRecord
@@ -79,11 +80,14 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             [['vive_con_padres_solicitante'], 'boolean'],
             [['ingreso_mensual_padre', 'ingreso_mensual_madre', 'ingreso_mensual_representante'], 'number'],
             [['codigo_ultimo_grado'], 'string', 'max' => 4],
-            [['telefono_fijo_solicitante', 'telefono_celular_solicitante', 'telefono_fijo_padre', 'telefono_celular_padre', 'telefono_fijo_madre', 'telefono_celular_madre', 'telefono_fijo_representante', 'telefono_celular_representante'], 'string', 'max' => 11],
+            [['telefono_fijo_solicitante', 'telefono_celular_solicitante', 'telefono_fijo_padre', 'telefono_celular_padre', 'telefono_fijo_madre', 'telefono_celular_madre', 'telefono_fijo_representante', 'telefono_celular_representante'], 'string', 'max' => 11, 'min' => 11, 'tooShort' => '{attribute} deberia contener 11 números', 'tooLong' => '{attribute} deberia contener 11 números'],
+            [['telefono_fijo_solicitante', 'telefono_celular_solicitante', 'telefono_fijo_padre', 'telefono_celular_padre', 'telefono_fijo_madre', 'telefono_celular_madre', 'telefono_fijo_representante', 'telefono_celular_representante'], 'match', 'pattern' => '/^[0][2,4][0-9]*$/'],
             [['apellidos_padre', 'nombres_padre', 'profesion_padre', 'ocupacion_padre', 'apellidos_madre', 'nombres_madre', 'profesion_madre', 'ocupacion_madre', 'apellidos_representante', 'nombres_representante', 'profesion_representante', 'ocupacion_representante'], 'string', 'max' => 128],
-            [['cedula_padre', 'cedula_madre', 'cedula_representante'], 'string', 'max' => 10],
-            [['lugar_trabajo_padre', 'direccion_trabajo_padre', 'correo_e_padre', 'direccion_habitacion_padre', 'lugar_trabajo_madre', 'direccion_trabajo_madre', 'correo_e_madre', 'direccion_habitacion_madre', 'lugar_trabajo_representante', 'direccion_trabajo_representante', 'correo_e_representante', 'direccion_habitacion_representante'], 'string', 'max' => 256],
-            [['id_estudiante'], 'exist', 'skipOnError' => true, 'targetClass' => Estudiantes::className(), 'targetAttribute' => ['id_estudiante' => 'id']],
+            [['cedula_padre', 'cedula_madre', 'cedula_representante'], 'string', 'max' => 8, 'tooLong' => '{attribute} deberia contener máximo 8 números'],
+            [['cedula_padre', 'cedula_madre', 'cedula_representante'], 'match', 'pattern' => '/^[0-9]*$/'],
+            [['lugar_trabajo_padre', 'direccion_trabajo_padre', 'correo_e_padre', 'direccion_habitacion_padre', 'lugar_trabajo_madre', 'direccion_trabajo_madre', 'correo_e_madre', 'direccion_habitacion_madre', 'lugar_trabajo_representante', 'direccion_trabajo_representante', 'correo_e_representante'], 'string', 'max' => 256],
+            [['correo_e_padre','correo_e_madre','correo_e_representante'], 'email'],
+			[['id_estudiante'], 'exist', 'skipOnError' => true, 'targetClass' => Estudiantes::className(), 'targetAttribute' => ['id_estudiante' => 'id']],
             [['id_proceso'], 'exist', 'skipOnError' => true, 'targetClass' => Procesos::className(), 'targetAttribute' => ['id_proceso' => 'id']],
         ];
     }
@@ -98,16 +102,16 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             'id_proceso' => Yii::t('app', 'Clave foránea que referencia a la tabla procesos'),
             'id_estudiante' => Yii::t('app', 'Clave foránea que referencia a la tabla estudiantes'),
             'n_planilla_inscripcion' => Yii::t('app', 'Clave foránea que referencia a la tabla inscripciones'),
-            'codigo_ultimo_grado' => Yii::t('app', 'Código del último grado cursado por el estudiante'),
-            'vive_con_padres_solicitante' => Yii::t('app', 'Verdadero si vive con los padres, Falso si no vive con los padres'),
-            'telefono_fijo_solicitante' => Yii::t('app', 'Número de teléfono fijo dónde contactar al estudiante'),
-            'telefono_celular_solicitante' => Yii::t('app', 'Número de teléfono celular dónde contactar al estudiante'),
-            'apellidos_padre' => Yii::t('app', 'Apellidos del padre del estudiante'),
-            'nombres_padre' => Yii::t('app', 'Nombres del padre del estudiante'),
-            'cedula_padre' => Yii::t('app', 'Cédula de identidad del padre del estudiante'),
-            'grado_instruccion_padre' => Yii::t('app', 'Almacena el grado de instrucción del padre del estudiante, 1 = Primaria, 2 = Secundaria, 3 = Superior'),
-            'telefono_fijo_padre' => Yii::t('app', 'Número de teléfono fijo dónde contactar al padre'),
-            'telefono_celular_padre' => Yii::t('app', 'Número de teléfono celular dónde contactar al padre'),
+            'codigo_ultimo_grado' => Yii::t('app', 'Código del último grado culminado por el estudiante. Clave foránea que referencia a la tabla grados del sistema Fortalento'),
+            'vive_con_padres_solicitante' => Yii::t('app', '¿Vive con los padres?'),
+            'telefono_fijo_solicitante' => Yii::t('app', 'Teléfono fijo'),
+            'telefono_celular_solicitante' => Yii::t('app', 'Teléfono celular'),
+            'apellidos_padre' => Yii::t('app', 'Apellidos del padre'),
+            'nombres_padre' => Yii::t('app', 'Nombres del padre'),
+            'cedula_padre' => Yii::t('app', 'Cédula de identidad del padre'),
+            'grado_instruccion_padre' => Yii::t('app', 'Grado de instrucción del padre'),
+            'telefono_fijo_padre' => Yii::t('app', 'Teléfono fijo del padre'),
+            'telefono_celular_padre' => Yii::t('app', 'Teléfono celular del Padre'),
             'profesion_padre' => Yii::t('app', 'Profesión del padre'),
             'ocupacion_padre' => Yii::t('app', 'Ocupación del padre'),
             'lugar_trabajo_padre' => Yii::t('app', 'Lugar de trabajo del padre'),
@@ -115,12 +119,12 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             'direccion_trabajo_padre' => Yii::t('app', 'Dirección de trabajo del padre'),
             'correo_e_padre' => Yii::t('app', 'Correo electrónico del padre'),
             'direccion_habitacion_padre' => Yii::t('app', 'Dirección de habitación del padre'),
-            'apellidos_madre' => Yii::t('app', 'Apellidos de la madre del estudiante'),
-            'nombres_madre' => Yii::t('app', 'Nombres de la madre del estudiante'),
-            'cedula_madre' => Yii::t('app', 'Cédula de identidad de la madre del estudiante'),
-            'grado_instruccion_madre' => Yii::t('app', 'Almacena el grado de instrucción de la madre del estudiante, 1 = Primaria, 2 = Secundaria, 3 = Superior'),
-            'telefono_fijo_madre' => Yii::t('app', 'Número de teléfono fijo dónde contactar a la madre'),
-            'telefono_celular_madre' => Yii::t('app', 'Número de teléfono celular dónde contactar a la madre'),
+            'apellidos_madre' => Yii::t('app', 'Apellidos de la madre'),
+            'nombres_madre' => Yii::t('app', 'Nombres de la madre'),
+            'cedula_madre' => Yii::t('app', 'Cédula de identidad de la madre'),
+            'grado_instruccion_madre' => Yii::t('app', 'Grado de instrucción de la madre'),
+            'telefono_fijo_madre' => Yii::t('app', 'Teléfono fijo de la madre'),
+            'telefono_celular_madre' => Yii::t('app', 'Teléfono celular de la madre'),
             'profesion_madre' => Yii::t('app', 'Profesión de la madre'),
             'ocupacion_madre' => Yii::t('app', 'Ocupación de la madre'),
             'lugar_trabajo_madre' => Yii::t('app', 'Lugar de trabajo de la madre'),
@@ -128,12 +132,12 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             'direccion_trabajo_madre' => Yii::t('app', 'Dirección de trabajo de la madre'),
             'correo_e_madre' => Yii::t('app', 'Correo electrónico de la madre'),
             'direccion_habitacion_madre' => Yii::t('app', 'Dirección de habitación de la madre'),
-            'apellidos_representante' => Yii::t('app', 'Apellidos del representante del estudiante'),
-            'nombres_representante' => Yii::t('app', 'Nombres del representante del estudiante'),
-            'cedula_representante' => Yii::t('app', 'Cédula de identidad del representante del estudiante'),
-            'grado_instruccion_representante' => Yii::t('app', 'Almacena el grado de instrucción del representante del estudiante, 1 = Primaria, 2 = Secundaria, 3 = Superior'),
-            'telefono_fijo_representante' => Yii::t('app', 'Número de teléfono fijo dónde contactar al representante'),
-            'telefono_celular_representante' => Yii::t('app', 'Número de teléfono celular dónde contactar al representante'),
+            'apellidos_representante' => Yii::t('app', 'Apellidos del representante'),
+            'nombres_representante' => Yii::t('app', 'Nombres del representante'),
+            'cedula_representante' => Yii::t('app', 'Cédula de identidad del representante'),
+            'grado_instruccion_representante' => Yii::t('app', 'Grado instrucción del representante'),
+            'telefono_fijo_representante' => Yii::t('app', 'Teléfono fijo del representante'),
+            'telefono_celular_representante' => Yii::t('app', 'Teléfono celular del representante'),
             'profesion_representante' => Yii::t('app', 'Profesión del representante'),
             'ocupacion_representante' => Yii::t('app', 'Ocupación del representante'),
             'lugar_trabajo_representante' => Yii::t('app', 'Lugar de trabajo del representante'),
@@ -155,6 +159,14 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getNPlanillaInscripcion()
+    {
+        return $this->hasOne(Inscripciones::className(), ['id' => 'n_planilla_inscripcion']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getIdProceso()
     {
         return $this->hasOne(Procesos::className(), ['id' => 'id_proceso']);
@@ -168,4 +180,18 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
     {
         return new EstudioSocioEconomicoQuery(get_called_class());
     }
+    
+    public function afterFind()
+	{
+		if (!$this->vive_con_padres_solicitante)
+			$this->vive_con_padres_solicitante = 0;
+		// Formatea la fecha según se ha configurado en config/web.php
+		// 'formatter' => [
+        //	   'dateFormat' => 'dd-MM-yyyy',
+        // ]
+            
+		//$this->fecha_nacimiento = Yii::$app->formatter->asDate($this->fecha_nacimiento);
+		
+		parent::afterFind();
+	}
 }
