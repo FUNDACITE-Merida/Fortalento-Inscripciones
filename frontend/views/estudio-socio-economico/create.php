@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\EstudioSocioEconomico */
 
-$this->title = Yii::t('app', 'Create Estudio Socio Economico');
+$this->title = Yii::t('app', 'Datos de estudio socio económico');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('app', 'Estudio Socio Economicos'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -16,6 +16,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $this->render('_form', [
         'model' => $model,
+        'estudiante' => $estudiante,
+        'estudianteInscripcion' => $estudianteInscripcion,
+        'estudianteCorreo' => $estudianteCorreo,
     ]) ?>
 
 </div>
