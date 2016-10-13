@@ -14,8 +14,6 @@ use yii\web\View;
 
 <?php
 
-    <?php $form = ActiveForm::begin(); ?>
-
 $labelNota1 = 'Promedio Global 4to Grado';
 $labelNota2 = 'Promedio Global 5to Grado';
 $labelNota3 = 'Promedio Global 6to Grado';
@@ -32,8 +30,6 @@ if ($model->codigo_ultimo_grado == 11 || $model->codigo_ultimo_grado == 12)
 	$labelNota2 = 'Promedio Global 5to Año';
 	$labelNota3 = 'Promedio Global 6to Año';
 }
-
-    <?= $form->field($model, 'fecha_inscripcion')->textInput() ?>
 
 $urlEscuelas = Yii::$app->urlManager->createUrl(['inscripciones/get-planteles']);
 $this->registerJs("
@@ -208,8 +204,6 @@ if ($model->postulado_para_premio)
 	$mostrarNotas = "style='display: block;'";
 }
 
-    <?= $form->field($model, 'postulado_para_premio')->textInput(['maxlength' => true]) ?>
-
 $mostrar6to = 'display: block;';
 if (isset($model->postulado_para_premio) && isset($model->codigo_ultimo_grado) && ($model->codigo_ultimo_grado == 11))
 {
@@ -242,9 +236,6 @@ $grados = array(
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?//= $form->field($model, 'id_proceso')->textInput() ?>
-
-    <?//= $form->field($model, 'id_estudiante')->textInput() ?>
 	<div class="row">
 	  <div class="col-lg-6 col-md-10">
 		<div class="form-group field-inscripciones-fecha_inscripcion required">
@@ -254,7 +245,7 @@ $grados = array(
 																			'readonly' => true]) ?>
 		<div class="help-block"></div>
 		</div>	
-		<?//= $form->field($model, 'fecha_inscripcion')->textInput() ?>
+
 	  </div>
 	  <div class="col-lg-6 col-md-10">
 		 <?= Alert::widget([
@@ -361,8 +352,6 @@ $grados = array(
 		 ?>
 	  </div>
 	</div>
-
-    <?= $form->field($model, 'codigo_vivienda_familia')->textInput() ?>
 
 	<div id="notas" class="row" <?= $mostrarNotas; ?>>
 	  <?= Alert::widget([
