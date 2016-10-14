@@ -147,7 +147,7 @@ class Inscripciones extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('app', 'Clave primaria, autoincremental. Este id servirá a la vez como número de planilla de inscripción a efecto de los reportes. No se creo un campo especial para el número de planilla ya que en la práctica cumpliría la misma función que está haciendo el id.'),
+            'id' => Yii::t('app', 'Nº de planilla de inscripción'),
             'id_proceso' => Yii::t('app', 'Clave foránea que referencia a la tabla procesos'),
             'id_estudiante' => Yii::t('app', 'Clave foránea que referencia a la tabla estudiantes'),
             'fecha_inscripcion' => Yii::t('app', 'Fecha de solicitud'),

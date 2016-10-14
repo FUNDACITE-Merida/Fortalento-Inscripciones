@@ -87,10 +87,7 @@ $nivelInstruccion = array(
 						 'readonly' => true,
 						]) ?>
 	  </div>
-	</div>
-    <?//= $form->field($model, 'id_proceso')->textInput() ?>
 
-    <?//= $form->field($model, 'id_estudiante')->textInput() ?>
     </fieldset>
 
 	</br></br>
