@@ -101,6 +101,8 @@ class EstudioSocioEconomicoController extends Controller
 			$model->n_planilla_inscripcion = $estudianteInscripcion->id;
 			$model->codigo_ultimo_grado = $estudianteInscripcion->codigo_ultimo_grado;
 		}
+        //print_r($model);
+        //exit(0);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             //return $this->redirect(['/reportes/inscripcion','id_proceso' => $model->id_proceso]);

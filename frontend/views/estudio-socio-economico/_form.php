@@ -289,6 +289,11 @@ $nivelInstruccion = array(
 			   <?= $form->field($model, 'correo_e_representante')->textInput(['maxlength' => true]) ?>
 		  </div>
 		</div>
+		<div class="row">
+		  <div class="col-lg-12 col-md-10">
+			  <?= $form->field($model, 'direccion_habitacion_representante')->textInput(['maxlength' => true]) ?>
+		  </div>
+		</div>
 	</fieldset>
     
     <div class="form-group">
