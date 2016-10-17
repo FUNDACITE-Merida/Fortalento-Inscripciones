@@ -12,7 +12,7 @@ class SignupForm extends Model
     public $username;
     public $email;
     public $password;
-
+    public $captcha;
 
     /**
      * @inheritdoc
@@ -29,10 +29,13 @@ class SignupForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Este correo electrónico ya está registrado.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+
+			['captcha', 'required'],
+			['captcha', 'captcha']
         ];
     }
 
