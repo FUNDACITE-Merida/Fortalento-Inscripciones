@@ -20,10 +20,10 @@ class SignupForm extends Model
     public function rules()
     {
         return [
-            ['username', 'trim'],
+            /*['username', 'trim'],
             ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'string', 'min' => 2, 'max' => 255],*/
 
             ['email', 'trim'],
             ['email', 'required'],
@@ -43,16 +43,23 @@ class SignupForm extends Model
      */
     public function signup()
     {
-        if (!$this->validate()) {
-            return null;
+        if ($this->validate()) {
+            $user = new User();
+            //$user->username = $this->username;
+            $user->username = $this->email;
+            $user->email = $this->email;
+            $user->setPassword($this->password);
+            $user->generateAuthKey();
+            if ($user->save()) {
+				// Asignación automática del rol Estudiantes
+				// para los usuarios nuevos
+				$auth = Yii::$app->authManager;
+				$estudiantesRole = $auth->getRole('Estudiantes');
+				$auth->assign($estudiantesRole, $user->getId());
+                return $user;
+            }
         }
-        
-        $user = new User();
-        $user->username = $this->username;
-        $user->email = $this->email;
-        $user->setPassword($this->password);
-        $user->generateAuthKey();
-        
-        return $user->save() ? $user : null;
+
+        return null;
     }
 }
