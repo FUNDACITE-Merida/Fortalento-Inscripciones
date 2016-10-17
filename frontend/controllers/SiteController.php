@@ -154,8 +154,16 @@ class SiteController extends Controller
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
             if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
+                /*if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
+                }*/
+                $modelPasswordReset = new PasswordResetRequestForm();
+                $modelPasswordReset->email = $model->email;
+                if ($modelPasswordReset->sendEmail()) {
+                    Yii::$app->session->setFlash('success', 'Un mensaje con instrucciones para establecer tu contraseña ha sido enviado a tu correo electrónico.');
+                    return $this->goHome();
+                } else {
+                    Yii::$app->session->setFlash('error', 'Lo lamentamos , no se ha podido establecer la contraseña asociada al correo electrónico.');
                 }
             }
         }
