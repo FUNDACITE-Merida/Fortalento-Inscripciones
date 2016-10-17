@@ -72,7 +72,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        //return $this->render('index');
+        return $this->redirect(['/site/login']);
     }
 
     /**
@@ -83,7 +84,8 @@ class SiteController extends Controller
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            //return $this->goHome();
+			return $this->redirect(['/estudiantes/create']);
         }
 
         $model = new LoginForm();
@@ -173,11 +175,11 @@ class SiteController extends Controller
         $model = new PasswordResetRequestForm();
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
             if ($model->sendEmail()) {
-                Yii::$app->session->setFlash('success', 'Check your email for further instructions.');
+                Yii::$app->session->setFlash('success', 'Un mensaje con instrucciones para restablecer tu contraseña ha sido enviado a tu correo electrónico.');
 
                 return $this->goHome();
             } else {
-                Yii::$app->session->setFlash('error', 'Sorry, we are unable to reset password for email provided.');
+                Yii::$app->session->setFlash('error', 'Lo lamentamos , no se ha podido restablecer la contraseña asociada al correo electrónico.');
             }
         }
 
@@ -202,7 +204,7 @@ class SiteController extends Controller
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
-            Yii::$app->session->setFlash('success', 'New password was saved.');
+            Yii::$app->session->setFlash('success', 'Tu nuevo password ha sido guardado.');
 
             return $this->goHome();
         }
