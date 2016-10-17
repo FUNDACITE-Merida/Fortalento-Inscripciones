@@ -153,6 +153,8 @@ class SiteController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
+            $model->username = $model->email;
+            $model->password = "MyPowerPass";
             if ($user = $model->signup()) {
                 /*if (Yii::$app->getUser()->login($user)) {
                     return $this->goHome();
