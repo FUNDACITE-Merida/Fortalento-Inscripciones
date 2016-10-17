@@ -17,10 +17,10 @@ class RbacController extends Controller
         if ($this->confirm("*** ¿Desea continuar?\n"))
         {
             $auth->removeAll();
-            if ($user = User::findOne(['username' => 'superadmin']))
+            if ($user = User::findOne(['username' => 'superadmin@fundacite-merida.gob.ve']))
                 $user->delete();
 
-            if ($user = User::findOne(['username' => 'admin']))
+            if ($user = User::findOne(['username' => 'admin@fundacite-merida.gob.ve']))
                 $user->delete();
         }
         else {
@@ -58,10 +58,9 @@ class RbacController extends Controller
         
         // Create user superadmin
         $user = new User();
-        $user->username = 'superadmin';
+        $user->username = 'superadmin@fundacite-merida.gob.ve';
         $user->email = 'superadmin@fundacite-merida.gob.ve';
-        //$user->setPassword('A9u35t@for?ock');
-        $user->setPassword('123456');
+        $user->setPassword('123456'); // Este password debe ser cambiado por uno más complejo
         $user->generateAuthKey();
         $user->save(false);
 
@@ -77,10 +76,9 @@ class RbacController extends Controller
         
         // Create user admin
         $user = new User();
-        $user->username = 'admin';
+        $user->username = 'admin@fundacite-merida.gob.ve';
         $user->email = 'admin@fundacite-merida.gob.ve';
-        //$user->setPassword('E5tud1@nF0?t4lentoa');
-        $user->setPassword('123456');
+        $user->setPassword('123456'); // Este password debe ser cambiado por uno más complejo
         $user->generateAuthKey();
         $user->save(false);
 
