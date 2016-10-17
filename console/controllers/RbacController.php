@@ -89,9 +89,9 @@ class RbacController extends Controller
         $authorRole = $auth->getRole('admin');
         $auth->assign($authorRole, $user->getId());
 
-        $this->stdout("*** Creando rol estudiante\n", Console::FG_YELLOW);
+        $this->stdout("*** Creando rol Estudiantes\n", Console::FG_YELLOW);
         // Create role estudiante
-        $role = $auth->createRole('estudiante');
+        $role = $auth->createRole('Estudiantes');
         $auth->add($role);
         $auth->addChild($role, $permisoLogout);
     }
