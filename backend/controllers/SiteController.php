@@ -76,7 +76,14 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            if (Yii::$app->user->can('superadmin') || Yii::$app->user->can('admin'))
+                return $this->goBack();
+            else {
+                Yii::$app->user->logout();
+                Yii::$app->session->setFlash('error', 'Debe tener credenciales de administrador para acceder a este sitio');
+                return $this->goHome();
+            }
+
         } else {
             return $this->render('login', [
                 'model' => $model,
