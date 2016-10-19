@@ -40,15 +40,19 @@ class RbacController extends Controller
         $permisoLogin->description = 'Acceso a la página de login';
         $auth->add($permisoLogin);
 
-        // Agregando acceso a la página de login
+        // Agregando acceso a la página de logout
         $permisoLogout = $auth->createPermission('/site/logout');
         $permisoLogout->description = 'Acceso a la página de logout';
         $auth->add($permisoLogout);
 
-        // Agregando acceso a la página de login
+        // Agregando acceso a todo el sitio
         $permisoAll = $auth->createPermission('/*');
-        $permisoAll->description = 'Acceso a la página de logout';
+        $permisoAll->description = 'Acceso a todo';
         $auth->add($permisoAll);
+
+        $permisoReportesIndex = $auth->createPermission('/reportes/index');
+        $permisoReportesIndex->description = 'Acceso a reportes/index';
+        $auth->add($permisoReportesIndex);
 
         $this->stdout("*** Creando datos de superadmin\n", Console::FG_YELLOW);
         // Create role superadmin
@@ -92,6 +96,7 @@ class RbacController extends Controller
         $role = $auth->createRole('Estudiantes');
         $auth->add($role);
         $auth->addChild($role, $permisoLogout);
+        $auth->addChild($role, $permisoReportesIndex);
     }
 }
 
