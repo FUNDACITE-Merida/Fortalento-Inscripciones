@@ -54,6 +54,10 @@ class RbacController extends Controller
         $permisoReportesIndex->description = 'Acceso a reportes/index';
         $auth->add($permisoReportesIndex);
 
+        $permisoEstudiantesCreate = $auth->createPermission('/estudiantes/create');
+        $permisoEstudiantesCreate->description = 'Acceso a estudiantes/create';
+        $auth->add($permisoEstudiantesCreate);
+
         $this->stdout("*** Creando datos de superadmin\n", Console::FG_YELLOW);
         // Create role superadmin
         $role = $auth->createRole('superadmin');
@@ -86,7 +90,7 @@ class RbacController extends Controller
         $user->generateAuthKey();
         $user->save(false);
 
-        // Add rol superadmin to user admin
+        // Add rol admin to user admin
         $auth = Yii::$app->authManager;
         $authorRole = $auth->getRole('admin');
         $auth->assign($authorRole, $user->getId());
@@ -95,8 +99,10 @@ class RbacController extends Controller
         // Create role estudiante
         $role = $auth->createRole('Estudiantes');
         $auth->add($role);
+        $auth->assign($role, 8); //esta asignación se debe eliminar
         $auth->addChild($role, $permisoLogout);
         $auth->addChild($role, $permisoReportesIndex);
+        $auth->addChild($role, $permisoEstudiantesCreate);
     }
 }
 
