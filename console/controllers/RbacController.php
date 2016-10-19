@@ -62,6 +62,10 @@ class RbacController extends Controller
         $permisoInscripcionesCreate->description = 'Acceso a inscripciones/create';
         $auth->add($permisoInscripcionesCreate);
 
+        $permisoInscripcionesGetPlanteles = $auth->createPermission('/inscripciones/get-planteles');
+        $permisoInscripcionesGetPlanteles->description = 'Acceso a inscripciones/get-planteles';
+        $auth->add($permisoInscripcionesGetPlanteles);
+
         $this->stdout("*** Creando datos de superadmin\n", Console::FG_YELLOW);
         // Create role superadmin
         $role = $auth->createRole('superadmin');
@@ -108,6 +112,7 @@ class RbacController extends Controller
         $auth->addChild($role, $permisoReportesIndex);
         $auth->addChild($role, $permisoEstudiantesCreate);
         $auth->addChild($role, $permisoInscripcionesCreate);
+        $auth->addChild($role, $permisoInscripcionesGetPlanteles);
     }
 }
 
