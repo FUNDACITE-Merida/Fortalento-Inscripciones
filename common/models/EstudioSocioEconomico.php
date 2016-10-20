@@ -75,7 +75,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', 'vive_con_padres_solicitante', 'apellidos_representante', 'nombres_representante', 'cedula_representante', 'grado_instruccion_representante', 'telefono_fijo_representante', 'telefono_celular_representante', 'profesion_representante', 'ocupacion_representante', 'lugar_trabajo_representante', 'ingreso_mensual_representante', 'direccion_trabajo_representante', 'correo_e_representante'], 'required'],
+            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', 'vive_con_padres_solicitante', 'apellidos_representante', 'nombres_representante', 'cedula_representante', 'grado_instruccion_representante', 'telefono_fijo_representante', 'telefono_celular_representante', 'profesion_representante', 'ocupacion_representante', 'lugar_trabajo_representante', 'ingreso_mensual_representante', 'direccion_trabajo_representante', 'direccion_habitacion_representante', 'correo_e_representante'], 'required'],
             [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'grado_instruccion_padre', 'grado_instruccion_madre', 'grado_instruccion_representante'], 'integer'],
             [['vive_con_padres_solicitante'], 'boolean'],
             [['ingreso_mensual_padre', 'ingreso_mensual_madre', 'ingreso_mensual_representante'], 'number'],
@@ -85,7 +85,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             [['apellidos_padre', 'nombres_padre', 'profesion_padre', 'ocupacion_padre', 'apellidos_madre', 'nombres_madre', 'profesion_madre', 'ocupacion_madre', 'apellidos_representante', 'nombres_representante', 'profesion_representante', 'ocupacion_representante'], 'string', 'max' => 128],
             [['cedula_padre', 'cedula_madre', 'cedula_representante'], 'string', 'max' => 8, 'tooLong' => '{attribute} deberia contener máximo 8 números'],
             [['cedula_padre', 'cedula_madre', 'cedula_representante'], 'match', 'pattern' => '/^[0-9]*$/'],
-            [['lugar_trabajo_padre', 'direccion_trabajo_padre', 'correo_e_padre', 'direccion_habitacion_padre', 'lugar_trabajo_madre', 'direccion_trabajo_madre', 'correo_e_madre', 'direccion_habitacion_madre', 'lugar_trabajo_representante', 'direccion_trabajo_representante', 'correo_e_representante'], 'string', 'max' => 256],
+            [['lugar_trabajo_padre', 'direccion_trabajo_padre', 'correo_e_padre', 'direccion_habitacion_padre', 'lugar_trabajo_madre', 'direccion_trabajo_madre', 'correo_e_madre', 'direccion_habitacion_madre', 'lugar_trabajo_representante', 'direccion_trabajo_representante', 'correo_e_representante', 'direccion_habitacion_representante'], 'string', 'max' => 256],
             [['correo_e_padre','correo_e_madre','correo_e_representante'], 'email'],
 			[['id_estudiante'], 'exist', 'skipOnError' => true, 'targetClass' => Estudiantes::className(), 'targetAttribute' => ['id_estudiante' => 'id']],
             [['id_proceso'], 'exist', 'skipOnError' => true, 'targetClass' => Procesos::className(), 'targetAttribute' => ['id_proceso' => 'id']],
