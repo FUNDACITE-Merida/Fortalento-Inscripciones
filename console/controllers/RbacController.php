@@ -82,6 +82,10 @@ class RbacController extends Controller
         $permisoInscripcionesInscripcionCerrada->description = 'Acceso a inscripciones/inscripcion-cerrada';
         $auth->add($permisoInscripcionesInscripcionCerrada);
 
+        $permisoProcesosProcesoCerrado = $auth->createPermission('/procesos/proceso-cerrado');
+        $permisoProcesosProcesoCerrado->description = 'Acceso a procesos/proceso-cerrado';
+        $auth->add($permisoProcesosProcesoCerrado);
+
         $this->stdout("*** Creando datos de superadmin\n", Console::FG_YELLOW);
         // Create role superadmin
         $role = $auth->createRole('superadmin');
@@ -123,7 +127,6 @@ class RbacController extends Controller
         // Create role estudiante
         $role = $auth->createRole('Estudiantes');
         $auth->add($role);
-        $auth->assign($role, 8); //esta asignación se debe eliminar
         $auth->addChild($role, $permisoLogout);
         $auth->addChild($role, $permisoReportesIndex);
         $auth->addChild($role, $permisoEstudiantesCreate);
@@ -133,5 +136,6 @@ class RbacController extends Controller
         $auth->addChild($role, $permisoInscripcionesCerrarEImprimir);
         $auth->addChild($role, $permisoReportesInscripcion);
         $auth->addChild($role, $permisoInscripcionesInscripcionCerrada);
+        $auth->addChild($role, $permisoProcesosProcesoCerrado);
     }
 }
