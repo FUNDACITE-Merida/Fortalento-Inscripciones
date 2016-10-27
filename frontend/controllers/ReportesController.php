@@ -26,6 +26,7 @@ class ReportesController extends \yii\web\Controller
     {
 		if (!($estudiante = Estudiantes::getEstudianteUser()))
         {
+			Yii::$app->session->setFlash('info', 'No hay reportes para mostrar, debes realizar la inscripción', true);
 			return $this->redirect(['/estudiantes/create']);
 		}
 		//$estudiante = Estudiantes::getEstudianteUser();
@@ -33,7 +34,7 @@ class ReportesController extends \yii\web\Controller
         $dataProvider = $searchModel->search(['EstudioSocioEconomicoSearch' => ['id_estudiante' => $estudiante->id]]);
         $searchModelInscripciones = new InscripcionesSearch();
 		$dataProviderInscripciones = $searchModelInscripciones->search(['InscripcionesSearch' => ['id_estudiante' => $estudiante->id, 'cerrada' => true]]);
-		
+		Yii::$app->session->setFlash('info', 'Debes tomar en cuenta que sólo se mostrarán las inscripciones que ya estén cerradas', true);
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
