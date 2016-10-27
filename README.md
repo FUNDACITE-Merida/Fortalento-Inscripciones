@@ -74,7 +74,8 @@ $ ./yii migrate --migrationPath=@yii/rbac/migrations
 $ cd Fortalento-Inscripciones
 $ ./yii rbac/init
 ```
-
+Esto cargará algunas configuraciones básicas como permisos y roles predefinidos.
+Se crean los usuarios superadmin@fundacite-merida.gob.ve y admin@fundacite-merida.gob.ve con contraseña 123456 
 
 ## Corriendo el servidor de desarrollo.
 
