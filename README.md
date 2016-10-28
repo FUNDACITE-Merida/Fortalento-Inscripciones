@@ -47,7 +47,10 @@ $ php init
 
 ## Configurando la base de datos.
 
-Crea y configura la base de datos en common/config/main-local.php
+Crea la base de datos, luego configura los datos de conexión en common/config/main-local.php
+
+Nota: Es necesaria la conexión a la base de datos del Sistema de Premios e Incentivos a la Excelencia Estudiantil
+para que el sistema sea completamente funcional.
 
 ## Instalando paquetes de terceros.
 
@@ -71,7 +74,8 @@ $ ./yii migrate --migrationPath=@yii/rbac/migrations
 $ cd Fortalento-Inscripciones
 $ ./yii rbac/init
 ```
-
+Esto cargará algunas configuraciones básicas como permisos y roles predefinidos.
+Se crean los usuarios superadmin@fundacite-merida.gob.ve y admin@fundacite-merida.gob.ve con contraseña 123456 
 
 ## Corriendo el servidor de desarrollo.
 
