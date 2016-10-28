@@ -77,6 +77,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
         return [
             [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', 'vive_con_padres_solicitante', 'apellidos_representante', 'nombres_representante', 'cedula_representante', 'grado_instruccion_representante', 'telefono_fijo_representante', 'telefono_celular_representante', 'profesion_representante', 'ocupacion_representante', 'lugar_trabajo_representante', 'ingreso_mensual_representante', 'direccion_trabajo_representante', 'direccion_habitacion_representante', 'correo_e_representante'], 'required'],
             [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'grado_instruccion_padre', 'grado_instruccion_madre', 'grado_instruccion_representante'], 'integer'],
+            [['grado_instruccion_representante'], 'in', 'range' => [1, 2, 3]],
             [['vive_con_padres_solicitante'], 'boolean'],
             [['ingreso_mensual_padre', 'ingreso_mensual_madre', 'ingreso_mensual_representante'], 'number'],
             [['codigo_ultimo_grado'], 'string', 'max' => 4],
