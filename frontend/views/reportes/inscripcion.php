@@ -646,7 +646,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    Profesión universitaria o su equivalente.</p>
+					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    <?= $profesionJefeFamilia[1]?><!-- Profesión universitaria o su equivalente -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
@@ -654,7 +654,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    Profesiones técnicas especializadas. </p>
+					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    <?= $profesionJefeFamilia[2]?><!-- Profesiones técnicas especializadas -->. </p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
@@ -662,7 +662,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    Empleados sin profesión universitaria o técnica. Se incluyen los pequeños comerciantes.</p>
+					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    <?= $profesionJefeFamilia[3]?><!-- Empleados sin profesión universitaria o técnica. Se incluyen los pequeños comerciantes -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
@@ -670,7 +670,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    Obreros especializados.</p>
+					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    <?= $profesionJefeFamilia[4]?><!-- Obreros especializados -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
@@ -678,7 +678,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    Obreros no especializados.</p>
+					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    <?= $profesionJefeFamilia[5]?><!-- Obreros no especializados -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
@@ -717,7 +717,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    Instrucción universitaria o equivalente.</p>
+					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    <?= $nivelInstruccionMadre[1]?><!-- Instrucción universitaria o equivalente -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
@@ -725,7 +725,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    Instrucción secundaria completa.</p>
+					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    <?= $nivelInstruccionMadre[2]?><!-- Instrucción secundaria completa -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
@@ -733,7 +733,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    Instrucción secundaria incompleta.</p>
+					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    <?= $nivelInstruccionMadre[3]?><!-- Instrucción secundaria incompleta -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
@@ -741,7 +741,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    Instrucción primaria completa o incompleta.</p>
+					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    <?= $nivelInstruccionMadre[1]?><!-- Instrucción primaria completa o incompleta -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
@@ -749,7 +749,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    Analfabeta.</p>
+					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    <?= $nivelInstruccionMadre[1]?><!-- Analfabeta -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce27"> </td>
@@ -789,31 +789,31 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    La fuente principal de ingreso familiar corresponde a inversión en empresas, entidades financieras o fortunas heredadas.</p>
+					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    <?= $fuenteIngreso[1]?><!-- La fuente principal de ingreso familiar corresponde a inversión en empresas, entidades financieras o fortunas heredadas --> .</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    Los ingresos consisten en honorarios profesionales.</p>
+					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    <?= $fuenteIngreso[2]?><!-- Los ingresos consisten en honorarios profesionales --> .</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    El ingreso es un sueldo, es decir una remuneración calculada sobre base mensual o anual.</p>
+					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    <?= $fuenteIngreso[3]?><!-- El ingreso es un sueldo, es decir una remuneración calculada sobre base mensual o anual -->.</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    El ingreso consiste en un salario fijo, es decir remuneración calculada por semana o por día.</p>
+					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    <?= $fuenteIngreso[4]?><!-- El ingreso consiste en un salario fijo, es decir remuneración calculada por semana o por día --> .</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    El ingreso proviene de la ejecución de trabajos ocasionales o tareas a destajo.</p>
+					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    <?= $fuenteIngreso[5]?><!-- El ingreso proviene de la ejecución de trabajos ocasionales o tareas a destajo --> .</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
@@ -871,43 +871,43 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_vivienda_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    Casa o apartamento lujoso y espacioso.</p>
+					<p> <?= ($inscripcion->codigo_vivienda_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>   <?= $alojamientoVivienda[1]?><!-- Casa o apartamento lujoso y espacioso -->.</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_vivienda_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    Alojamiento que sin ser lujoso, es espacioso, muy cómodo y con óptimas condiciones sanitarias.</p>
+					<p> <?= ($inscripcion->codigo_vivienda_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    <?= $alojamientoVivienda[1]?><!-- Alojamiento que sin ser lujoso, es espacioso, muy cómodo y con óptimas condiciones sanitarias -->.</p>
 				</td>
 				<!-- td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro9">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_vivienda_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    Alojamiento con buenas condiciones sanitarias, en espacio reducido; es decir, una casa pequeña o apartamento modesto, bien </p>
+					<p> <?= ($inscripcion->codigo_vivienda_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    <?= $alojamientoVivienda[3]?>.<!-- Alojamiento con buenas condiciones sanitarias, en espacio reducido; es decir, una casa pequeña o apartamento modesto, bien --> </p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
-			<tr class="ro9">
+			<!-- <tr class="ro9">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce22">
 					<p>       construido y en buen estado de mantenimiento, condiciones adecuadas de iluminación y aire, además de espacios separados </p>
-				</td>
+				</td> -->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro9">
+			<!-- </tr> -->
+			<!-- <tr class="ro9">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce22">
-					<p>       para cocina, baño y habitaciones.</p>
+					<p>       para cocina, baño y habitaciones .</p>
+				</td> -->
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			<!-- </tr> -->
+			<tr class="ro12">
+				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
+					<p> <?= ($inscripcion->codigo_vivienda_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    <?= $alojamientoVivienda[4]?><!-- Vivienda en ambientes espaciosos o reducidos con deficiencia en algunas condiciones sanitarias -->.</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_vivienda_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    Vivienda en ambientes espaciosos o reducidos con deficiencia en algunas condiciones sanitarias.</p>
-				</td>
-				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro12">
-				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_vivienda_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    Rancho o vivienda con una sola habitación  y condiciones sanitarias deficientes.</p>
+					<p> <?= ($inscripcion->codigo_vivienda_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    <?= $alojamientoVivienda[5]?><!-- Rancho o vivienda con una sola habitación  y condiciones sanitarias deficientes -->.</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
@@ -940,31 +940,31 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_ingreso_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    Desde Bs. 22.265,04  hasta  Bs. 29.686,72</p>
+					<p> <?= ($inscripcion->codigo_ingreso_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    <?= $ingresoFamiliar[1]?><!-- Desde Bs. 22.265,04  hasta  Bs. 29.686,72-->.</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_ingreso_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    Desde Bs. 14.843,37  hasta  Bs. 22.265,04</p>
+					<p> <?= ($inscripcion->codigo_ingreso_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    <?= $ingresoFamiliar[2]?><!-- Desde Bs. 14.843,37  hasta  Bs. 22.265,04 -->.</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_ingreso_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    Desde Bs. 7.421,69  hasta  Bs. 14.843,36</p>
+					<p> <?= ($inscripcion->codigo_ingreso_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    <?= $ingresoFamiliar[3]?><!-- Desde Bs. 7.421,69  hasta  Bs. 14.843,36 -->.</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_ingreso_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    Bs. 7.421,68 (salario mínimo).</p>
+					<p> <?= ($inscripcion->codigo_ingreso_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    <?= $ingresoFamiliar[4]?><!-- Bs. 7.421,68 (salario mínimo) -->.</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_ingreso_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    Menos de Bs. 7.421,68</p>
+					<p> <?= ($inscripcion->codigo_ingreso_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    <?= $ingresoFamiliar[5]?><!-- Menos de Bs. 7.421,68 -->.</p>
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
@@ -1005,7 +1005,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_grupo_familiar == 5) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    Dos (2) personas</p>
+					<p> <?= ($inscripcion->codigo_grupo_familiar == 5) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    <?= $grupoFamiliar[5]?><!-- Dos (2) personas -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -1016,7 +1016,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_grupo_familiar == 4) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    Tres (3) a seis (6) personas </p>
+					<p> <?= ($inscripcion->codigo_grupo_familiar == 4) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    <?= $grupoFamiliar[4]?><!-- Tres (3) a seis (6) personas -->. </p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -1027,7 +1027,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_grupo_familiar == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    Siete (7) a nueve (9) personas</p>
+					<p> <?= ($inscripcion->codigo_grupo_familiar == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    <?= $grupoFamiliar[3]?><!-- Siete (7) a nueve (9) personas -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -1038,7 +1038,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_grupo_familiar == 2) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    Diez (10) a doce (12) personas </p>
+					<p> <?= ($inscripcion->codigo_grupo_familiar == 2) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    <?= $grupoFamiliar[2]?><!-- Diez (10) a doce (12) personas -->.</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -1049,7 +1049,7 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro12">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_grupo_familiar == 1) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    Trece (13) personas o más</p>
+					<p> <?= ($inscripcion->codigo_grupo_familiar == 1) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    <?= $grupoFamiliar[1]?><!-- Trece (13) personas o más <--></--></p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>

@@ -409,7 +409,7 @@ $grados = array(
 	  <div class="col-lg-6 col-md-10">		
 		<?= $form->field($model, 'codigo_grupo_familiar')->dropdownList(
 			array_reverse(ArrayHelper::map($grupoFamiliar, 'cod_grupo_fam', 'descripcion'), true)
-			); ?>
+			); //Se aplica array_reverse para cumplir requerimiento de Ing. Ingrid Vivas?>
 	  </div>	  
 	</div>
 

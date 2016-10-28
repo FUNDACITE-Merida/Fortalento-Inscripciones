@@ -11,7 +11,16 @@ use common\models\InscripcionesSearch;
 use common\models\Plantel;
 use common\models\Municipios;
 use common\models\User;
+use common\models\Procesos;
+use common\models\NseProfesionJefeFamilia;
+use common\models\NseNivelDeLaMadre;
+use common\models\NseFuenteDeIngreso;
+use common\models\NseAlojamientoYVivienda;
+use common\models\NseIngresoFamiliar;
+use common\models\NseGrupoFamiliar;
+
 use yii\web\NotFoundHttpException;
+use yii\helpers\ArrayHelper;
 
 use kartik\mpdf\Pdf;
 
@@ -80,12 +89,29 @@ class ReportesController extends \yii\web\Controller
 		$plantel = Plantel::find()
 						->where(['cod_pla' => $inscripcion->codigo_plantel])
 						->one();
-		
+		$profesionJefeFamilia = ArrayHelper::map(NseProfesionJefeFamilia::find()->all(), 
+									'cod_prof_jf', 'descripcion');
+		$nivelInstruccionMadre = ArrayHelper::map(NseNivelDeLaMadre::find()->all(), 'cod_nivel_mad', 'descripcion');
+		$fuenteIngreso = ArrayHelper::map(NseFuenteDeIngreso::find()->all(), 'cod_fuente_ing', 'descripcion');
+		$alojamientoVivienda = ArrayHelper::map(NseAlojamientoYVivienda::find()->all(), 'cod_vivienda', 'descripcion');
+		$ingresoFamiliar = ArrayHelper::map(NseIngresoFamiliar::find()
+									->where(['cod_proceso' => Procesos::getCodigoProcesoAbierto()]) // Se debe colocar esto Procesos::getCodigoProcesoAbierto()
+									->orderBy('cod_ing_fam')
+									->all(), 'cod_ing_fam', 'descripcion');
+		// Se aplica array_reverse para cumplir requerimiento de Ing. Ingrid Vivas
+		$grupoFamiliar = array_reverse(ArrayHelper::map(NseGrupoFamiliar::find()->all(), 'cod_grupo_fam', 'descripcion'), true);
+
         $content = $this->renderPartial('inscripcion', [
 			'inscripcion' => $inscripcion,
 			'plantel' => $plantel,
 			'estudianteCorreo' => $estudiante->user->email,
 			'estudio' => $estudio,
+			'profesionJefeFamilia' => $profesionJefeFamilia,
+			'nivelInstruccionMadre' => $nivelInstruccionMadre,
+			'fuenteIngreso' => $fuenteIngreso,
+			'alojamientoVivienda' => $alojamientoVivienda,
+			'ingresoFamiliar' => $ingresoFamiliar,
+			'grupoFamiliar' => $grupoFamiliar,
 		]);
 		$style = '@page {  }
 	table { border-collapse:collapse; border-spacing:0; empty-cells:show }
