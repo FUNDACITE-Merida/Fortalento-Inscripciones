@@ -1724,6 +1724,7 @@ $nivelInstruccion = array(
 					<td style="text-align:left;width:2.258cm; " class="ce11"> </td> -->
 					<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
 						<p>TELEFONO FIJO:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->telefono_fijo_representante; ?></span>
 					</td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
@@ -1742,6 +1743,7 @@ $nivelInstruccion = array(
 					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 					<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
 						<p>TELEFONO CELULAR:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->telefono_celular_representante; ?></span>
 					</td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
