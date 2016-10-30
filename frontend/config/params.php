@@ -1,5 +1,5 @@
 <?php
 return [
-    'adminEmail' => 'lalviarez@fundacite-merida.gob.ve',
-    'supportEmail' => 'lalviarez@fundacite-merida.gob.ve',
+    'adminEmail' => 'lalviarez@correo.fundacite-merida.gob.ve',
+    'supportEmail' => 'lalviarez@correo.fundacite-merida.gob.ve',
 ];
