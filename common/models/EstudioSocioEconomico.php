@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models;
+use yii\helpers\Html;
 
 use Yii;
 
@@ -61,6 +62,15 @@ use Yii;
  */
 class EstudioSocioEconomico extends \yii\db\ActiveRecord
 {
+    const REP_ES_OTRO = 0;
+    const REP_ES_MADRE = 1;
+    const REP_ES_PADRE = 2;
+    public $es_representante = self::REP_ES_OTRO;
+    public $es_representante_data = array(
+			self::REP_ES_OTRO => 'Otro',
+			self::REP_ES_MADRE => 'Madre',
+			self::REP_ES_PADRE => 'Padre',
+		  );
     /**
      * @inheritdoc
      */
@@ -75,7 +85,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', 'vive_con_padres_solicitante', 'apellidos_representante', 'nombres_representante', 'cedula_representante', 'grado_instruccion_representante', 'telefono_fijo_representante', 'telefono_celular_representante', 'profesion_representante', 'ocupacion_representante', 'lugar_trabajo_representante', 'ingreso_mensual_representante', 'direccion_trabajo_representante', 'direccion_habitacion_representante', 'correo_e_representante'], 'required'],
+            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', 'vive_con_padres_solicitante'], 'required'],
             [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'grado_instruccion_padre', 'grado_instruccion_madre', 'grado_instruccion_representante'], 'integer'],
             [['grado_instruccion_representante'], 'in', 'range' => [1, 2, 3]],
             [['vive_con_padres_solicitante'], 'boolean'],
@@ -90,6 +100,42 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             [['correo_e_padre','correo_e_madre','correo_e_representante'], 'email'],
 			[['id_estudiante'], 'exist', 'skipOnError' => true, 'targetClass' => Estudiantes::className(), 'targetAttribute' => ['id_estudiante' => 'id']],
             [['id_proceso'], 'exist', 'skipOnError' => true, 'targetClass' => Procesos::className(), 'targetAttribute' => ['id_proceso' => 'id']],
+
+            // Validaciones para seleccionar el representante
+            ['es_representante', 'integer',	'min' => 0, 'max' => 2],
+            
+            // Si es OTRO
+            [['apellidos_representante', 'nombres_representante', 'cedula_representante', 'grado_instruccion_representante', 'telefono_fijo_representante', 
+            'telefono_celular_representante', 'profesion_representante', 'ocupacion_representante', 'lugar_trabajo_representante', 'ingreso_mensual_representante', 
+            'direccion_trabajo_representante', 'direccion_habitacion_representante', 'correo_e_representante'], 'required',
+            'when' => function ($model) {
+							return $model->es_representante == self::REP_ES_OTRO;
+				}, 'whenClient' => "function (attribute, value) {
+						return $('#".Html::getInputId($this, 'es_representante')."').val() == ".self::REP_ES_OTRO.";
+					}"
+            ],
+
+            // Si es MADRE
+            [['apellidos_madre', 'nombres_madre', 'cedula_madre', 'grado_instruccion_madre', 'telefono_fijo_madre', 
+            'telefono_celular_madre', 'profesion_madre', 'ocupacion_madre', 'lugar_trabajo_madre', 'ingreso_mensual_madre', 
+            'direccion_trabajo_madre', 'direccion_habitacion_madre', 'correo_e_madre'], 'required',
+            'when' => function ($model) {
+							return $model->es_representante == self::REP_ES_MADRE;
+				}, 'whenClient' => "function (attribute, value) {
+						return $('#".Html::getInputId($this, 'es_representante')."').val() == ".self::REP_ES_MADRE.";
+					}"
+            ],
+
+            // Si es PADRE
+            [['apellidos_padre', 'nombres_padre', 'cedula_padre', 'grado_instruccion_padre', 'telefono_fijo_padre', 
+            'telefono_celular_padre', 'profesion_padre', 'ocupacion_padre', 'lugar_trabajo_padre', 'ingreso_mensual_padre', 
+            'direccion_trabajo_padre', 'direccion_habitacion_padre', 'correo_e_padre'], 'required',
+            'when' => function ($model) {
+							return $model->es_representante == self::REP_ES_PADRE;
+				}, 'whenClient' => "function (attribute, value) {
+						return $('#".Html::getInputId($this, 'es_representante')."').val() == ".self::REP_ES_PADRE.";
+					}"
+            ],
         ];
     }
 
@@ -146,6 +192,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             'direccion_trabajo_representante' => Yii::t('app', 'Dirección de trabajo del representante'),
             'correo_e_representante' => Yii::t('app', 'Correo electrónico del representante'),
             'direccion_habitacion_representante' => Yii::t('app', 'Dirección de habitación del representante'),
+            'es_representante' => Yii::t('app', 'Seleccione el representante'),
         ];
     }
 
@@ -195,4 +242,41 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
 		
 		parent::afterFind();
 	}
+
+    public function beforeSave($insert){
+        if (parent::beforeSave($insert)) {
+            if ($this->es_representante == self::REP_ES_MADRE){
+                $this->apellidos_representante = $this->apellidos_madre;
+                $this->nombres_representante = $this->nombres_madre;
+                $this->cedula_representante = $this->cedula_madre;
+                $this->grado_instruccion_representante - $this->grado_instruccion_madre;
+                $this->telefono_fijo_representante = $this->telefono_fijo_madre;
+                $this->telefono_celular_representante = $this->telefono_celular_madre;
+                $this->profesion_representante = $this->profesion_madre;
+                $this->ocupacion_representante = $this->ocupacion_madre;
+                $this->lugar_trabajo_representante = $this->lugar_trabajo_madre;
+                $this->ingreso_mensual_representante = $this->ingreso_mensual_madre;
+                $this->direccion_trabajo_representante = $this->direccion_trabajo_madre;
+                $this->direccion_habitacion_representante = $this->direccion_habitacion_madre;
+            }
+
+            if ($this->es_representante == self::REP_ES_PADRE){
+                $this->apellidos_representante = $this->apellidos_padre;
+                $this->nombres_representante = $this->nombres_padre;
+                $this->cedula_representante = $this->cedula_padre;
+                $this->grado_instruccion_representante - $this->grado_instruccion_padre;
+                $this->telefono_fijo_representante = $this->telefono_fijo_padre;
+                $this->telefono_celular_representante = $this->telefono_celular_padre;
+                $this->profesion_representante = $this->profesion_padre;
+                $this->ocupacion_representante = $this->ocupacion_padre;
+                $this->lugar_trabajo_representante = $this->lugar_trabajo_padre;
+                $this->ingreso_mensual_representante = $this->ingreso_mensual_padre;
+                $this->direccion_trabajo_representante = $this->direccion_trabajo_padre;
+                $this->direccion_habitacion_representante = $this->direccion_habitacion_padre;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
