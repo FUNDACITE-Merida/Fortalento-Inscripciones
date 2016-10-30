@@ -192,6 +192,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             'direccion_trabajo_representante' => Yii::t('app', 'Dirección de trabajo del representante'),
             'correo_e_representante' => Yii::t('app', 'Correo electrónico del representante'),
             'direccion_habitacion_representante' => Yii::t('app', 'Dirección de habitación del representante'),
+            'es_representante' => Yii::t('app', 'Seleccione el representante'),
         ];
     }
 
@@ -241,4 +242,41 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
 		
 		parent::afterFind();
 	}
+
+    public function beforeSave($insert){
+        if (parent::beforeSave($insert)) {
+            if ($this->es_representante == self::REP_ES_MADRE){
+                $this->apellidos_representante = $this->apellidos_madre;
+                $this->nombres_representante = $this->nombres_madre;
+                $this->cedula_representante = $this->cedula_madre;
+                $this->grado_instruccion_representante - $this->grado_instruccion_madre;
+                $this->telefono_fijo_representante = $this->telefono_fijo_madre;
+                $this->telefono_celular_representante = $this->telefono_celular_madre;
+                $this->profesion_representante = $this->profesion_madre;
+                $this->ocupacion_representante = $this->ocupacion_madre;
+                $this->lugar_trabajo_representante = $this->lugar_trabajo_madre;
+                $this->ingreso_mensual_representante = $this->ingreso_mensual_madre;
+                $this->direccion_trabajo_representante = $this->direccion_trabajo_madre;
+                $this->direccion_habitacion_representante = $this->direccion_habitacion_madre;
+            }
+
+            if ($this->es_representante == self::REP_ES_PADRE){
+                $this->apellidos_representante = $this->apellidos_padre;
+                $this->nombres_representante = $this->nombres_padre;
+                $this->cedula_representante = $this->cedula_padre;
+                $this->grado_instruccion_representante - $this->grado_instruccion_padre;
+                $this->telefono_fijo_representante = $this->telefono_fijo_padre;
+                $this->telefono_celular_representante = $this->telefono_celular_padre;
+                $this->profesion_representante = $this->profesion_padre;
+                $this->ocupacion_representante = $this->ocupacion_padre;
+                $this->lugar_trabajo_representante = $this->lugar_trabajo_padre;
+                $this->ingreso_mensual_representante = $this->ingreso_mensual_padre;
+                $this->direccion_trabajo_representante = $this->direccion_trabajo_padre;
+                $this->direccion_habitacion_representante = $this->direccion_habitacion_padre;
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
