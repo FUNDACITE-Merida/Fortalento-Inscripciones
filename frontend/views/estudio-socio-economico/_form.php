@@ -4,9 +4,31 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\bootstrap\Alert;
 
+use common\models\EstudioSocioEconomico;
+use yii\web\View;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\EstudioSocioEconomico */
 /* @var $form yii\widgets\ActiveForm */
+
+$this->registerJs("
+	$('#".Html::getInputId($model, 'es_representante')."').change(function() {
+			// Representante es OTRO
+			if ($(this).val() == 0){
+				$('#datos-representante').show();
+			}
+			
+			if ($(this).val() == 1){
+				$('#datos-representante').hide();
+			}
+
+			if ($(this).val() == 2){
+				$('#datos-representante').hide();
+			}
+		});
+", 
+View::POS_READY, 
+'my-options');
 
 // Grados se amarró a código ya que en la tabla hay grados que no 
 // están participando en este proceso. Es necesario adecuar el código
@@ -232,6 +254,14 @@ $nivelInstruccion = array(
 	</br></br>
     <fieldset>
 	  <legend>Datos del representante</legend>
+		<div class="row">
+		  <div class="col-lg-12 col-md-10">
+			  <?= $form->field($model, 'es_representante')->dropdownList(
+					$model->es_representante_data)
+					->hint('Si el representante no es la madre o el padre deberás ingresar la información del representante'); ?>
+		  </div>
+		</div>
+		<div id="datos-representante">
 	  <div class="row">
 		  <div class="col-lg-6 col-md-10">
 			  <?= $form->field($model, 'apellidos_representante')->textInput(['maxlength' => true]) ?>
@@ -294,6 +324,7 @@ $nivelInstruccion = array(
 			  <?= $form->field($model, 'direccion_habitacion_representante')->textInput(['maxlength' => true]) ?>
 		  </div>
 		</div>
+	</div> <!-- Datos del representante --> 
 	</fieldset>
     
     <div class="form-group">
