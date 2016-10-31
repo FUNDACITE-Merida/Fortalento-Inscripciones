@@ -39,14 +39,16 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+        
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             'showScriptName' => false,
             'rules' => [
+                'controller' => [
+                    'inscripciones' => 'admin-inscripciones',
+                ]
             ],
         ],
-        */
     ],
     'params' => $params,
     'as access' => [
