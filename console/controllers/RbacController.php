@@ -45,11 +45,7 @@ class RbacController extends Controller
         $permisoLogout->description = 'Acceso a la página de logout';
         $auth->add($permisoLogout);
 
-        // Agregando acceso a todo el sitio
-        $permisoAll = $auth->createPermission('/*');
-        $permisoAll->description = 'Acceso a todo';
-        $auth->add($permisoAll);
-
+        // Permisos para Estudiantes
         $permisoReportesIndex = $auth->createPermission('/reportes/index');
         $permisoReportesIndex->description = 'Acceso a reportes/index';
         $auth->add($permisoReportesIndex);
@@ -85,30 +81,54 @@ class RbacController extends Controller
         $permisoProcesosProcesoCerrado = $auth->createPermission('/procesos/proceso-cerrado');
         $permisoProcesosProcesoCerrado->description = 'Acceso a procesos/proceso-cerrado';
         $auth->add($permisoProcesosProcesoCerrado);
+        // Fin permisos para Estudiantes
 
-        $this->stdout("*** Creando datos de superadmin\n", Console::FG_YELLOW);
-        // Create role superadmin
-        $role = $auth->createRole('superadmin');
-        $auth->add($role);
-        $auth->addChild($role, $permisoAll);
+        // Permisos para admin
+        // Agregando acceso a la página de logout
+        $permisoAdminInscripcionesAbrirCerrarLista = $auth->createPermission('/admin-inscripciones/abrir-cerrar-lista');
+        $permisoAdminInscripcionesAbrirCerrarLista->description = 'Acceso a admin-inscripciones/abrir-cerrar-lista';
+        $auth->add($permisoAdminInscripcionesAbrirCerrarLista);
+
+        $permisoAdminInscripcionesConsolidado = $auth->createPermission('/admin-inscripciones/consolidado');
+        $permisoAdminInscripcionesConsolidado->description = 'Acceso a admin-inscripciones/consolidado';
+        $auth->add($permisoAdminInscripcionesConsolidado);
+
+        $permisoAdminInscripcionesListadoMunicipiosCsv = $auth->createPermission('/admin-inscripciones/listado-municipios-csv');
+        $permisoAdminInscripcionesListadoMunicipiosCsv->description = 'Acceso a admin-inscripciones/listado-municipios-csv';
+        $auth->add($permisoAdminInscripcionesListadoMunicipiosCsv);
+        // Fin permisos para admin
         
-        // Create user superadmin
-        $user = new User();
-        $user->username = 'superadmin@fundacite-merida.gob.ve';
-        $user->email = 'superadmin@fundacite-merida.gob.ve';
-        $user->setPassword('123456'); // Este password debe ser cambiado por uno más complejo
-        $user->generateAuthKey();
-        $user->save(false);
+        // Permisos para superaministrador
+        $permisoAdmin = $auth->createPermission('/admin/*');
+        $permisoAdmin->description = 'Acceso a admin';
+        $auth->add($permisoAdmin);
+        // Fin permisos para superadministrador
 
-        // Add rol superadmin to user superadmin
-        $auth = Yii::$app->authManager;
-        $authorRole = $auth->getRole('superadmin');
-        $auth->assign($authorRole, $user->getId());
+        $this->stdout("*** Creando rol Estudiantes\n", Console::FG_YELLOW);
+        // Create role estudiante
+        $roleEstudiantes = $auth->createRole('Estudiantes');
+        $auth->add($roleEstudiantes);
+        $auth->addChild($roleEstudiantes, $permisoInicio);
+        $auth->addChild($roleEstudiantes, $permisoLogin);
+        $auth->addChild($roleEstudiantes, $permisoLogout);
+        $auth->addChild($roleEstudiantes, $permisoReportesIndex);
+        $auth->addChild($roleEstudiantes, $permisoEstudiantesCreate);
+        $auth->addChild($roleEstudiantes, $permisoInscripcionesCreate);
+        $auth->addChild($roleEstudiantes, $permisoInscripcionesGetPlanteles);
+        $auth->addChild($roleEstudiantes, $permisoEstudioSocioEconomicoCreate);
+        $auth->addChild($roleEstudiantes, $permisoInscripcionesCerrarEImprimir);
+        $auth->addChild($roleEstudiantes, $permisoReportesInscripcion);
+        $auth->addChild($roleEstudiantes, $permisoInscripcionesInscripcionCerrada);
+        $auth->addChild($roleEstudiantes, $permisoProcesosProcesoCerrado);
 
         $this->stdout("*** Creando datos de admin\n", Console::FG_YELLOW);
         // Create role admin
-        $role = $auth->createRole('admin');
-        $auth->add($role);
+        $roleAdmin = $auth->createRole('admin');
+        $auth->add($roleAdmin);
+        $auth->addChild($roleAdmin, $roleEstudiantes);
+        $auth->addChild($roleAdmin, $permisoAdminInscripcionesAbrirCerrarLista);
+        $auth->addChild($roleAdmin, $permisoAdminInscripcionesConsolidado);
+        $auth->addChild($roleAdmin, $permisoAdminInscripcionesListadoMunicipiosCsv);
         
         // Create user admin
         $user = new User();
@@ -119,23 +139,25 @@ class RbacController extends Controller
         $user->save(false);
 
         // Add rol admin to user admin
-        $auth = Yii::$app->authManager;
-        $authorRole = $auth->getRole('admin');
-        $auth->assign($authorRole, $user->getId());
+        $auth->assign($roleAdmin, $user->getId());
 
-        $this->stdout("*** Creando rol Estudiantes\n", Console::FG_YELLOW);
-        // Create role estudiante
-        $role = $auth->createRole('Estudiantes');
-        $auth->add($role);
-        $auth->addChild($role, $permisoLogout);
-        $auth->addChild($role, $permisoReportesIndex);
-        $auth->addChild($role, $permisoEstudiantesCreate);
-        $auth->addChild($role, $permisoInscripcionesCreate);
-        $auth->addChild($role, $permisoInscripcionesGetPlanteles);
-        $auth->addChild($role, $permisoEstudioSocioEconomicoCreate);
-        $auth->addChild($role, $permisoInscripcionesCerrarEImprimir);
-        $auth->addChild($role, $permisoReportesInscripcion);
-        $auth->addChild($role, $permisoInscripcionesInscripcionCerrada);
-        $auth->addChild($role, $permisoProcesosProcesoCerrado);
+
+        $this->stdout("*** Creando datos de superadmin\n", Console::FG_YELLOW);
+        // Create role superadmin
+        $roleSuperadmin = $auth->createRole('superadmin');
+        $auth->add($roleSuperadmin);
+        $auth->addChild($roleSuperadmin, $roleAdmin);
+        $auth->addChild($roleSuperadmin, $permisoAdmin);
+        
+        // Create user superadmin
+        $user = new User();
+        $user->username = 'superadmin@fundacite-merida.gob.ve';
+        $user->email = 'superadmin@fundacite-merida.gob.ve';
+        $user->setPassword('123456'); // Este password debe ser cambiado por uno más complejo
+        $user->generateAuthKey();
+        $user->save(false);
+
+        // Add rol superadmin to user superadmin
+        $auth->assign($roleSuperadmin, $user->getId());
     }
 }

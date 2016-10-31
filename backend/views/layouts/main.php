@@ -34,14 +34,12 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    if (Yii::$app->user->can('superadmin')){
-        $menuItems[] = ['label' => 'Usuarios/Roles', 'url' => ['/admin']];
-    }
-    if (Yii::$app->user->can('admin')){
-        $menuItems[] = ['label' => 'Abrir/Cerrar inscripción', 'url' => ['inscripciones/abrir-cerrar-lista']];
-        $menuItems[] = ['label' => 'Estadísticas', 'url' => ['/inscripciones/consolidado']];
-        $menuItems[] = ['label' => 'Imprimir Datos', 'url' => ['/inscripciones/listado-municipios-csv']];
-    }
+    $menuItems = [
+        ['label' => 'Usuarios/Roles', 'url' => ['/admin'], 'visible' => Yii::$app->user->can('/admin/*')],
+        ['label' => 'Abrir/Cerrar inscripción', 'url' => ['/admin-inscripciones/abrir-cerrar-lista'], 'visible' => Yii::$app->user->can('/admin-inscripciones/abrir-cerrar-lista')],
+        ['label' => 'Estadísticas', 'url' => ['/admin-inscripciones/consolidado'], 'visible' => Yii::$app->user->can('/admin-inscripciones/consolidado')],
+        ['label' => 'Imprimir Datos', 'url' => ['/admin-inscripciones/listado-municipios-csv'], 'visible' => Yii::$app->user->can('/admin-inscripciones/listado-municipios-csv')],
+    ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
     } else {
