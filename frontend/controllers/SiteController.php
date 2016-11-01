@@ -165,7 +165,7 @@ class SiteController extends Controller
                     Yii::$app->session->setFlash('success', 'Un mensaje con instrucciones para establecer tu contraseña ha sido enviado a tu correo electrónico.');
                     return $this->goHome();
                 } else {
-                    Yii::$app->session->setFlash('error', 'Lo lamentamos , no se ha podido establecer la contraseña asociada al correo electrónico.');
+                    Yii::$app->session->setFlash('error', 'Lo lamentamos , no se ha podido reestablecer la contraseña asociada al correo electrónico.');
                 }
             }
         }
