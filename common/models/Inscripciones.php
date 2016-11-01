@@ -63,7 +63,7 @@ class Inscripciones extends \yii\db\ActiveRecord
             
             ['promedio', 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 10, 'max' => 20,
+				'min' => 15, 'max' => 20,
 				'when' => function ($model) {
 							return $model->postulado_para_beca == true;
 				}, 'whenClient' => "function (attribute, value) {
@@ -73,7 +73,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 			
 			[['nota1', 'nota2'], 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 10, 'max' => 20,
+				'min' => 15, 'max' => 20,
 				'when' => function ($model) {
 							return $model->postulado_para_premio == true;
 				}, 'whenClient' => "function (attribute, value) {
@@ -104,7 +104,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 			 
 			 [['nota3'], 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 10, 'max' => 20,
+				'min' => 15, 'max' => 20,
 				'when' => function ($model) {
 							return ($model->postulado_para_premio == true && $model->codigo_ultimo_grado != 11);
 				}, 'whenClient' => "function (attribute, value) {
