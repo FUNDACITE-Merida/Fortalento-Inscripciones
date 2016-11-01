@@ -26,7 +26,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php //echo $form->field($model, 'rememberMe')->checkbox() ?>
 
                 <div style="color:#999;margin:1em 0">
-                    Si aún no tienes una cuenta <?= Html::a('regístrate', ['site/signup']) ?>.
+                    Si aún no tienes una cuenta <?= Html::a('regístrate', ['site/signup']) ?>. NOTA: para crear un usuario debes usar un correo electrónico real y de uso frecuente.FUNDACITE Mérida utiliza el correo electrónico para informar sobre las etapas del Programa FORTALENTO.
                 </div>
                 <div style="color:#999;margin:1em 0">
                     Si perdiste tu contraseña puedes <?= Html::a('recuperar tu contraseña', ['site/request-password-reset']) ?>.
