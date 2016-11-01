@@ -35,7 +35,10 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Usuarios/Roles', 'url' => ['/admin'], 'visible' => Yii::$app->user->can('superadmin')],
+        ['label' => 'Usuarios/Roles', 'url' => ['/admin'], 'visible' => Yii::$app->user->can('/admin/*')],
+        ['label' => 'Abrir/Cerrar inscripción', 'url' => ['/admin-inscripciones/abrir-cerrar-lista'], 'visible' => Yii::$app->user->can('/admin-inscripciones/abrir-cerrar-lista')],
+        ['label' => 'Estadísticas', 'url' => ['/admin-inscripciones/consolidado'], 'visible' => Yii::$app->user->can('/admin-inscripciones/consolidado')],
+        ['label' => 'Imprimir Datos', 'url' => ['/admin-inscripciones/listado-municipios-csv'], 'visible' => Yii::$app->user->can('/admin-inscripciones/listado-municipios-csv')],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
@@ -67,7 +70,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Fundacite Mérida <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

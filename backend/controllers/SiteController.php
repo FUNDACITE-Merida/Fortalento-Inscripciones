@@ -76,8 +76,8 @@ class SiteController extends Controller
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            if (Yii::$app->user->can('superadmin') || Yii::$app->user->can('admin'))
-                return $this->goBack();
+            if (Yii::$app->user->can('admin'))
+                return $this->redirect(['/admin-inscripciones/consolidado']);
             else {
                 Yii::$app->user->logout();
                 Yii::$app->session->setFlash('error', 'Debe tener credenciales de administrador para acceder a este sitio');
