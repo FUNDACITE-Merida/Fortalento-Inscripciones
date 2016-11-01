@@ -104,6 +104,10 @@ class RbacController extends Controller
         $permisoAdminInscripcionesListadoMunicipiosCsv = $auth->createPermission('/admin-inscripciones/listado-municipios-csv');
         $permisoAdminInscripcionesListadoMunicipiosCsv->description = 'Acceso a admin-inscripciones/listado-municipios-csv';
         $auth->add($permisoAdminInscripcionesListadoMunicipiosCsv);
+
+        $permisoAdminInscripcionesImprimirCsv = $auth->createPermission('/admin-inscripciones/imprimir-csv');
+        $permisoAdminInscripcionesImprimirCsv->description = 'Acceso a admin-inscripciones/imprimir-csv';
+        $auth->add($permisoAdminInscripcionesImprimirCsv);
         // Fin permisos para admin
         
         // Permisos para superaministrador
@@ -139,6 +143,7 @@ class RbacController extends Controller
         $auth->addChild($roleAdmin, $permisoAdminReportesInscripcion);
         $auth->addChild($roleAdmin, $permisoAdminInscripcionesConsolidado);
         $auth->addChild($roleAdmin, $permisoAdminInscripcionesListadoMunicipiosCsv);
+        $auth->addChild($roleAdmin, $permisoAdminInscripcionesImprimirCsv);
         
         // Create user admin
         $user = new User();
