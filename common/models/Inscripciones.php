@@ -34,7 +34,9 @@ use Yii;
  */
 class Inscripciones extends \yii\db\ActiveRecord
 {
-	private $_patronNumero = '/^\s*[-+]?[0-9]*\,?[0-9]+([eE][-+]?[0-9]+)?\s*$/';
+	//private $_patronNumero = '/^\s*[-+]?[0-9]*\,?[0-9]+([eE][-+]?[0-9]+)?\s*$/';
+	private $_patronNumero = '/^\d{2},\d{3}$/';
+	
     /**
      * @inheritdoc
      */
