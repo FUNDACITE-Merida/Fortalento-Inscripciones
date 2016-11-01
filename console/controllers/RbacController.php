@@ -13,15 +13,22 @@ class RbacController extends Controller
         $auth = Yii::$app->authManager;
         
 
-        $this->stdout("*** Todos los datos de autorización y autenticación de usuario serán removidos\n", Console::FG_YELLOW);
+        $this->stdout("*** Este proceso devolverá los roles y permisos a su estado original.\n".
+                        "*** Cualquier rol o permiso definido por la interfaz de administación deberá ser definido nuevamente.\n", Console::FG_YELLOW);
+        $this->stdout("*** Los usuarios NO perderán su rol asignado.\n", Console::FG_RED);
         if ($this->confirm("*** ¿Desea continuar?\n"))
         {
-            $auth->removeAll();
-            if ($user = User::findOne(['username' => 'superadmin@fundacite-merida.gob.ve']))
-                $user->delete();
+            $this->stdout("*** Respaldando usuarios superadmin\n", Console::FG_YELLOW);
+            $userSuperadmin = $auth->getUserIdsByRole('superadmin');
+            
+            $this->stdout("*** Respaldando usuarios admin\n", Console::FG_YELLOW);
+            $userAdmin = $auth->getUserIdsByRole('admin');
 
-            if ($user = User::findOne(['username' => 'admin@fundacite-merida.gob.ve']))
-                $user->delete();
+            $this->stdout("*** Respaldando usuarios Estudiantes\n", Console::FG_YELLOW);
+            $userEstudiantes = $auth->getUserIdsByRole('Estudiantes');
+
+            $this->stdout("*** Eliminando permisos y roles\n", Console::FG_RED);
+            $auth->removeAll();
         }
         else {
             return exit(0);
@@ -151,16 +158,16 @@ class RbacController extends Controller
         $auth->addChild($roleAdmin, $permisoAdminReportesMunicipioEstudiantes);
         
         // Create user admin
-        $user = new User();
-        $user->username = 'admin@fundacite-merida.gob.ve';
-        $user->email = 'admin@fundacite-merida.gob.ve';
-        $user->setPassword('123456'); // Este password debe ser cambiado por uno más complejo
-        $user->generateAuthKey();
-        $user->save(false);
-
-        // Add rol admin to user admin
-        $auth->assign($roleAdmin, $user->getId());
-
+        if (!User::findOne(['username' => 'admin@fundacite-merida.gob.ve'])){
+            $user = new User();
+            $user->username = 'admin@fundacite-merida.gob.ve';
+            $user->email = 'admin@fundacite-merida.gob.ve';
+            $user->setPassword('123456'); // Este password debe ser cambiado por uno más complejo
+            $user->generateAuthKey();
+            $user->save(false);
+            // Add rol admin to user admin
+            $auth->assign($roleAdmin, $user->getId());
+        }
 
         $this->stdout("*** Creando datos de superadmin\n", Console::FG_YELLOW);
         // Create role superadmin
@@ -170,14 +177,30 @@ class RbacController extends Controller
         $auth->addChild($roleSuperadmin, $permisoAdmin);
         
         // Create user superadmin
-        $user = new User();
-        $user->username = 'superadmin@fundacite-merida.gob.ve';
-        $user->email = 'superadmin@fundacite-merida.gob.ve';
-        $user->setPassword('123456'); // Este password debe ser cambiado por uno más complejo
-        $user->generateAuthKey();
-        $user->save(false);
+        if (!User::findOne(['username' => 'superadmin@fundacite-merida.gob.ve'])){
+            $user = new User();
+            $user->username = 'superadmin@fundacite-merida.gob.ve';
+            $user->email = 'superadmin@fundacite-merida.gob.ve';
+            $user->setPassword('123456'); // Este password debe ser cambiado por uno más complejo
+            $user->generateAuthKey();
+            $user->save(false);
+            // Add rol superadmin to user superadmin
+            $auth->assign($roleSuperadmin, $user->getId());
+        }
 
-        // Add rol superadmin to user superadmin
-        $auth->assign($roleSuperadmin, $user->getId());
+        $this->stdout("*** Restaurando usuarios superadmin\n", Console::FG_YELLOW);
+        foreach($userSuperadmin as $userId){
+            $auth->assign($roleSuperadmin, $userId);
+        }
+        
+        $this->stdout("*** Restaurando usuarios admin\n", Console::FG_YELLOW);
+        foreach($userAdmin as $userId){
+            $auth->assign($roleAdmin, $userId);
+        }
+
+        $this->stdout("*** Restaurando usuarios Estudiantes\n", Console::FG_YELLOW);
+        foreach($userEstudiantes as $userId){
+            $auth->assign($roleEstudiantes, $userId);
+        }
     }
 }
