@@ -44,7 +44,7 @@ $grados = array(
 			'12' => '6to. Año',
 		  );
 $nivelInstruccion = array(
-			'0' => '-- Seleccione --',
+			'' => '-- Seleccione --',
 			'1' => 'Primaria',
 			'2' => 'Secundaria',
 			'3' => 'Superior',
