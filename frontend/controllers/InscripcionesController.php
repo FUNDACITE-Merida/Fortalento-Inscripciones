@@ -231,27 +231,6 @@ class InscripcionesController extends Controller
     }
     
     /**
-     * Muestra un reporte consolidado de las inscripciones en general.
-     * @return mixed
-     */
-    public function actionConsolidado()
-    {
-		$totalModel['tEstudiantesInscritos'] = Inscripciones::find()->count();
-        $totalModel['tInscripcionesCerradas'] = Inscripciones::find()
-													->where(['cerrada' => true])
-													->count();
-        $totalModel['tInscripcionesAbiertas'] = Inscripciones::find()
-													->where(['cerrada' => false])
-													->count();
-		$data =  Inscripciones::getConsolidadoMunicipios();
-
-        return $this->render('consolidado', [
-            'totalModel' => $totalModel,
-            'data' => $data,
-        ]);
-    }
-    
-    /**
      * Obtiene una lista de planteles según el municipio.
      * Este es un action usado vía ajax
      * @return mixed

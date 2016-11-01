@@ -141,6 +141,27 @@ class AdminInscripcionesController extends Controller
     }
 
     /**
+     * Muestra un reporte consolidado de las inscripciones en general.
+     * @return mixed
+     */
+    public function actionConsolidado()
+    {
+		$totalModel['tEstudiantesInscritos'] = Inscripciones::find()->count();
+        $totalModel['tInscripcionesCerradas'] = Inscripciones::find()
+													->where(['cerrada' => true])
+													->count();
+        $totalModel['tInscripcionesAbiertas'] = Inscripciones::find()
+													->where(['cerrada' => false])
+													->count();
+		$data =  Inscripciones::getConsolidadoMunicipios();
+
+        return $this->render('consolidado', [
+            'totalModel' => $totalModel,
+            'data' => $data,
+        ]);
+    }
+
+    /**
      * Finds the Inscripciones model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
