@@ -6,6 +6,7 @@ use Yii;
 use common\models\Inscripciones;
 use common\models\InscripcionesSearch;
 use common\models\Procesos;
+use common\models\Municipios;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -160,6 +161,22 @@ class AdminInscripcionesController extends Controller
             'data' => $data,
         ]);
     }
+
+    /*
+     * Muestra un listado de Municipios con la opción de imprimir todas las
+     * inscripciones en un archivo .csv 
+     * @param id_municipio
+     * @return mixed
+     */
+    public function actionListadoMunicipiosCsv()
+    {
+		$model = Municipios::find()->all();
+
+        return $this->render('listadoMunicipioCsv', [
+            'model' => $model,
+        ]);
+		
+	}
 
     /**
      * Finds the Inscripciones model based on its primary key value.
