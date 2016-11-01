@@ -33,7 +33,7 @@ class AdminInscripcionesController extends Controller
      * Lists all Inscripciones models.
      * @return mixed
      */
-    public function actionIndex()
+    /*public function actionIndex()
     {
         $searchModel = new InscripcionesSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -42,26 +42,26 @@ class AdminInscripcionesController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
-    }
+    }*/
 
     /**
      * Displays a single Inscripciones model.
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+   /* public function actionView($id)
     {
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
-    }
+    }*/
 
     /**
      * Creates a new Inscripciones model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+   /* public function actionCreate()
     {
         $model = new Inscripciones();
 
@@ -72,7 +72,7 @@ class AdminInscripcionesController extends Controller
                 'model' => $model,
             ]);
         }
-    }
+    }*/
 
     /**
      * Updates an existing Inscripciones model.
@@ -80,7 +80,7 @@ class AdminInscripcionesController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+   /* public function actionUpdate($id)
     {
         $model = $this->findModel($id);
 
@@ -91,7 +91,7 @@ class AdminInscripcionesController extends Controller
                 'model' => $model,
             ]);
         }
-    }
+    }*/
 
     /**
      * Deletes an existing Inscripciones model.
@@ -99,12 +99,12 @@ class AdminInscripcionesController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionDelete($id)
+   /* public function actionDelete($id)
     {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
-    }
+    }*/
 
     /**
      * Finds the Inscripciones model based on its primary key value.
