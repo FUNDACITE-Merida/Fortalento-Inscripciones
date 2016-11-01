@@ -4,7 +4,8 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Inscripciones;
-use backend\models\InscripcionesSearch;
+use common\models\InscripcionesSearch;
+use common\models\Procesos;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -105,6 +106,39 @@ class AdminInscripcionesController extends Controller
 
         return $this->redirect(['index']);
     }*/
+
+    /**
+     * Muestra todas las inscripciones con la opción de abrir o cerrar cualquiera.
+     * @return mixed
+     */
+    public function actionAbrirCerrarLista()
+    {
+        $searchModel = new InscripcionesSearch();
+        $parametros = Yii::$app->request->queryParams;
+        $parametros['InscripcionesSearch']['id_proceso'] = Procesos::getidProcesoAbierto();
+        $dataProvider = $searchModel->search($parametros);
+
+        return $this->render('abrirCerrarLista', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    /**
+     * Abre o cierra una inscripción dependiendo del estatus que tenía.
+     * @return mixed
+     */
+    public function actionAbrirCerrar($id)
+    {
+		/*print_r(Yii::$app->request->post());
+		exit(0);*/
+        $model = $this->findModel($id);
+        $model->cerrada ? $model->cerrada = false :  $model->cerrada = true;
+
+        if ($model->save()) {
+            return $this->redirect(['abrir-cerrar-lista']);
+        }
+    }
 
     /**
      * Finds the Inscripciones model based on its primary key value.
