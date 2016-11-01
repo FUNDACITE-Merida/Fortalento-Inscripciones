@@ -254,7 +254,7 @@ $grados = array(
 				],
 				'body' => '<strong>¡Importante!</strong> Para el caso de 4to, 5to y 6to grado de Educación Básica Bolivariana 
 							se deben hacer las siguientes equivalencias según el literal de calificación obtenido: 
-							A: entre 19 y 20 / B: entre 17 y 18 / C: entre 15 y 16 / D: entre 10 y 14',
+							A: entre 19 y 20 / B: entre 17 y 18 / C: entre 15 y 16',
 				'closeButton' => false,
 			]);
 		 ?>
