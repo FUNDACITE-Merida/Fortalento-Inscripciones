@@ -132,7 +132,7 @@ $this->title = 'Abrir / Cerrar inscripción';
 					}
 					
 					if ($action === 'imprimir') {
-						return Yii::$app->urlManager->createUrl(['/reportes/inscripcion', 'id_estudiante'=>$model->id_estudiante]);
+						return Yii::$app->urlManager->createUrl(['/admin-reportes/inscripcion', 'id_estudiante'=>$model->id_estudiante]);
 					}
 				}
 			],

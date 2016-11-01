@@ -93,6 +93,10 @@ class RbacController extends Controller
         $permisoAdminInscripcionesAbrirCerrar->description = 'Acceso a admin-inscripciones/abrir-cerrar';
         $auth->add($permisoAdminInscripcionesAbrirCerrar);
 
+        $permisoAdminReportesInscripcion = $auth->createPermission('/admin-reportes/inscripcion');
+        $permisoAdminReportesInscripcion->description = 'Acceso a admin-reportes/inscripcion';
+        $auth->add($permisoAdminReportesInscripcion);
+
         $permisoAdminInscripcionesConsolidado = $auth->createPermission('/admin-inscripciones/consolidado');
         $permisoAdminInscripcionesConsolidado->description = 'Acceso a admin-inscripciones/consolidado';
         $auth->add($permisoAdminInscripcionesConsolidado);
@@ -132,6 +136,7 @@ class RbacController extends Controller
         $auth->addChild($roleAdmin, $roleEstudiantes);
         $auth->addChild($roleAdmin, $permisoAdminInscripcionesAbrirCerrarLista);
         $auth->addChild($roleAdmin, $permisoAdminInscripcionesAbrirCerrar);
+        $auth->addChild($roleAdmin, $permisoAdminReportesInscripcion);
         $auth->addChild($roleAdmin, $permisoAdminInscripcionesConsolidado);
         $auth->addChild($roleAdmin, $permisoAdminInscripcionesListadoMunicipiosCsv);
         
