@@ -65,7 +65,7 @@ class Inscripciones extends \yii\db\ActiveRecord
             
             ['promedio', 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 15, 'max' => 20,
+				'min' => 16, 'max' => 20,
 				'message' => '{attribute} debe ser un número de dos enteros y tres decimales',
 				'when' => function ($model) {
 							return $model->postulado_para_beca == true;
