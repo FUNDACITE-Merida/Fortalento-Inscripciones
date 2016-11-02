@@ -312,7 +312,7 @@ $grados = array(
 				'options' => [
 					'class' => 'alert-info',
 				],
-				'body' => 'Optan por el Premio Beca-Estímulo los estudiantes que han culminado el 6to. Grado de 
+				'body' => 'Optan por el Incentivo al alto rendimiento estudiantil los estudiantes que han culminado el 6to. Grado de 
 		Educación Bolivariana hasta los que han culminado el 5to. Año de Educación
 		Secundaria Bolivariana y/o el 6to. Año de Educación Bolivariana (Escuelas Técnicas)',
 				'closeButton' => false,
@@ -323,14 +323,14 @@ $grados = array(
 
 	<div id="promedio" class="row" <?= $mostrarPromedio; ?>>
 	  <div class="col-lg-6 col-md-10">
-		<?= $form->field($model, 'promedio')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 16 puntos y debe poseer tres decimales'); ?>
+		<?= $form->field($model, 'promedio')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 15 puntos y debe poseer tres decimales'); ?>
 	  </div>
 	  <div class="col-lg-6 col-md-10">
 		  <?= Alert::widget([
 				'options' => [
 					'class' => 'alert-info',
 				],
-				'body' => 'Si está optando por el <strong>Premio beca-estímulo</strong>, indique el promedio de notas obtenido
+				'body' => 'Si está optando por el <strong>Incentivo al alto rendimiento estudiantil</strong>, indique el promedio de notas obtenido
 				en el grado/año culminado',
 				'closeButton' => false,
 			]);
@@ -363,13 +363,13 @@ $grados = array(
 			]);
 		 ?>
 	  <div class="col-lg-4 col-md-10">
-		<?= $form->field($model, 'nota1')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 15 puntos y debe poseer tres decimales')->label($labelNota1,['id'=>'nota1']); ?>
+		<?= $form->field($model, 'nota1')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 16 puntos y debe poseer tres decimales')->label($labelNota1,['id'=>'nota1']); ?>
 	  </div>
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota2')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 15 puntos y debe poseer tres decimales')->label($labelNota2,['id'=>'nota2']); ?>
+		<?= $form->field($model, 'nota2')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 16 puntos y debe poseer tres decimales')->label($labelNota2,['id'=>'nota2']); ?>
 	  </div>	  
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota3')->textInput(['style' => $mostrar6to])->hint('El promedio mínimo debe ser igual o mayor a 15 puntos y debe poseer tres decimales')->label($labelNota3,['id'=>'nota3']); ?>
+		<?= $form->field($model, 'nota3')->textInput(['style' => $mostrar6to])->hint('El promedio mínimo debe ser igual o mayor a 16 puntos y debe poseer tres decimales')->label($labelNota3,['id'=>'nota3']); ?>
 	  </div>
 	</div>
 	</br></br>
