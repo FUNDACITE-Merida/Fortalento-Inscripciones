@@ -87,7 +87,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
         return [
             [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', 'vive_con_padres_solicitante'], 'required'],
             [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'grado_instruccion_padre', 'grado_instruccion_madre', 'grado_instruccion_representante'], 'integer'],
-            [['grado_instruccion_representante'], 'in', 'range' => [1, 2, 3]],
+            //[['grado_instruccion_representante'], 'in', 'range' => [1, 2, 3]],
             [['vive_con_padres_solicitante'], 'boolean'],
             [['ingreso_mensual_padre', 'ingreso_mensual_madre', 'ingreso_mensual_representante'], 'number'],
             [['codigo_ultimo_grado'], 'string', 'max' => 4],
@@ -249,7 +249,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
                 $this->apellidos_representante = $this->apellidos_madre;
                 $this->nombres_representante = $this->nombres_madre;
                 $this->cedula_representante = $this->cedula_madre;
-                $this->grado_instruccion_representante - $this->grado_instruccion_madre;
+                $this->grado_instruccion_representante = $this->grado_instruccion_madre;
                 $this->telefono_fijo_representante = $this->telefono_fijo_madre;
                 $this->telefono_celular_representante = $this->telefono_celular_madre;
                 $this->profesion_representante = $this->profesion_madre;
@@ -258,13 +258,14 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
                 $this->ingreso_mensual_representante = $this->ingreso_mensual_madre;
                 $this->direccion_trabajo_representante = $this->direccion_trabajo_madre;
                 $this->direccion_habitacion_representante = $this->direccion_habitacion_madre;
+                $this->correo_e_representante=$this->correo_e_madre;
             }
 
             if ($this->es_representante == self::REP_ES_PADRE){
                 $this->apellidos_representante = $this->apellidos_padre;
                 $this->nombres_representante = $this->nombres_padre;
                 $this->cedula_representante = $this->cedula_padre;
-                $this->grado_instruccion_representante - $this->grado_instruccion_padre;
+                $this->grado_instruccion_representante = $this->grado_instruccion_padre;
                 $this->telefono_fijo_representante = $this->telefono_fijo_padre;
                 $this->telefono_celular_representante = $this->telefono_celular_padre;
                 $this->profesion_representante = $this->profesion_padre;
@@ -273,6 +274,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
                 $this->ingreso_mensual_representante = $this->ingreso_mensual_padre;
                 $this->direccion_trabajo_representante = $this->direccion_trabajo_padre;
                 $this->direccion_habitacion_representante = $this->direccion_habitacion_padre;
+                $this->correo_e_representante=$this->correo_e_padre;
             }
             return true;
         } else {

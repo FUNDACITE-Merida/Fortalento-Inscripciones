@@ -44,7 +44,7 @@ $grados = array(
 			'12' => '6to. Año',
 		  );
 $nivelInstruccion = array(
-			'0' => '-- Seleccione --',
+			'' => '-- Seleccione --',
 			'1' => 'Primaria',
 			'2' => 'Secundaria',
 			'3' => 'Superior',
@@ -57,7 +57,7 @@ $nivelInstruccion = array(
 				'options' => [
 					'class' => 'alert-info',
 				],
-				'body' => 'La inscripción se ha guardado exitosamente. Para cerrar e imprimir las planillas de inscripción haga click en el siguiente enlace ' . Html::a('Cerrar e imprimir inscripción', ['inscripciones/cerrar-e-imprimir'], ['class' => 'btn btn-danger', 'role' => 'button']),
+				'body' => 'La inscripción se ha guardado exitosamente. Por favor cierre la página haciendo click en el siguiente enlace. El sistema generará una planilla para su respaldo ' . Html::a('Cerrar', ['inscripciones/cerrar-e-imprimir'], ['class' => 'btn btn-danger', 'role' => 'button']),
 				'closeButton' => false,
 			]);?>
 	<?php endif; ?>

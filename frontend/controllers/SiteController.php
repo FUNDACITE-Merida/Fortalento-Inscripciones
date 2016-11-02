@@ -162,10 +162,10 @@ class SiteController extends Controller
                 $modelPasswordReset = new PasswordResetRequestForm();
                 $modelPasswordReset->email = $model->email;
                 if ($modelPasswordReset->sendEmail()) {
-                    Yii::$app->session->setFlash('success', 'Un mensaje con instrucciones para establecer tu contraseña ha sido enviado a tu correo electrónico.');
+                    Yii::$app->session->setFlash('success', 'El usuario fue creado. Un mensaje con instrucciones para crear la contraseña ha sido enviado a tu correo electrónico. Por favor consulta tu correo para continuar con el proceso de inscripción');
                     return $this->goHome();
                 } else {
-                    Yii::$app->session->setFlash('error', 'Lo lamentamos , no se ha podido establecer la contraseña asociada al correo electrónico.');
+                    Yii::$app->session->setFlash('error', 'Lo lamentamos , no se ha podido reestablecer la contraseña asociada al correo electrónico.');
                 }
             }
         }

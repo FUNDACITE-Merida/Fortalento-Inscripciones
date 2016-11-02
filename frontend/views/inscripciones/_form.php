@@ -254,7 +254,7 @@ $grados = array(
 				],
 				'body' => '<strong>¡Importante!</strong> Para el caso de 4to, 5to y 6to grado de Educación Básica Bolivariana 
 							se deben hacer las siguientes equivalencias según el literal de calificación obtenido: 
-							A: entre 19 y 20 / B: entre 17 y 18 / C: entre 15 y 16 / D: entre 10 y 14',
+							A: entre 19 y 20 / B: entre 17 y 18 / C: entre 15 y 16',
 				'closeButton' => false,
 			]);
 		 ?>
@@ -323,7 +323,7 @@ $grados = array(
 
 	<div id="promedio" class="row" <?= $mostrarPromedio; ?>>
 	  <div class="col-lg-6 col-md-10">
-		<?= $form->field($model, 'promedio')->textInput()->hint('Ejemplo: 19,457'); ?>
+		<?= $form->field($model, 'promedio')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 15 puntos y debe poseer tres decimales'); ?>
 	  </div>
 	  <div class="col-lg-6 col-md-10">
 		  <?= Alert::widget([
@@ -363,13 +363,13 @@ $grados = array(
 			]);
 		 ?>
 	  <div class="col-lg-4 col-md-10">
-		<?= $form->field($model, 'nota1')->textInput()->hint('Ejemplo: 19,457')->label($labelNota1,['id'=>'nota1']); ?>
+		<?= $form->field($model, 'nota1')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 15 puntos y debe poseer tres decimales')->label($labelNota1,['id'=>'nota1']); ?>
 	  </div>
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota2')->textInput()->hint('Ejemplo: 19,457')->label($labelNota2,['id'=>'nota2']); ?>
+		<?= $form->field($model, 'nota2')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 15 puntos y debe poseer tres decimales')->label($labelNota2,['id'=>'nota2']); ?>
 	  </div>	  
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota3')->textInput(['style' => $mostrar6to])->hint('Ejemplo: 19,457')->label($labelNota3,['id'=>'nota3']); ?>
+		<?= $form->field($model, 'nota3')->textInput(['style' => $mostrar6to])->hint('El promedio mínimo debe ser igual o mayor a 15 puntos y debe poseer tres decimales')->label($labelNota3,['id'=>'nota3']); ?>
 	  </div>
 	</div>
 	</br></br>

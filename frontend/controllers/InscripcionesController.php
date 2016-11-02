@@ -148,7 +148,7 @@ class InscripcionesController extends Controller
 			$cod_municipio = $plantel->cod_municipio;
 			$planteles = Plantel::find()
 							->where(['cod_municipio' => $cod_municipio])
-							->orderBy('cod_pla')
+							->orderBy('nom_pla')
 							->all();		
 		}
 		
@@ -247,7 +247,7 @@ class InscripcionesController extends Controller
 				$s = json_decode($jsondata);
 				$planteles = Plantel::find()
 							->where(['cod_municipio' => $s->id_municipio])
-							->orderBy('cod_pla')
+							->orderBy('nom_pla')
 							->all();
                 
                 $option = sprintf("<option value=''>-- Seleccione --</option>");
