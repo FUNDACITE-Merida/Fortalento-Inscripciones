@@ -258,6 +258,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
                 $this->ingreso_mensual_representante = $this->ingreso_mensual_madre;
                 $this->direccion_trabajo_representante = $this->direccion_trabajo_madre;
                 $this->direccion_habitacion_representante = $this->direccion_habitacion_madre;
+                $this->correo_e_representante=$this->correo_e_madre;
             }
 
             if ($this->es_representante == self::REP_ES_PADRE){
@@ -273,6 +274,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
                 $this->ingreso_mensual_representante = $this->ingreso_mensual_padre;
                 $this->direccion_trabajo_representante = $this->direccion_trabajo_padre;
                 $this->direccion_habitacion_representante = $this->direccion_habitacion_padre;
+                $this->correo_e_representante=$this->correo_e_padre;
             }
             return true;
         } else {
