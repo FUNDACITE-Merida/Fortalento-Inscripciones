@@ -65,7 +65,7 @@ class Inscripciones extends \yii\db\ActiveRecord
             
             ['promedio', 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 16, 'max' => 20,
+				'min' => 15, 'max' => 20,
 				'message' => '{attribute} debe ser un número de dos enteros y tres decimales',
 				'when' => function ($model) {
 							return $model->postulado_para_beca == true;
@@ -76,7 +76,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 			
 			[['nota1', 'nota2'], 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 15, 'max' => 20,
+				'min' => 16, 'max' => 20,
 				'message' => '{attribute} debe ser un número de dos enteros y tres decimales',
 				'when' => function ($model) {
 							return $model->postulado_para_premio == true;
@@ -108,7 +108,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 			 
 			 [['nota3'], 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 15, 'max' => 20,
+				'min' => 16, 'max' => 20,
 				'message' => '{attribute} debe ser un número de dos enteros y tres decimales',
 				'when' => function ($model) {
 							return ($model->postulado_para_premio == true && $model->codigo_ultimo_grado != 11);
@@ -159,7 +159,7 @@ class Inscripciones extends \yii\db\ActiveRecord
             'codigo_plantel' => Yii::t('app', 'Seleccione el plantel'),
             'localidad_plantel' => Yii::t('app', 'Localidad del plantel'),
             'codigo_ultimo_grado' => Yii::t('app', 'Último año/grado culminado'),
-            'postulado_para_beca' => Yii::t('app', 'Premio beca-estímulo al alto rendimiento estudiantil'),
+            'postulado_para_beca' => Yii::t('app', 'Incentivo al alto rendimiento estudiantil'),
             'postulado_para_premio' => Yii::t('app', 'Premio de reconocimiento a la excelencia'),
             'promedio' => Yii::t('app', 'Promedio de notas'),
             'nota1' => Yii::t('app', 'Promedio global 1'),
