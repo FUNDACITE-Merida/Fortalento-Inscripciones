@@ -150,10 +150,10 @@ $nivelInstruccion = array(
 		
 		<div class="row">
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'profesion_padre')->textInput(['maxlength' => true]) ?>
+			  <?= $form->field($model, 'profesion_padre')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en electrónica, licenciado, ingeniero o afines.'); ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'ocupacion_padre')->textInput(['maxlength' => true]) ?>
+			  <?= $form->field($model, 'ocupacion_padre')->textInput(['maxlength' => true])->hint('Ejemplo: analista, mecánico, chofer, obrero, trabajador de la agrícultura, maestro, entre otras.'); ?>
 		  </div>	  
 		  <div class="col-lg-3 col-md-10">
 			  <?= $form->field($model, 'lugar_trabajo_padre')->textInput(['maxlength' => true]) ?>
@@ -220,10 +220,10 @@ $nivelInstruccion = array(
 		
 		<div class="row">
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'profesion_madre')->textInput(['maxlength' => true]) ?>
+			  <?= $form->field($model, 'profesion_madre')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en informática, licenciada, ingeniero o afines.'); ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'ocupacion_madre')->textInput(['maxlength' => true]) ?>
+			  <?= $form->field($model, 'ocupacion_madre')->textInput(['maxlength' => true])->hint('Ejemplo: analista, obrera, trabajadora de la agrícultura, maestra, ama de casa, entre otras.'); ?>
 		  </div>	  
 		  <div class="col-lg-3 col-md-10">
 			  <?= $form->field($model, 'lugar_trabajo_madre')->textInput(['maxlength' => true]) ?>
@@ -297,10 +297,10 @@ $nivelInstruccion = array(
 		
 		<div class="row">
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'profesion_representante')->textInput(['maxlength' => true]) ?>
+			  <?= $form->field($model, 'profesion_representante')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en electrónica, licenciado, ingeniero o afines.'); ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'ocupacion_representante')->textInput(['maxlength' => true]) ?>
+			  <?= $form->field($model, 'ocupacion_representante')->textInput(['maxlength' => true])->hint('Ejemplo: analista, mecánico, chofer, obrero, trabajador de la agrícultura, maestro, entre otras.'); ?>
 		  </div>	  
 		  <div class="col-lg-3 col-md-10">
 			  <?= $form->field($model, 'lugar_trabajo_representante')->textInput(['maxlength' => true]) ?>
