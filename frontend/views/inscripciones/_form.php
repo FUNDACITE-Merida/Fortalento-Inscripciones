@@ -229,7 +229,7 @@ $grados = array(
 			'9' => '3er. Año',
 			'10' => '4to. Año',
 			'11' => '5to. Año',
-			'12' => '6to. Año',
+			'12' => '6to. Año (Técnica)',
 		  );
 ?>
 <div class="inscripciones-form">
@@ -252,7 +252,7 @@ $grados = array(
 				'options' => [
 					'class' => 'alert-danger',
 				],
-				'body' => '<strong>¡Importante!</strong> Para el caso de 4to, 5to y 6to grado de Educación Básica Bolivariana 
+				'body' => '<strong>¡Importante!</strong> Para el caso de 4to, 5to y 6to grado de Educación Básica 
 							se deben hacer las siguientes equivalencias según el literal de calificación obtenido: 
 							A: entre 19 y 20 / B: entre 17 y 18 / C: entre 15 y 16',
 				'closeButton' => false,
@@ -313,8 +313,8 @@ $grados = array(
 					'class' => 'alert-info',
 				],
 				'body' => 'Optan por el Incentivo al alto rendimiento estudiantil los estudiantes que han culminado el 6to. Grado de 
-		Educación Bolivariana hasta los que han culminado el 5to. Año de Educación
-		Secundaria Bolivariana y/o el 6to. Año de Educación Bolivariana (Escuelas Técnicas)',
+		Educación Básica hasta los que han culminado el 5to. Año de Educación
+		Media General y/o el 6to. Año de Educación Media Técnica (Escuelas Técnicas)',
 				'closeButton' => false,
 			]);
 		 ?>
@@ -345,8 +345,8 @@ $grados = array(
 					'class' => 'alert-warning',
 				],
 				'body' => 'Optan por el <strong>Premio de reconocimiento a la excelencia</strong> los alumnos que hayan finalizado 6to. Grado
-							de Educación Bolivariana, 3er. Año de Educación Secundaria Bolivariana, 5to. Año de Educación Secundaria Bolivariana o
-							6to. Año de Educación Secundaria Bolivariana',
+							de Educación Básica, 3er. Año de Educación Media General, 5to. Año de Educación Media General o
+							6to. Año de Educación Media Técnica',
 				'closeButton' => false,
 			]);
 		 ?>
@@ -363,13 +363,13 @@ $grados = array(
 			]);
 		 ?>
 	  <div class="col-lg-4 col-md-10">
-		<?= $form->field($model, 'nota1')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 16 puntos y debe poseer tres decimales')->label($labelNota1,['id'=>'nota1']); ?>
+		<?= $form->field($model, 'nota1')->textInput()->hint('El promedio debe poseer tres decimales')->label($labelNota1,['id'=>'nota1']); ?>
 	  </div>
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota2')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 16 puntos y debe poseer tres decimales')->label($labelNota2,['id'=>'nota2']); ?>
+		<?= $form->field($model, 'nota2')->textInput()->hint('El promedio debe poseer tres decimales')->label($labelNota2,['id'=>'nota2']); ?>
 	  </div>	  
 	  <div class="col-lg-4 col-md-10">		
-		<?= $form->field($model, 'nota3')->textInput(['style' => $mostrar6to])->hint('El promedio mínimo debe ser igual o mayor a 16 puntos y debe poseer tres decimales')->label($labelNota3,['id'=>'nota3']); ?>
+		<?= $form->field($model, 'nota3')->textInput(['style' => $mostrar6to])->hint('El promedio debe poseer tres decimales')->label($labelNota3,['id'=>'nota3']); ?>
 	  </div>
 	</div>
 	</br></br>
