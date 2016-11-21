@@ -371,7 +371,7 @@ $nivelInstruccion = array(
 						<p><strong>PROMEDIO:</strong></p>
 					</td>
 					<td style="text-align:left;width:3.54cm; " class="ce26">
-						&nbsp;<?= $inscripcion->promedio?> 
+						&nbsp;<?= $inscripcion->postulado_para_beca ? $inscripcion->promedio: null?> 
 					</td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
@@ -439,19 +439,19 @@ $nivelInstruccion = array(
 					<td style="text-align:left;width:2.831cm; " class="ce16">
 						<p>Promedio Global 4to grado:</p></td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 6) ?  $inscripcion->nota1 : null?> 
+						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 6 && $inscripcion->postulado_para_premio) ?  $inscripcion->nota1 : null?> 
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce16">
 						<p>Promedio Global 1<span class="T8">er</span> año:</p></td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 9) ?  $inscripcion->nota1 : null?>
+						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 9 && $inscripcion->postulado_para_premio) ?  $inscripcion->nota1 : null?>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"></td>
 					<td style="text-align:left;width:2.258cm; " class="ce16">
 						<p>Promedio Global 4to año:</p></td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 11 || $inscripcion->codigo_ultimo_grado == 12) ?  $inscripcion->nota1 : null?>
+						&nbsp;<?= (($inscripcion->codigo_ultimo_grado == 11 || $inscripcion->codigo_ultimo_grado == 12) && $inscripcion->postulado_para_premio) ?  $inscripcion->nota1 : null?>
 					</td>
 					<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
@@ -461,21 +461,21 @@ $nivelInstruccion = array(
 						<p>Promedio Global 5to grado:</p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 6) ?  $inscripcion->nota2 : null?>
+						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 6 && $inscripcion->postulado_para_premio) ?  $inscripcion->nota2 : null?>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce16">
 						<p>Promedio Global 2do año:</p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 9) ?  $inscripcion->nota2 : null?>
+						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 9 && $inscripcion->postulado_para_premio) ?  $inscripcion->nota2 : null?>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce16">
 						<p>Promedio Global 5to año:</p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce26">
-						&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 11 || $inscripcion->codigo_ultimo_grado == 12) ?  $inscripcion->nota2 : null?>
+						&nbsp;<?= (($inscripcion->codigo_ultimo_grado == 11 || $inscripcion->codigo_ultimo_grado == 12) && $inscripcion->postulado_para_premio) ?  $inscripcion->nota2 : null?>
 					</td>
 					<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
@@ -484,20 +484,20 @@ $nivelInstruccion = array(
 					<p>Promedio Global 6to grado:</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce26">
-					&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 6) ?  $inscripcion->nota3 : null?>
+					&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 6 && $inscripcion->postulado_para_premio) ?  $inscripcion->nota3 : null?>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce16">
 					<p>Promedio Global 3<span class="T8">er</span> año:</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce26">
-					&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 9) ?  $inscripcion->nota3 : null?>
+					&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 9 && $inscripcion->postulado_para_premio) ?  $inscripcion->nota3 : null?>
 				</td><td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce16">
 					<p>Promedio Global 6to año:</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce26">
-					&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 12) ?  $inscripcion->nota3 : null?> </td>
+					&nbsp;<?= ($inscripcion->codigo_ultimo_grado == 12 && $inscripcion->postulado_para_premio) ?  $inscripcion->nota3 : null?> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce44">
 					<p>Solo si cursó sexto año</p>
 				</td>

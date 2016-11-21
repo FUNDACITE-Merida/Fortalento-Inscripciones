@@ -231,16 +231,27 @@ class Inscripciones extends \yii\db\ActiveRecord
     
     public function beforeSave()
     {
-		$this->promedio = str_replace(',','.',$this->promedio);
-		$this->promedio = Yii::$app->formatter->asDecimal(floatval($this->promedio), 3);
-		
-		$this->nota1 = str_replace(',','.',$this->nota1);
-		$this->nota1 = Yii::$app->formatter->asDecimal(floatval($this->nota1), 3);
-		$this->nota2 = str_replace(',','.',$this->nota2);
-		$this->nota2 = Yii::$app->formatter->asDecimal(floatval($this->nota2), 3);
-		$this->nota3 = str_replace(',','.',$this->nota3);
-		$this->nota3 = Yii::$app->formatter->asDecimal(floatval($this->nota3), 3);
-		
+		if ($this->postulado_para_beca == true)
+		{
+			$this->promedio = str_replace(',','.',$this->promedio);
+			$this->promedio = Yii::$app->formatter->asDecimal(floatval($this->promedio), 3);
+		}else{
+			$this->promedio = 0;
+		}
+
+		if ($this->postulado_para_premio == true)
+		{
+			$this->nota1 = str_replace(',','.',$this->nota1);
+			$this->nota1 = Yii::$app->formatter->asDecimal(floatval($this->nota1), 3);
+			$this->nota2 = str_replace(',','.',$this->nota2);
+			$this->nota2 = Yii::$app->formatter->asDecimal(floatval($this->nota2), 3);
+			$this->nota3 = str_replace(',','.',$this->nota3);
+			$this->nota3 = Yii::$app->formatter->asDecimal(floatval($this->nota3), 3);
+		}else{
+			$this->nota1 = 0;
+			$this->nota2 = 0;
+			$this->nota3 = 0;
+		}
 		$this->fecha_inscripcion = Yii::$app->formatter->asTimeStamp($this->fecha_inscripcion);
 		
 		return true;
@@ -255,9 +266,13 @@ class Inscripciones extends \yii\db\ActiveRecord
         // ]            
 		$this->fecha_inscripcion = Yii::$app->formatter->asDate($this->fecha_inscripcion);
 		
+		$this->promedio = Yii::$app->formatter->asDecimal(floatval($this->promedio), 3);
 		$this->promedio = str_replace('.',',',$this->promedio);
+		$this->nota1 = Yii::$app->formatter->asDecimal(floatval($this->nota1), 3);
 		$this->nota1 = str_replace('.',',',$this->nota1);
+		$this->nota2 = Yii::$app->formatter->asDecimal(floatval($this->nota2), 3);
 		$this->nota2 = str_replace('.',',',$this->nota2);
+		$this->nota3 = Yii::$app->formatter->asDecimal(floatval($this->nota3), 3);
 		$this->nota3 = str_replace('.',',',$this->nota3);
 				
 		parent::afterFind();
