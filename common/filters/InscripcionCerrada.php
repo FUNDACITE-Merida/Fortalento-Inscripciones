@@ -1,5 +1,5 @@
 <?php
-namespace app\filters;
+namespace common\filters;
 
 use Yii;
 use yii\base\ActionFilter;
