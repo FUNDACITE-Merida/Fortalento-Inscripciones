@@ -21,7 +21,7 @@ use common\models\NseAlojamientoYVivienda;
 use common\models\NseIngresoFamiliar;
 use common\models\NseGrupoFamiliar;
 
-use app\filters\ProcesoCerrado;
+use common\filters\ProcesoCerrado;
 use app\filters\InscripcionCerrada;
 
 

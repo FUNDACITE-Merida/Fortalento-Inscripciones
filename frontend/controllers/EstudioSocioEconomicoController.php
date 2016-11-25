@@ -12,7 +12,7 @@ use common\models\Estudiantes;
 use common\models\Procesos;
 use common\models\User;
 
-use app\filters\ProcesoCerrado;
+use common\filters\ProcesoCerrado;
 use app\filters\InscripcionCerrada;
 
 /**
