@@ -12,8 +12,8 @@ use common\models\Estudiantes;
 use common\models\Procesos;
 use common\models\User;
 
-use app\filters\ProcesoCerrado;
-use app\filters\InscripcionCerrada;
+use common\filters\ProcesoCerrado;
+use common\filters\InscripcionCerrada;
 
 /**
  * EstudioSocioEconomicoController implements the CRUD actions for EstudioSocioEconomico model.

@@ -8,8 +8,8 @@ use common\models\EstudiantesSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use app\filters\ProcesoCerrado;
-use app\filters\InscripcionCerrada;
+use common\filters\ProcesoCerrado;
+use common\filters\InscripcionCerrada;
 
 
 /**
