@@ -22,7 +22,7 @@ use common\models\NseIngresoFamiliar;
 use common\models\NseGrupoFamiliar;
 
 use common\filters\ProcesoCerrado;
-use app\filters\InscripcionCerrada;
+use common\filters\InscripcionCerrada;
 
 
 /**

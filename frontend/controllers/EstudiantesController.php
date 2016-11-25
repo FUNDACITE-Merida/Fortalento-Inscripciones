@@ -9,7 +9,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use common\filters\ProcesoCerrado;
-use app\filters\InscripcionCerrada;
+use common\filters\InscripcionCerrada;
 
 
 /**
