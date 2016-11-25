@@ -119,6 +119,10 @@ class RbacController extends Controller
         $permisoAdminReportesMunicipioEstudiantes = $auth->createPermission('/admin-reportes/municipio-estudiantes');
         $permisoAdminReportesMunicipioEstudiantes->description = 'Acceso a admin-reportes/municipio-estudiantes';
         $auth->add($permisoAdminReportesMunicipioEstudiantes);
+
+        $permisoAdminEstudiantesCreate = $auth->createPermission('/admin-estudiantes/create');
+        $permisoAdminEstudiantesCreate->description = 'Acceso a admin-estudiantes/create';
+        $auth->add($permisoAdminEstudiantesCreate);
         // Fin permisos para admin
         
         // Permisos para superaministrador
@@ -156,6 +160,7 @@ class RbacController extends Controller
         $auth->addChild($roleAdmin, $permisoAdminInscripcionesListadoMunicipiosCsv);
         $auth->addChild($roleAdmin, $permisoAdminInscripcionesImprimirCsv);
         $auth->addChild($roleAdmin, $permisoAdminReportesMunicipioEstudiantes);
+        $auth->addChild($roleAdmin, $permisoAdminEstudiantesCreate);
         
         // Create user admin
         if (!User::findOne(['username' => 'admin@fundacite-merida.gob.ve'])){

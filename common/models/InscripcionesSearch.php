@@ -12,14 +12,17 @@ use common\models\Inscripciones;
  */
 class InscripcionesSearch extends Inscripciones
 {
+	public $cedula;
+	
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'id_proceso', 'id_estudiante', 'fecha_inscripcion', 'codigo_profesion_jefe_familia', 'codigo_nivel_instruccion_madre', 'codigo_fuente_ingreso_familia', 'codigo_vivienda_familia', 'codigo_ingreso_familia', 'codigo_grupo_familiar'], 'integer'],
-            [['codigo_plantel', 'localidad_plantel', 'codigo_ultimo_grado', 'postulado_para_beca', 'postulado_para_premio'], 'safe'],
+            [['id', 'id_proceso', 'id_estudiante', 'codigo_profesion_jefe_familia', 'codigo_nivel_instruccion_madre', 'codigo_fuente_ingreso_familia', 'codigo_vivienda_familia', 'codigo_ingreso_familia', 'codigo_grupo_familiar'], 'integer'],
+            [['fecha_inscripcion', 'codigo_plantel', 'localidad_plantel', 'codigo_ultimo_grado', 'postulado_para_beca', 'postulado_para_premio', 'cerrada'], 'safe'],
+            [['cedula'], 'safe'],
             [['promedio', 'nota1', 'nota2', 'nota3'], 'number'],
             [['cerrada'], 'boolean'],
         ];
@@ -44,12 +47,19 @@ class InscripcionesSearch extends Inscripciones
     public function search($params)
     {
         $query = Inscripciones::find();
-
-        // add conditions that should always apply here
+        //LJAH
+        $query->joinWith(['idEstudiante']);
+        
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> ['defaultOrder' => ['id'=>SORT_ASC]]
         ]);
+        
+       $dataProvider->sort->attributes['idEstudiante'] = [
+			'asc' => ['estudiantes.cedula' => SORT_ASC],
+			'desc' => ['estudiantes.cedula' => SORT_DESC],
+		];
 
         $this->load($params);
 
@@ -61,7 +71,7 @@ class InscripcionesSearch extends Inscripciones
 
         // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'inscripciones.id' => $this->id,
             'id_proceso' => $this->id_proceso,
             'id_estudiante' => $this->id_estudiante,
             'fecha_inscripcion' => $this->fecha_inscripcion,
@@ -82,8 +92,9 @@ class InscripcionesSearch extends Inscripciones
             ->andFilterWhere(['like', 'localidad_plantel', $this->localidad_plantel])
             ->andFilterWhere(['like', 'codigo_ultimo_grado', $this->codigo_ultimo_grado])
             ->andFilterWhere(['like', 'postulado_para_beca', $this->postulado_para_beca])
-            ->andFilterWhere(['like', 'postulado_para_premio', $this->postulado_para_premio]);
-
+            ->andFilterWhere(['like', 'postulado_para_premio', $this->postulado_para_premio])
+            ->andFilterWhere(['like', 'estudiantes.cedula', $this->cedula]);
+		
         return $dataProvider;
     }
 }
