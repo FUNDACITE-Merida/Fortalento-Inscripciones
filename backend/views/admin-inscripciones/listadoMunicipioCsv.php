@@ -41,6 +41,10 @@ $this->title = 'Lista de estudiantes por municipio';
                                         //'data-method' => 'post',
                                         //'data' => ['id'=>$model->id],
                                 ]);?>
+                <?= Html::a('Zona Educativa .xls', ['admin-reportes/zona-educativa-xls','cod_municipio'=>$municipio->cod_municipio], [
+                                        'title' => '',
+                                        'class' => 'btn btn-info',
+                                ]);?>
             </td>
 		</tr>
 <?php endforeach; ?>
