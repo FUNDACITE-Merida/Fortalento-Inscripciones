@@ -41,7 +41,7 @@ AppAsset::register($this);
         //['label' => 'Contact', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup']];
+        $menuItems[] = ['label' => 'Registrarse', 'url' => ['/site/signup'], 'linkOptions'=>['class' => 'btn btn-danger', 'role' => 'button']];
         $menuItems[] = ['label' => 'Ingresar', 'url' => ['/site/login']];
     } else {
         $menuItems = [
