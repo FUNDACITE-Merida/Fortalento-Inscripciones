@@ -310,7 +310,7 @@ class AdminReportesController extends \yii\web\Controller
 
 	/**
      * Generar un archivo xls de los alumnos inscritos en el municipio
-     * pasado como parámetro
+     * pasado como parámetro. Este reporte es esxigido por la Zona Educativa
      * @param id_municipio
      * @return mixed
      */
@@ -343,74 +343,61 @@ class AdminReportesController extends \yii\web\Controller
 				// Solo se imprimen inscripciones que estén cerradas
 				if ($inscripcion->cerrada)
 				{
-					$archivo .= $model[0]->municipio . ",";  
-					//str_pad(strval($inscripcion->id), 5, '0', STR_PAD_LEFT);
-					//$archivo .= $inscripcion->idEstudiante->es_venezolano?'V':'E';
-					// Si la cédula es menor a 8 caracteres se completa con espacios a la derecha
-					//$archivo .= str_pad(trim($inscripcion->idEstudiante->cedula), 8, ' ',  STR_PAD_RIGHT);
-
-					
-					$archivo .= $inscripcion->idEstudiante->nombre . ",";
-					
-					$archivo .= $inscripcion->idEstudiante->apellido . ",";
-					
+					$archivo .= $model[0]->municipio . ",";					
+					$archivo .= $inscripcion->idEstudiante->nombre . ",";					
+					$archivo .= $inscripcion->idEstudiante->apellido . ",";					
 					$archivo .= $inscripcion->idEstudiante->cedula . ",";
-					
-					/*list($d,$m,$Y) = explode("-",$inscripcion->idEstudiante->fecha_nacimiento);
-					$archivo .= $d.$m.substr($Y, 2, 3);
-					
-					list($d,$m,$Y) = explode("-",$inscripcion->fecha_inscripcion);
-					$archivo .= $d.$m.substr($Y, 2, 3);
-					
-					$archivo .= $model[0]->cod_municipio;
-					$archivo .= $plantel->cod_pla;*/
-					
-					// En el sistema de FORTALENTO se lee 10=1, 11=2, 12=3
-					// por lo tanto se debe cambiar acá el valor a imprimir
 					$archivo .= $grados[$inscripcion->codigo_ultimo_grado] . ",";
-					
-
-					$archivo .= $plantel->nom_pla;
-					/**/
-					
-					// Se imprimen algunos datos dependiendo de si el estudiante se postuló para beca
-					// o para premio
-					/*if ($inscripcion->postulado_para_beca && $inscripcion->postulado_para_premio)
-					{
-						// Se imprimen las tres notas
-						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota1)), 5, '0',STR_PAD_RIGHT);
-						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota2)), 5, '0',STR_PAD_RIGHT);
-						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota3)), 5, '0',STR_PAD_RIGHT);						
-						$archivo .= $codigo_ultimo_grado;
-						$archivo .= "*";
-					}elseif($inscripcion->postulado_para_beca)
-					{
-						// Se imprime el promedio ya que el estudiante no habrá cargado nota3 si sólo se postuló por Beca
-						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->promedio)), 5, '0',STR_PAD_RIGHT);
-						$archivo .= "          ";
-						$archivo .= $codigo_ultimo_grado;
-						$archivo .= "B";
-					}elseif($inscripcion->postulado_para_premio)
-					{
-						// Se imprimen las tres notas
-						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota1)), 5, '0',STR_PAD_RIGHT);
-						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota2)), 5, '0',STR_PAD_RIGHT);
-						$archivo .= str_pad(str_replace(",", "", strval($inscripcion->nota3)), 5, '0',STR_PAD_RIGHT);
-						$archivo .= $codigo_ultimo_grado;
-						$archivo .= "P";
-					}
-					$archivo .= $plantel->tip_pla;
-					$archivo .= $inscripcion->idEstudiante->genero;
-					
-					$archivo .= $inscripcion->codigo_profesion_jefe_familia;
-					$archivo .= $inscripcion->codigo_nivel_instruccion_madre;
-					$archivo .= $inscripcion->codigo_fuente_ingreso_familia;
-					$archivo .= $inscripcion->codigo_vivienda_familia;
-					$archivo .= $inscripcion->codigo_ingreso_familia;
-					$archivo .= $inscripcion->codigo_grupo_familiar;*/
-					
+					$archivo .= $plantel->nom_pla;					
 					$archivo .= "\n";
 				}
+			}
+		}
+        header("Cache-Control: public");
+		header("Content-Description: File Transfer");
+		header("Content-Disposition: attachment; filename=".str_replace(" ", "_", $model[0]->municipio).".csv");
+		header("Content-Type: application/octet-stream");
+		header("Content-Transfer-Encoding: binary");
+		if ($archivo)
+		{
+			print_r($archivo);
+		}else
+		{
+			echo "No hay información para mostrar";
+		}
+    }
+
+	/**
+     * Generar un archivo xls de los alumnos inscritos en el municipio
+     * pasado como parámetro
+     * @param id_municipio
+     * @return mixed
+     */
+    public function actionInscripcionesXls($cod_municipio)
+    {
+        $model = Municipios::find()
+			->with('plantels.inscripciones')
+			->where(['cod_municipio'=>$cod_municipio])
+			->all();
+		$archivo = null;
+		$archivo = "MUNICIPIO, NOMBRES, APELLIDOS, CÉDULA DE IDENTIDAD, CORREO, TELÉFONO SOLICITANTE, CELULAR SOLICITANTE, TELÉFONO REPRESENTANTE, CELULAR REPRESENTANTE, ESTATUS\n";
+		foreach ($model[0]->plantels as $plantel)
+		{
+			foreach ($plantel->inscripciones as $inscripcion)
+			{
+					/*print_r($inscripcion);
+					exit(0);*/
+					$archivo .= $model[0]->municipio . ",";
+					$archivo .= isset($inscripcion->idEstudiante->nombre) ? $inscripcion->idEstudiante->nombre . ",": "No disponible" . ",";					
+					$archivo .= isset($inscripcion->idEstudiante->apellido) ? $inscripcion->idEstudiante->apellido . "," : "No disponible" . ",";					
+					$archivo .= isset($inscripcion->idEstudiante->cedula) ? $inscripcion->idEstudiante->cedula . "," :  "No disponible" . ",";
+					$archivo .= isset($inscripcion->idEstudiante->user->email) ? $inscripcion->idEstudiante->user->email . "," : "No disponible" . ",";
+					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_solicitante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_solicitante . "," : "No disponible" . ",";
+					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_solicitante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_solicitante . "," : "No disponible" . ",";
+					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_representante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_representante . "," : "No disponible" . ",";
+					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_representante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_representante . "," : "No disponible" . ",";
+					$archivo .= isset($inscripcion->cerrada) ? $inscripcion->cerrada ? 'Cerrada': 'Abierta' : "No disponible" . ",";
+					$archivo .= "\n";
 			}
 		}
         header("Cache-Control: public");
