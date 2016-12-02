@@ -334,8 +334,9 @@ class AdminReportesController extends \yii\web\Controller
 			->with('plantels.inscripciones')
 			->where(['cod_municipio'=>$cod_municipio])
 			->all();
-		$archivo = null;
-		$archivo = "MUNICIPIO, NOMBRES, APELLIDOS, CÉDULA DE IDENTIDAD, AÑO CULMINADO, UNIDAD EDUCATIVA\n";
+		
+		$archivo = "MUNICIPIO; NOMBRES; APELLIDOS; CÉDULA DE IDENTIDAD; AÑO CULMINADO; PROMEDIO ULTIMO AÑO;";
+		$archivo .= "NOTA 1; NOTA 2; NOTA 3; UNIDAD EDUCATIVA\n";
 		foreach ($model[0]->plantels as $plantel)
 		{
 			foreach ($plantel->inscripciones as $inscripcion)
@@ -343,11 +344,15 @@ class AdminReportesController extends \yii\web\Controller
 				// Solo se imprimen inscripciones que estén cerradas
 				if ($inscripcion->cerrada)
 				{
-					$archivo .= $model[0]->municipio . ",";					
-					$archivo .= $inscripcion->idEstudiante->nombre . ",";					
-					$archivo .= $inscripcion->idEstudiante->apellido . ",";					
-					$archivo .= $inscripcion->idEstudiante->cedula . ",";
-					$archivo .= $grados[$inscripcion->codigo_ultimo_grado] . ",";
+					$archivo .= $model[0]->municipio . ";";					
+					$archivo .= $inscripcion->idEstudiante->nombre . ";";					
+					$archivo .= $inscripcion->idEstudiante->apellido . ";";					
+					$archivo .= $inscripcion->idEstudiante->cedula . ";";
+					$archivo .= $grados[$inscripcion->codigo_ultimo_grado] . ";";
+					$archivo .= $inscripcion->promedio . ";";
+					$archivo .= $inscripcion->nota1 . ";";
+					$archivo .= $inscripcion->nota2 . ";";
+					$archivo .= $inscripcion->nota3 . ";";
 					$archivo .= $plantel->nom_pla;					
 					$archivo .= "\n";
 				}
