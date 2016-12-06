@@ -385,23 +385,24 @@ class AdminReportesController extends \yii\web\Controller
 			->where(['cod_municipio'=>$cod_municipio])
 			->all();
 		$archivo = null;
-		$archivo = "MUNICIPIO, NOMBRES, APELLIDOS, CÉDULA DE IDENTIDAD, CORREO, TELÉFONO SOLICITANTE, CELULAR SOLICITANTE, TELÉFONO REPRESENTANTE, CELULAR REPRESENTANTE, ESTATUS\n";
+		$archivo = "MUNICIPIO; NOMBRES; APELLIDOS; CÉDULA DE IDENTIDAD; CORREO; TELÉFONO SOLICITANTE; CELULAR SOLICITANTE; TELÉFONO REPRESENTANTE; CELULAR REPRESENTANTE; UNIDAD EDUCATIVA; ESTATUS\n";
 		foreach ($model[0]->plantels as $plantel)
 		{
 			foreach ($plantel->inscripciones as $inscripcion)
 			{
 					/*print_r($inscripcion);
 					exit(0);*/
-					$archivo .= $model[0]->municipio . ",";
-					$archivo .= isset($inscripcion->idEstudiante->nombre) ? $inscripcion->idEstudiante->nombre . ",": "No disponible" . ",";					
-					$archivo .= isset($inscripcion->idEstudiante->apellido) ? $inscripcion->idEstudiante->apellido . "," : "No disponible" . ",";					
-					$archivo .= isset($inscripcion->idEstudiante->cedula) ? $inscripcion->idEstudiante->cedula . "," :  "No disponible" . ",";
-					$archivo .= isset($inscripcion->idEstudiante->user->email) ? $inscripcion->idEstudiante->user->email . "," : "No disponible" . ",";
-					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_solicitante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_solicitante . "," : "No disponible" . ",";
-					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_solicitante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_solicitante . "," : "No disponible" . ",";
-					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_representante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_representante . "," : "No disponible" . ",";
-					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_representante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_representante . "," : "No disponible" . ",";
-					$archivo .= isset($inscripcion->cerrada) ? $inscripcion->cerrada ? 'Cerrada': 'Abierta' : "No disponible" . ",";
+					$archivo .= $model[0]->municipio . ";";
+					$archivo .= isset($inscripcion->idEstudiante->nombre) ? $inscripcion->idEstudiante->nombre . ";": "No disponible" . ";";					
+					$archivo .= isset($inscripcion->idEstudiante->apellido) ? $inscripcion->idEstudiante->apellido . ";" : "No disponible" . ";";					
+					$archivo .= isset($inscripcion->idEstudiante->cedula) ? $inscripcion->idEstudiante->cedula . ";" :  "No disponible" . ";";
+					$archivo .= isset($inscripcion->idEstudiante->user->email) ? $inscripcion->idEstudiante->user->email . ";" : "No disponible" . ";";
+					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_solicitante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_solicitante . ";" : "No disponible" . ";";
+					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_solicitante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_solicitante . ";" : "No disponible" . ";";
+					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_representante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_representante . ";" : "No disponible" . ";";
+					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_representante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_representante . ";" : "No disponible" . ";";
+					$archivo .= $plantel->nom_pla . ";";
+					$archivo .= isset($inscripcion->cerrada) ? $inscripcion->cerrada ? 'Cerrada': 'Abierta' : "No disponible" . ";";
 					$archivo .= "\n";
 			}
 		}
