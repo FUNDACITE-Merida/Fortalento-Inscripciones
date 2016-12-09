@@ -305,4 +305,22 @@ class AdminInscripcionesController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    /*
+     * Carga un archivo .zip o .xls con información
+     * de inscripción para ingresar al sistema
+     * @param id_municipio
+     * @return mixed
+     */
+    public function actionCargarInscripciones()
+    {
+		//$model = Municipios::find()->all();
+
+        return $this->render('cargarInscripciones', [
+            //'model' => $model,
+        ]);
+		
+	}
+
+
 }
