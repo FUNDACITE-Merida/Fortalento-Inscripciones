@@ -1,0 +1,94 @@
+
+= How to setup multiple chroots on one server =
+
+== Basics ==
+
+This guide assumes that one has already followed the instructions on the InstallGuide page.  
+
+That will mean there is a chroot located in /opt/ltsp/i386 and also that clients should be able to boot and function via NFS. 
+
+=== Build additional chroots ===
+
+In this case I would like to be able to boot some old i586 processor thin clients, so to create a second chroot:
+
+{{{
+ltsp-build-client --release 11 --chroot fed11-i386
+}}}
+
+The option --chroot is used to specify the name of the directory to install the chroot in.  In this case /opt/ltsp/fed11-i386.  The name is indicating the chroot is a Fedora 11 based one.
+
+A Fedora 14 i686 chroot can also be built with the option "--release 14"
+
+=== DHCP changes ===
+
+The configuration file /etc/ltsp/dhcpd.conf may not have been edited yet as it will boot clients by default and have them use the /opt/ltsp/i386 chroot.
+
+To configure a host for the fed11-i386 chroot we need to specify the host by mac address and then boot into the alternate chroot.
+
+To do this add (or edit) a group designation to the /etc/ltsp/dhcpd.conf file and include that particular host to be able to assign it a specific (non-default) chroot.
+
+ {{{
+group   {
+    use-host-decl-names       on;
+    option log-servers        172.31.100.254;
+
+    host thinclient {
+        hardware ethernet     00:12:34:56:78:90;
+        fixed-address         172.31.100.10;
+        filename      "/ltsp/fed11-i386/pxelinux.0";
+        option root-path "172.31.100.254:/opt/ltsp/fed11-i386";
+    }
+}}}
+
+These files do not get created in the ltsp-build-client step so copy them over from the first chroot tftp directory.
+
+{{{
+cp /var/lib/tftpboot/ltsp/i386/pxelinux.0 /var/lib/tftpboot/ltsp/fed11-i386/
+cp -r /var/lib/tftpboot/ltsp/i386/pxelinux.cfg /var/lib/tftpboot/ltsp/fed11-i386/
+cp /var/lib/tftpboot/ltsp/i386/lts.conf /var/lib/tftpboot/ltsp/fed11-i386/
+}}}
+
+=== That is it! ===
+
+Now your client should boot just fine into the fed11-i386 chroot.
+
+=== *Optional* NBDroot ===
+
+To have multiple chroots using NBD is only a couple more steps.  
+
+First the [wiki:NBDRootConfiguration nbdroot] configuration should have been followed.
+
+After adding a new chroot with the ltsp-build-client command, ltsp-update-image must be run to generate the nbdroot image for the new chroot.
+
+A new xinetd service needs to be added for each additional image.
+
+{{{
+cp /etc/xinetd.d/nbdrootd /etc/xinetd.d/nbdrootd-fed11-i386
+}}}
+
+Edit the new file /etc/xinetd.d/nbdrootd-fed11-i386 and change the two lines as shown below
+
+{{{
+        server_args     = /opt/ltsp/images/fed11-i386.img
+        port            = 2001
+}}}
+
+Restart xinetd:
+
+{{{
+/etc/init.d/xinetd restart
+}}}
+
+In /etc/ltsp/dhcpd.conf, change the "option root-path" to use the nbd root:
+{{{
+option root-path "nbd:172.31.100.254:2001:squashfs:ro";
+}}}
+
+And restart ltsp-dhcpd
+
+{{{
+/etc/init.d/ltsp-dhcpd restart
+}}}
+
+
+

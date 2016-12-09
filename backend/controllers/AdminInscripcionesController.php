@@ -7,9 +7,11 @@ use common\models\Inscripciones;
 use common\models\InscripcionesSearch;
 use common\models\Procesos;
 use common\models\Municipios;
+use backend\models\CargarInscripciones;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * AdminInscripcionesController implements the CRUD actions for Inscripciones model.
@@ -314,13 +316,27 @@ class AdminInscripcionesController extends Controller
      */
     public function actionCargarInscripciones()
     {
-		//$model = Municipios::find()->all();
+		/*$model = new CargarInscripciones();
 
         return $this->render('cargarInscripciones', [
-            //'model' => $model,
+            'model' => $model,
+        ]);*/
+
+        $model = new CargarInscripciones();
+        
+        if ($model->load(Yii::$app->request->post()))
+        {
+            $model->file = UploadedFile::getInstance($model, 'file');
+
+            if ($model->file && $model->validate()) {
+                $model->file->saveAs('archivos_inscripciones/' . $model->file->baseName . '.' . $model->file->extension);
+                Yii::$app->session->setFlash('guardado', 'El archivo se ha subido con éxito', true);
+            }
+            //Yii::$app->session->setFlash('guardado', 'No se ha podido guardar', true);
+        }
+        
+		return $this->render('cargarInscripciones', [
+            'model' => $model,
         ]);
-		
 	}
-
-
 }

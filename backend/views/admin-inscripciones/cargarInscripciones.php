@@ -2,10 +2,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 ?>
-
-<?= $msg ?>
-
-<h3>Subir archivos</h3>
+<h1>Cargar inscripciones</h1>
 
 <?php $form = ActiveForm::begin([
      "method" => "post",
