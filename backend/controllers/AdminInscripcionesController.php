@@ -8,6 +8,9 @@ use common\models\InscripcionesSearch;
 use common\models\Procesos;
 use common\models\Municipios;
 use backend\models\CargarInscripciones;
+use frontend\models\SignupForm;
+use common\models\User;
+use common\models\Estudiantes;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -321,7 +324,8 @@ class AdminInscripcionesController extends Controller
         return $this->render('cargarInscripciones', [
             'model' => $model,
         ]);*/
-
+        $pathInscripciones = 'archivos_inscripciones/';
+        
         $model = new CargarInscripciones();
         
         if ($model->load(Yii::$app->request->post()))
@@ -329,14 +333,123 @@ class AdminInscripcionesController extends Controller
             $model->file = UploadedFile::getInstance($model, 'file');
 
             if ($model->file && $model->validate()) {
-                $model->file->saveAs('archivos_inscripciones/' . $model->file->baseName . '.' . $model->file->extension);
-                Yii::$app->session->setFlash('guardado', 'El archivo se ha subido con éxito', true);
+                $model->file->saveAs($pathInscripciones . $model->file->baseName . '.' . $model->file->extension);
+                /*self::_descromprimirZip($pathInscripciones . $model->file->baseName . '.' . $model->file->extension,
+                                    $pathInscripciones);*/
+                if (self::_inscribirDesdeXls($pathInscripciones . $model->file->baseName . '.' . $model->file->extension)){
+                    Yii::$app->session->setFlash('success', 'El archivo se ha subido con éxito', true);
+                }
+                else{
+                    Yii::$app->session->setFlash('danger', 'Error al subir archivo', true);
+                }
             }
-            //Yii::$app->session->setFlash('guardado', 'No se ha podido guardar', true);
         }
         
 		return $this->render('cargarInscripciones', [
             'model' => $model,
         ]);
 	}
+
+    /**
+     * Extrae una archivo zip en la dirección indicada 
+     * @param file Direccion del archivo a extraer
+     * @param destination Direccion donde se descomprimirá el archivo
+     * @return mixed
+     */
+    private static function _descromprimirZip($file, $destination)
+    {
+        $ret = FALSE;
+
+        $zip = new ZipArchive();
+        if ($zip->open($file) === TRUE) {
+            $zip->extractTo($destination);
+            $zip->close();
+            $ret = TRUE;
+        } else {
+            $ret = FALSE;
+        }
+
+        return $ret;
+    }
+
+
+    /**
+     * Inscribe a un estudiante desde una planilla de inscripción .xlsx u .xls 
+     * @param file Direccion de la planilla de inscripción
+     * @return mixed
+     */
+    private static function _inscribirDesdeXls($file)
+    {
+        $ret = FALSE;
+        $config = [
+                    'setFirstRecordAsKeys' => false,  
+                    //'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
+                    'getOnlySheet' => 'PLANILLA DE INSCRIPCIÓN', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
+        ];
+
+        $data = \moonland\phpexcel\Excel::import($file, $config);
+        $planilla['correo'] = $data[26]['F'];
+        $planilla['cedula'] = str_replace(',', '', $data[26]['B']);
+        $planilla['cedula'] = str_replace('.', '', $data[26]['B']);
+        $planilla['cedula'] = trim($data[26]['B']);
+        $planilla['nombre_solicitante'] = $data[22]['G'];
+        $planilla['apellido_solicitante'] = $data[22]['B'];
+        $planilla['fecha_nacimiento_solicitante'] = $data[30]['D'] . '-' . $data[30]['E'] . '-' . $data[30]['F'];
+        $planilla['lugar_nacimiento_solicitante'] = $data[31]['D'];
+        $planilla['genero'] = ($data[30]['J'] == 'Femenino') ? 'F': 'M';
+        $planilla['es_venezolano'] = ($data[25]['D'] == 'V') ? TRUE : FALSE;
+
+        // Registra el usuario en el sistema
+        $model = new SignupForm();
+        $model->scenario = SignupForm::SCENARIO_OFFLINE;
+        $model->username = $planilla['correo'];
+        $model->email = $planilla['correo'];
+        $model->password = $planilla['cedula'];
+        if ($user = $model->signup()) {
+            $ret = TRUE;
+        }else{
+            $ret = FALSE;
+        }
+        // -----
+
+        // Registra el Estudiante
+        if($ret){
+            $model = new Estudiantes();
+            $model->id_user = $user->id;
+            
+            $model->cedula = $planilla['cedula'];
+            $model->nombre = $planilla['nombre_solicitante'];
+            $model->apellido = $planilla['apellido_solicitante'];
+            $model->fecha_nacimiento = $planilla['fecha_nacimiento_solicitante'];
+            $model->lugar_nacimiento = $planilla['lugar_nacimiento_solicitante'];
+            $model->genero = $planilla['genero'];
+            $model->es_venezolano = $planilla['es_venezolano'];
+
+            if ($estudiante = $model->save()) {
+                $ret = TRUE;
+            }else{
+                $ret = FALSE;
+                print_r($model);
+                exit(0);
+            }
+        }
+        // -----
+
+
+        // Si ret es FALSE al final de todo entonces se debe hacer un rollback de 
+        // lo registrado
+        if (!$ret){
+            $estudiante_id = (isset($estudiante->id)) ? $estudiante->id : null;
+            if (($model = Estudiantes::findOne($estudiante_id)) !== null) {
+                return $model->delete();
+            }
+
+            $user_id = (isset($user->id)) ? $user->id : null;
+            if (($model = User::findOne($user_id)) !== null) {
+                return $model->delete();
+            }
+        }
+
+        return $ret;
+    }
 }
