@@ -387,17 +387,71 @@ class AdminInscripcionesController extends Controller
                     'getOnlySheet' => 'PLANILLA DE INSCRIPCIÓN', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
         ];
 
+        // Grados se amarró a código ya que en la tabla hay grados que no 
+		// están participando en este proceso. Es necesario adecuar el código
+		// en este sistema para excluir esos grados y lograr eliminar este código
+		// amarrado
+		$grados = array(
+			'6to Grado' => '6',
+			'1er Año' => '7',
+			'2do Año' => '8',
+			'3er Año' => '9',
+			'4to Año' => '10',
+			'5to Año' => '11',
+			'6to Año (Técnica)' => '12',
+		  );
+
         $data = \moonland\phpexcel\Excel::import($file, $config);
-        $planilla['correo'] = $data[26]['F'];
-        $planilla['cedula'] = str_replace(',', '', $data[26]['B']);
-        $planilla['cedula'] = str_replace('.', '', $data[26]['B']);
-        $planilla['cedula'] = trim($data[26]['B']);
-        $planilla['nombre_solicitante'] = $data[22]['G'];
-        $planilla['apellido_solicitante'] = $data[22]['B'];
-        $planilla['fecha_nacimiento_solicitante'] = $data[30]['D'] . '-' . $data[30]['E'] . '-' . $data[30]['F'];
-        $planilla['lugar_nacimiento_solicitante'] = $data[31]['D'];
+        $planilla['correo'] = trim($data[26]['F']);
+        $planilla['cedula'] = trim(str_replace('.', '',str_replace(',', '', $data[26]['B'])));
+        $planilla['nombre_solicitante'] = trim($data[22]['G']);
+        $planilla['apellido_solicitante'] = trim($data[22]['B']);
+        $planilla['fecha_nacimiento_solicitante'] = trim($data[30]['D'] . '-' . $data[30]['E'] . '-' . $data[30]['F']);
+        $planilla['lugar_nacimiento_solicitante'] = trim($data[31]['D']);
         $planilla['genero'] = ($data[30]['J'] == 'Femenino') ? 'F': 'M';
         $planilla['es_venezolano'] = ($data[25]['D'] == 'V') ? TRUE : FALSE;
+
+        $planilla['codigo_plantel'] = trim($data[68]['K']);
+        $planilla['localidad_plantel'] = trim($data[16]['B']);
+        $planilla['codigo_ultimo_grado'] = trim($grados[$data[35]['D']]);
+        $planilla['postulado_para_beca'] = (isset($data[43]['K'])) ? 'B': '0';
+        $planilla['postulado_para_premio'] = (isset($data[41]['K'])) ? 'P': '0';
+        if ($planilla['postulado_para_beca'] == 'B')
+		{
+			$planilla['promedio'] = str_replace('.',',',$data[46]['J']);
+		}else{
+			$this->promedio = 0;
+		}
+
+		if ($planilla['postulado_para_premio'] == 'P')
+		{
+            if ($planilla['codigo_ultimo_grado'] == 6){ //6to Grado
+                $planilla['nota1'] = str_replace('.',',',$data[57]['D']);			
+                $planilla['nota2'] = str_replace('.',',',$data[58]['D']);                
+                $planilla['nota3'] = str_replace('.',',',$data[59]['D']);
+            }elseif ($planilla['codigo_ultimo_grado'] == 9){
+                $planilla['nota1'] = str_replace('.',',',$data[57]['G']);			
+                $planilla['nota2'] = str_replace('.',',',$data[58]['G']);                
+                $planilla['nota3'] = str_replace('.',',',$data[59]['G']);
+            }else{
+                $planilla['nota1'] = str_replace('.',',',$data[57]['J']);			
+                $planilla['nota2'] = str_replace('.',',',$data[58]['J']);                
+                $planilla['nota3'] = str_replace('.',',',$data[59]['J']);
+            }
+			
+		}else{
+			$planilla['nota1'] = 0;
+			$planilla['nota2'] = 0;
+			$planilla['nota3'] = 0;
+		}
+
+        $planilla['codigo_profesion_jefe_familia'] = substr($data[83]['B'], 0, 1);
+        $planilla['codigo_nivel_instruccion_madre'] = substr($data[87]['B'], 0, 1);
+        $planilla['codigo_fuente_ingreso_familia'] = substr($data[91]['B'], 0, 1);
+        $planilla['codigo_vivienda_familia'] = substr($data[95]['B'], 0, 1);
+        $planilla['codigo_ingreso_familia'] = substr($data[99]['B'], 0, 1);
+        $planilla['codigo_grupo_familiar'] = substr($data[103]['B'], 0, 1);
+  
 
         // Registra el usuario en el sistema
         $model = new SignupForm();
@@ -425,28 +479,68 @@ class AdminInscripcionesController extends Controller
             $model->genero = $planilla['genero'];
             $model->es_venezolano = $planilla['es_venezolano'];
 
-            if ($estudiante = $model->save()) {
+            if ($model->save()) {
                 $ret = TRUE;
+                $estudiante = $model;
             }else{
                 $ret = FALSE;
-                print_r($model);
-                exit(0);
             }
         }
         // -----
 
+        // Registra la Inscripción
+        if($ret){
+            $model = new Inscripciones();
+            $model->id_estudiante = $estudiante->id;
+            $model->id_proceso =  Procesos::getIdProcesoAbierto();
+			$model->fecha_inscripcion = Yii::$app->formatter->asDate('now');
+            $model->fecha_inscripcion = Yii::$app->formatter->asTimeStamp($model->fecha_inscripcion);
+
+            $model->codigo_plantel = $planilla['codigo_plantel'];
+            $model->localidad_plantel = $planilla['localidad_plantel'];
+            $model->codigo_ultimo_grado = $planilla['codigo_ultimo_grado'];
+            $model->postulado_para_beca = $planilla['postulado_para_beca'];
+            $model->postulado_para_premio = $planilla['postulado_para_premio'];
+            $model->promedio = $planilla['promedio'];
+            $model->nota1 = $planilla['nota1'];
+            $model->nota2 = $planilla['nota2'];
+            $model->nota3 = $planilla['nota3'];
+            $model->codigo_profesion_jefe_familia = $planilla['codigo_profesion_jefe_familia'];
+            $model->codigo_nivel_instruccion_madre = $planilla['codigo_nivel_instruccion_madre'];
+            $model->codigo_fuente_ingreso_familia = $planilla['codigo_fuente_ingreso_familia'];
+            $model->codigo_vivienda_familia = $planilla['codigo_vivienda_familia'];
+            $model->codigo_ingreso_familia = $planilla['codigo_ingreso_familia'];
+            $model->codigo_grupo_familiar = $planilla['codigo_grupo_familiar'];
+  
+            if ($model->save()) {
+                $ret = TRUE;
+                $inscripcion = $model;
+            }else{
+                $ret = FALSE;
+            }
+        }
+        /*print_r($model);
+        exit(0);*/
+        // -----
 
         // Si ret es FALSE al final de todo entonces se debe hacer un rollback de 
         // lo registrado
+        /*echo "Valor de ret: " . $ret;
+        exit(0);*/
         if (!$ret){
             $estudiante_id = (isset($estudiante->id)) ? $estudiante->id : null;
             if (($model = Estudiantes::findOne($estudiante_id)) !== null) {
-                return $model->delete();
+                $model->delete();
             }
 
+            $inscripcion_id = (isset($inscripcion->id)) ? $inscripcion->id : null;
+            if (($model = Inscripciones::findOne($inscripcion_id)) !== null) {
+                $model->delete();
+            }
+            
             $user_id = (isset($user->id)) ? $user->id : null;
             if (($model = User::findOne($user_id)) !== null) {
-                return $model->delete();
+                $model->delete();
             }
         }
 
