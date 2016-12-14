@@ -406,7 +406,13 @@ class AdminInscripcionesController extends Controller
 			'Primaria' => '1',
 			'Secundaria' => '2',
 			'Superior' => '3',
-		  );
+		);
+
+        $es_representante_data = array(
+			'Otro' => EstudioSocioEconomico::REP_ES_OTRO,
+            'Madre' => EstudioSocioEconomico::REP_ES_MADRE,
+            'Padre' => EstudioSocioEconomico::REP_ES_PADRE,
+		);
 
         $data = \moonland\phpexcel\Excel::import($file, $config);
         $planilla['correo'] = trim($data[26]['F']);
@@ -615,50 +621,23 @@ class AdminInscripcionesController extends Controller
             $model->direccion_trabajo_madre = $planilla['direccion_trabajo_madre'];
             $model->correo_e_madre = $planilla['correo_e_madre'];
             $model->direccion_habitacion_madre = $planilla['direccion_habitacion_madre'];
-            if ($planilla['representante'] == 'Padre')
-            {
-                $model->apellidos_representante = $planilla['apellidos_padre'];
-                $model->nombres_representante = $planilla['nombres_padre'];
-                $model->cedula_representante = $planilla['cedula_padre'];
-                $model->grado_instruccion_representante = $planilla['grado_instruccion_padre'];
-                $model->telefono_fijo_representante = $planilla['telefono_fijo_padre'];
-                $model->telefono_celular_representante = $planilla['telefono_celular_padre'];
-                $model->profesion_representante = $planilla['profesion_padre'];
-                $model->ocupacion_representante = $planilla['ocupacion_padre'];
-                $model->lugar_trabajo_representante = $planilla['lugar_trabajo_padre'];
-                $model->ingreso_mensual_representante = $planilla['ingreso_mensual_padre'];
-                $model->direccion_trabajo_representante = $planilla['direccion_trabajo_padre'];
-                $model->correo_e_representante = $planilla['correo_e_padre'];
-                $model->direccion_habitacion_representante = $planilla['direccion_habitacion_padre'];
-            }elseif($planilla['representante'] == 'Madre'){
-                $model->apellidos_representante = $planilla['apellidos_madre'];
-                $model->nombres_representante = $planilla['nombres_madre'];
-                $model->cedula_representante = $planilla['cedula_madre'];
-                $model->grado_instruccion_representante = $planilla['grado_instruccion_madre'];
-                $model->telefono_fijo_representante = $planilla['telefono_fijo_madre'];
-                $model->telefono_celular_representante = $planilla['telefono_celular_madre'];
-                $model->profesion_representante = $planilla['profesion_madre'];
-                $model->ocupacion_representante = $planilla['ocupacion_madre'];
-                $model->lugar_trabajo_representante = $planilla['lugar_trabajo_madre'];
-                $model->ingreso_mensual_representante = $planilla['ingreso_mensual_madre'];
-                $model->direccion_trabajo_representante = $planilla['direccion_trabajo_madre'];
-                $model->correo_e_representante = $planilla['correo_e_madre'];
-                $model->direccion_habitacion_representante = $planilla['direccion_habitacion_madre'];
-            }else{
-                $model->apellidos_representante = $planilla['apellidos_representante'];
-                $model->nombres_representante = $planilla['nombres_representante'];
-                $model->cedula_representante = $planilla['cedula_representante'];
-                $model->grado_instruccion_representante = $planilla['grado_instruccion_representante'];
-                $model->telefono_fijo_representante = $planilla['telefono_fijo_representante'];
-                $model->telefono_celular_representante = $planilla['telefono_celular_representante'];
-                $model->profesion_representante = $planilla['profesion_representante'];
-                $model->ocupacion_representante = $planilla['ocupacion_representante'];
-                $model->lugar_trabajo_representante = $planilla['lugar_trabajo_representante'];
-                $model->ingreso_mensual_representante = $planilla['ingreso_mensual_representante'];
-                $model->direccion_trabajo_representante = $planilla['direccion_trabajo_representante'];
-                $model->correo_e_representante = $planilla['correo_e_representante'];
-                $model->direccion_habitacion_representante = $planilla['direccion_habitacion_representante'];
-            }
+
+            $model->es_representante = $es_representante_data[$planilla['representante']];
+            
+            $model->apellidos_representante = $planilla['apellidos_representante'];
+            $model->nombres_representante = $planilla['nombres_representante'];
+            $model->cedula_representante = $planilla['cedula_representante'];
+            $model->grado_instruccion_representante = $planilla['grado_instruccion_representante'];
+            $model->telefono_fijo_representante = $planilla['telefono_fijo_representante'];
+            $model->telefono_celular_representante = $planilla['telefono_celular_representante'];
+            $model->profesion_representante = $planilla['profesion_representante'];
+            $model->ocupacion_representante = $planilla['ocupacion_representante'];
+            $model->lugar_trabajo_representante = $planilla['lugar_trabajo_representante'];
+            $model->ingreso_mensual_representante = $planilla['ingreso_mensual_representante'];
+            $model->direccion_trabajo_representante = $planilla['direccion_trabajo_representante'];
+            $model->correo_e_representante = $planilla['correo_e_representante'];
+            $model->direccion_habitacion_representante = $planilla['direccion_habitacion_representante'];
+            
             if ($model->save()) {
                 $ret = TRUE;
                 $estudioSocioEconomico = $model;
@@ -667,8 +646,7 @@ class AdminInscripcionesController extends Controller
             }
         }
         // -----
-        print_r($model);
-        exit(0);
+        
         // Si ret es FALSE al final de todo entonces se debe hacer un rollback de 
         // lo registrado
         /*echo "Valor de ret: " . $ret;

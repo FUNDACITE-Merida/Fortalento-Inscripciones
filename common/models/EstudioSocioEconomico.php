@@ -92,7 +92,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             [['ingreso_mensual_padre', 'ingreso_mensual_madre', 'ingreso_mensual_representante'], 'number'],
             [['codigo_ultimo_grado'], 'string', 'max' => 4],
             [['telefono_fijo_solicitante', 'telefono_celular_solicitante', 'telefono_fijo_padre', 'telefono_celular_padre', 'telefono_fijo_madre', 'telefono_celular_madre', 'telefono_fijo_representante', 'telefono_celular_representante'], 'string', 'max' => 11, 'min' => 11, 'tooShort' => '{attribute} deberia contener 11 números', 'tooLong' => '{attribute} deberia contener 11 números'],
-            [['telefono_fijo_solicitante', 'telefono_celular_solicitante', 'telefono_fijo_padre', 'telefono_celular_padre', 'telefono_fijo_madre', 'telefono_celular_madre', 'telefono_fijo_representante', 'telefono_celular_representante'], 'match', 'pattern' => '/^[0][2,4][0-9]*$/'],
+            //[['telefono_fijo_solicitante', 'telefono_celular_solicitante', 'telefono_fijo_padre', 'telefono_celular_padre', 'telefono_fijo_madre', 'telefono_celular_madre', 'telefono_fijo_representante', 'telefono_celular_representante'], 'match', 'pattern' => '/^[0][2,4][0-9]*$/'],
             [['apellidos_padre', 'nombres_padre', 'profesion_padre', 'ocupacion_padre', 'apellidos_madre', 'nombres_madre', 'profesion_madre', 'ocupacion_madre', 'apellidos_representante', 'nombres_representante', 'profesion_representante', 'ocupacion_representante'], 'string', 'max' => 128],
             [['cedula_padre', 'cedula_madre', 'cedula_representante'], 'string', 'max' => 8, 'tooLong' => '{attribute} deberia contener máximo 8 números'],
             [['cedula_padre', 'cedula_madre', 'cedula_representante'], 'match', 'pattern' => '/^[0-9]*$/'],
