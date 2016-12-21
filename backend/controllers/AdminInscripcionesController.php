@@ -393,13 +393,13 @@ class AdminInscripcionesController extends Controller
 		// en este sistema para excluir esos grados y lograr eliminar este código
 		// amarrado
 		$grados = array(
-			'6to Grado' => '6',
-			'1er Año' => '7',
-			'2do Año' => '8',
-			'3er Año' => '9',
-			'4to Año' => '10',
-			'5to Año' => '11',
-			'6to Año (Técnica)' => '12',
+			'6TO GRADO' => '6',
+			'1ER AÑO' => '7',
+			'2DO AÑO' => '8',
+			'3ER AÑO' => '9',
+			'4TO AÑO' => '10',
+			'5TO AÑO' => '11',
+			'6TO AÑO (TÉCNICA)' => '12',
 		);
 
         $nivelInstruccion = array(
@@ -426,7 +426,7 @@ class AdminInscripcionesController extends Controller
 
         $planilla['codigo_plantel'] = trim($data[68]['K']);
         $planilla['localidad_plantel'] = trim($data[16]['B']);
-        $planilla['codigo_ultimo_grado'] = trim($grados[$data[35]['D']]);
+        $planilla['codigo_ultimo_grado'] = strtoupper(trim($grados[$data[35]['D']]));
         $planilla['postulado_para_beca'] = (isset($data[43]['K'])) ? 'B': '0';
         $planilla['postulado_para_premio'] = (isset($data[41]['K'])) ? 'P': '0';
         if ($planilla['postulado_para_beca'] == 'B')
@@ -458,12 +458,12 @@ class AdminInscripcionesController extends Controller
 			$planilla['nota3'] = 0;
 		}
 
-        $planilla['codigo_profesion_jefe_familia'] = substr($data[83]['B'], 0, 1);
-        $planilla['codigo_nivel_instruccion_madre'] = substr($data[87]['B'], 0, 1);
-        $planilla['codigo_fuente_ingreso_familia'] = substr($data[91]['B'], 0, 1);
-        $planilla['codigo_vivienda_familia'] = substr($data[95]['B'], 0, 1);
-        $planilla['codigo_ingreso_familia'] = substr($data[99]['B'], 0, 1);
-        $planilla['codigo_grupo_familiar'] = substr($data[103]['B'], 0, 1);
+        $planilla['codigo_profesion_jefe_familia'] = substr(trim($data[83]['B']), 0, 1);
+        $planilla['codigo_nivel_instruccion_madre'] = substr(trim($data[87]['B']), 0, 1);
+        $planilla['codigo_fuente_ingreso_familia'] = substr(trim($data[91]['B']), 0, 1);
+        $planilla['codigo_vivienda_familia'] = substr(trim($data[95]['B']), 0, 1);
+        $planilla['codigo_ingreso_familia'] = substr(trim($data[99]['B']), 0, 1);
+        $planilla['codigo_grupo_familiar'] = substr(trim($data[103]['B']), 0, 1);
         
         $planilla['vive_con_padres_solicitante'] = ($data[109]['H'] == 'Si') ? 1 : 0;
         $planilla['telefono_fijo_solicitante'] = str_pad((string)$data[109]['B'], 11, '0', STR_PAD_LEFT);
@@ -472,7 +472,7 @@ class AdminInscripcionesController extends Controller
         $planilla['apellidos_padre'] = $data[118]['B'];
         $planilla['nombres_padre'] = $data[118]['H'];
         $planilla['cedula_padre'] = trim(str_replace('.', '',str_replace(',', '', $data[122]['B'])));
-        $planilla['grado_instruccion_padre'] = $nivelInstruccion[$data[122]['F']];
+        $planilla['grado_instruccion_padre'] = array_key_exists ($data[122]['F'], $nivelInstruccion)? $nivelInstruccion[$data[122]['F']] : null;
         $planilla['telefono_fijo_padre'] = str_pad($data[121]['K'], 11, '0', STR_PAD_LEFT);
         $planilla['telefono_celular_padre'] = str_pad($data[122]['K'], 11, '0', STR_PAD_LEFT);
         $planilla['profesion_padre'] = $data[126]['B'];
@@ -492,7 +492,7 @@ class AdminInscripcionesController extends Controller
         $planilla['profesion_madre'] = $data[151]['B'];
         $planilla['ocupacion_madre'] = $data[151]['E'];
         $planilla['lugar_trabajo_madre'] = $data[151]['H'];
-        $planilla['ingreso_mensual_madre'] = $data[151]['K'];
+        $planilla['ingreso_mensual_madre'] = trim(str_replace('.', '',str_replace(',', '.', $data[151]['K'])));
         $planilla['direccion_trabajo_madre'] = $data[156]['B'];
         $planilla['correo_e_madre'] = $data[156]['I'];
         $planilla['direccion_habitacion_madre'] = $data[161]['B'];
@@ -525,6 +525,7 @@ class AdminInscripcionesController extends Controller
             $ret = FALSE;
         }
         // -----
+        //print_r($model);
 
         // Registra el Estudiante
         if($ret){
@@ -547,6 +548,7 @@ class AdminInscripcionesController extends Controller
             }
         }
         // -----
+        //print_r($model);
 
         // Registra la Inscripción
         if($ret){
@@ -580,6 +582,7 @@ class AdminInscripcionesController extends Controller
             }
         }
         // -----
+        //print_r($model);
 
         // Registra los Datos Socioeconomicos
         if($ret){
@@ -646,7 +649,8 @@ class AdminInscripcionesController extends Controller
             }
         }
         // -----
-        
+        //print_r($model);
+
         // Si ret es FALSE al final de todo entonces se debe hacer un rollback de 
         // lo registrado
         /*echo "Valor de ret: " . $ret;
@@ -672,7 +676,7 @@ class AdminInscripcionesController extends Controller
                 $model->delete();
             }
         }
-
+        //exit(0);
         return $ret;
     }
 }
