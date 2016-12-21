@@ -10,6 +10,8 @@ use Yii;
  */
 class SignupForm extends Model
 {
+    const SCENARIO_OFFLINE = 'offline';
+
     public $username;
     public $email;
     public $password;
@@ -38,6 +40,13 @@ class SignupForm extends Model
 			['captcha', 'required'],
 			['captcha', 'captcha']
         ];
+    }
+
+    public function scenarios()
+    {
+        $scenarios = parent::scenarios();
+         $scenarios[self::SCENARIO_OFFLINE] = ['username', 'email', 'password'];
+        return $scenarios;
     }
 
     /**

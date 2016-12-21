@@ -34,3 +34,6 @@ phpunit.phar
 
 # Visual Studio Code
 /.vscode
+
+# archivos de inscripcion
+/backend/web/archivos_inscripciones
