@@ -338,7 +338,7 @@ class AdminInscripcionesController extends Controller
                 /*self::_descromprimirZip($pathInscripciones . $model->file->baseName . '.' . $model->file->extension,
                                     $pathInscripciones);*/
                 if (self::_inscribirDesdeXls($pathInscripciones . $model->file->baseName . '.' . $model->file->extension)){
-                    Yii::$app->session->setFlash('success', 'El archivo se ha subido con éxito', true);
+                    Yii::$app->session->setFlash('success', 'El archivo '. $model->file->baseName . '.' . $model->file->extension . ' se ha subido con éxito', true);
                 }
                 else{
                     Yii::$app->session->setFlash('danger', 'Error al subir archivo', true);
@@ -384,7 +384,7 @@ class AdminInscripcionesController extends Controller
         $ret = FALSE;
         $config = [
                     'setFirstRecordAsKeys' => false,  
-                    //'setIndexSheetByName' => true, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
+                    'setIndexSheetByName' => false, // set this if your excel data with multiple worksheet, the index of array will be set with the sheet name. If this not set, the index will use numeric. 
                     'getOnlySheet' => 'PLANILLA DE INSCRIPCIÓN', // you can set this property if you want to get the specified sheet from the excel data with multiple worksheet.
         ];
 
@@ -403,53 +403,55 @@ class AdminInscripcionesController extends Controller
 		);
 
         $nivelInstruccion = array(
-			'Primaria' => '1',
-			'Secundaria' => '2',
-			'Superior' => '3',
+			'PRIMARIA' => '1',
+			'SECUNDARIA' => '2',
+			'SUPERIOR' => '3',
 		);
 
         $es_representante_data = array(
-			'Otro' => EstudioSocioEconomico::REP_ES_OTRO,
-            'Madre' => EstudioSocioEconomico::REP_ES_MADRE,
-            'Padre' => EstudioSocioEconomico::REP_ES_PADRE,
+			'OTRO' => EstudioSocioEconomico::REP_ES_OTRO,
+            'MADRE' => EstudioSocioEconomico::REP_ES_MADRE,
+            'PADRE' => EstudioSocioEconomico::REP_ES_PADRE,
 		);
 
-        $data = \moonland\phpexcel\Excel::import($file, $config);
-        $planilla['correo'] = trim($data[26]['F']);
-        $planilla['cedula'] = trim(str_replace('.', '',str_replace(',', '', $data[26]['B'])));
-        $planilla['nombre_solicitante'] = trim($data[22]['G']);
-        $planilla['apellido_solicitante'] = trim($data[22]['B']);
-        $planilla['fecha_nacimiento_solicitante'] = trim($data[30]['D'] . '-' . $data[30]['E'] . '-' . $data[30]['F']);
-        $planilla['lugar_nacimiento_solicitante'] = trim($data[31]['D']);
-        $planilla['genero'] = ($data[30]['J'] == 'Femenino') ? 'F': 'M';
-        $planilla['es_venezolano'] = ($data[25]['D'] == 'V') ? TRUE : FALSE;
+        $filaBase = -1; // Para controlar el índice de las filas
 
-        $planilla['codigo_plantel'] = trim($data[68]['K']);
-        $planilla['localidad_plantel'] = trim($data[16]['B']);
-        $planilla['codigo_ultimo_grado'] = strtoupper(trim($grados[$data[35]['D']]));
-        $planilla['postulado_para_beca'] = (isset($data[43]['K'])) ? 'B': '0';
-        $planilla['postulado_para_premio'] = (isset($data[41]['K'])) ? 'P': '0';
+        $data = \moonland\phpexcel\Excel::import($file, $config);
+        $planilla['correo'] = trim($data[$filaBase+26]['F']);
+        $planilla['cedula'] = trim(str_replace('.', '',str_replace(',', '', $data[$filaBase+26]['B'])));
+        $planilla['nombre_solicitante'] = trim($data[$filaBase+22]['G']);
+        $planilla['apellido_solicitante'] = trim($data[$filaBase+22]['B']);
+        $planilla['fecha_nacimiento_solicitante'] = trim($data[$filaBase+30]['D'] . '-' . $data[$filaBase+30]['E'] . '-' . $data[$filaBase+30]['F']);
+        $planilla['lugar_nacimiento_solicitante'] = isset($data[$filaBase+31]['D']) ? trim($data[$filaBase+31]['D']) : 'Mérida';
+        $planilla['genero'] = (strtoupper($data[$filaBase+30]['J']) == 'FEMENINO') ? 'F': 'M';
+        $planilla['es_venezolano'] = ($data[$filaBase+25]['D'] == 'V') ? TRUE : FALSE;
+
+        $planilla['codigo_plantel'] = trim($data[$filaBase+68]['K']);
+        $planilla['localidad_plantel'] = trim($data[$filaBase+16]['B']);
+        $planilla['codigo_ultimo_grado'] = $grados[mb_strtoupper(trim(str_replace('é', 'É',str_replace('ñ', 'Ñ', $data[$filaBase+35]['D']))))];
+        $planilla['postulado_para_beca'] = (isset($data[$filaBase+43]['K'])) ? 'B': '0';
+        $planilla['postulado_para_premio'] = (isset($data[$filaBase+41]['K'])) ? 'P': '0';
         if ($planilla['postulado_para_beca'] == 'B')
 		{
-			$planilla['promedio'] = str_replace('.',',',$data[46]['J']);
+			$planilla['promedio'] = str_replace('.',',',$data[$filaBase+46]['J']);
 		}else{
-			$this->promedio = 0;
+			$planilla['promedio'] = 0;
 		}
 
 		if ($planilla['postulado_para_premio'] == 'P')
 		{
             if ($planilla['codigo_ultimo_grado'] == 6){ //6to Grado
-                $planilla['nota1'] = str_replace('.',',',$data[57]['D']);			
-                $planilla['nota2'] = str_replace('.',',',$data[58]['D']);                
-                $planilla['nota3'] = str_replace('.',',',$data[59]['D']);
+                $planilla['nota1'] = str_replace('.',',',$data[$filaBase+57]['D']);			
+                $planilla['nota2'] = str_replace('.',',',$data[$filaBase+58]['D']);                
+                $planilla['nota3'] = str_replace('.',',',$data[$filaBase+59]['D']);
             }elseif ($planilla['codigo_ultimo_grado'] == 9){
-                $planilla['nota1'] = str_replace('.',',',$data[57]['G']);			
-                $planilla['nota2'] = str_replace('.',',',$data[58]['G']);                
-                $planilla['nota3'] = str_replace('.',',',$data[59]['G']);
+                $planilla['nota1'] = str_replace('.',',',$data[$filaBase+57]['G']);			
+                $planilla['nota2'] = str_replace('.',',',$data[$filaBase+58]['G']);                
+                $planilla['nota3'] = str_replace('.',',',$data[$filaBase+59]['G']);
             }else{
-                $planilla['nota1'] = str_replace('.',',',$data[57]['J']);			
-                $planilla['nota2'] = str_replace('.',',',$data[58]['J']);                
-                $planilla['nota3'] = str_replace('.',',',$data[59]['J']);
+                $planilla['nota1'] = str_replace('.',',',$data[$filaBase+57]['J']);			
+                $planilla['nota2'] = str_replace('.',',',$data[$filaBase+58]['J']);                
+                $planilla['nota3'] = str_replace('.',',',$data[$filaBase+59]['J']);
             }
 			
 		}else{
@@ -458,60 +460,60 @@ class AdminInscripcionesController extends Controller
 			$planilla['nota3'] = 0;
 		}
 
-        $planilla['codigo_profesion_jefe_familia'] = substr(trim($data[83]['B']), 0, 1);
-        $planilla['codigo_nivel_instruccion_madre'] = substr(trim($data[87]['B']), 0, 1);
-        $planilla['codigo_fuente_ingreso_familia'] = substr(trim($data[91]['B']), 0, 1);
-        $planilla['codigo_vivienda_familia'] = substr(trim($data[95]['B']), 0, 1);
-        $planilla['codigo_ingreso_familia'] = substr(trim($data[99]['B']), 0, 1);
-        $planilla['codigo_grupo_familiar'] = substr(trim($data[103]['B']), 0, 1);
+        $planilla['codigo_profesion_jefe_familia'] = substr(trim($data[$filaBase+83]['B']), 0, 1);
+        $planilla['codigo_nivel_instruccion_madre'] = substr(trim($data[$filaBase+87]['B']), 0, 1);
+        $planilla['codigo_fuente_ingreso_familia'] = substr(trim($data[$filaBase+91]['B']), 0, 1);
+        $planilla['codigo_vivienda_familia'] = substr(trim($data[$filaBase+95]['B']), 0, 1);
+        $planilla['codigo_ingreso_familia'] = substr(trim($data[$filaBase+99]['B']), 0, 1);
+        $planilla['codigo_grupo_familiar'] = substr(trim($data[$filaBase+103]['B']), 0, 1);
         
-        $planilla['vive_con_padres_solicitante'] = ($data[109]['H'] == 'Si') ? 1 : 0;
-        $planilla['telefono_fijo_solicitante'] = str_pad((string)$data[109]['B'], 11, '0', STR_PAD_LEFT);
-        $planilla['telefono_celular_solicitante'] = str_pad((string)$data[109]['E'], 11, '0', STR_PAD_LEFT);
+        $planilla['vive_con_padres_solicitante'] = ($data[$filaBase+109]['H'] == 'Si') ? 1 : 0;
+        $planilla['telefono_fijo_solicitante'] = str_pad(str_replace('-', '', (string)$data[$filaBase+109]['B']), 11, '0', STR_PAD_LEFT);
+        $planilla['telefono_celular_solicitante'] = str_pad(str_replace('-', '', (string)$data[$filaBase+109]['E']), 11, '0', STR_PAD_LEFT);
 
-        $planilla['apellidos_padre'] = $data[118]['B'];
-        $planilla['nombres_padre'] = $data[118]['H'];
-        $planilla['cedula_padre'] = trim(str_replace('.', '',str_replace(',', '', $data[122]['B'])));
-        $planilla['grado_instruccion_padre'] = array_key_exists ($data[122]['F'], $nivelInstruccion)? $nivelInstruccion[$data[122]['F']] : null;
-        $planilla['telefono_fijo_padre'] = str_pad($data[121]['K'], 11, '0', STR_PAD_LEFT);
-        $planilla['telefono_celular_padre'] = str_pad($data[122]['K'], 11, '0', STR_PAD_LEFT);
-        $planilla['profesion_padre'] = $data[126]['B'];
-        $planilla['ocupacion_padre'] = $data[126]['E'];
-        $planilla['lugar_trabajo_padre'] = $data[126]['H'];
-        $planilla['ingreso_mensual_padre'] = $data[126]['K'];
-        $planilla['direccion_trabajo_padre'] = $data[131]['B'];
-        $planilla['correo_e_padre'] = $data[131]['I'];
-        $planilla['direccion_habitacion_padre'] = $data[136]['B'];
+        $planilla['apellidos_padre'] = $data[$filaBase+118]['B'];
+        $planilla['nombres_padre'] = $data[$filaBase+118]['H'];
+        $planilla['cedula_padre'] = trim(str_replace('.', '',str_replace(',', '', $data[$filaBase+122]['B'])));
+        $planilla['grado_instruccion_padre'] = array_key_exists (strtoupper(trim($data[$filaBase+122]['F'])), $nivelInstruccion) ? $nivelInstruccion[strtoupper(trim($data[$filaBase+122]['F']))] : null;
+        $planilla['telefono_fijo_padre'] = str_pad(str_replace('-', '', (string)$data[$filaBase+121]['K']), 11, '0', STR_PAD_LEFT);
+        $planilla['telefono_celular_padre'] = str_pad(str_replace('-', '', (string)$data[$filaBase+122]['K']), 11, '0', STR_PAD_LEFT);
+        $planilla['profesion_padre'] = $data[$filaBase+126]['B'];
+        $planilla['ocupacion_padre'] = $data[$filaBase+126]['E'];
+        $planilla['lugar_trabajo_padre'] = $data[$filaBase+126]['H'];
+        $planilla['ingreso_mensual_padre'] = trim(str_replace('.', '',str_replace(',', '.', $data[$filaBase+126]['K'])));
+        $planilla['direccion_trabajo_padre'] = $data[$filaBase+131]['B'];
+        $planilla['correo_e_padre'] = trim($data[$filaBase+131]['I']);
+        $planilla['direccion_habitacion_padre'] = $data[$filaBase+136]['B'];
 
-        $planilla['apellidos_madre'] = $data[142]['B'];
-        $planilla['nombres_madre'] = $data[142]['H'];
-        $planilla['cedula_madre'] = trim(str_replace('.', '',str_replace(',', '', $data[147]['B'])));
-        $planilla['grado_instruccion_madre'] = $nivelInstruccion[$data[147]['F']];
-        $planilla['telefono_fijo_madre'] = str_pad($data[146]['K'], 11, '0', STR_PAD_LEFT);
-        $planilla['telefono_celular_madre'] = str_pad($data[147]['K'], 11, '0', STR_PAD_LEFT);
-        $planilla['profesion_madre'] = $data[151]['B'];
-        $planilla['ocupacion_madre'] = $data[151]['E'];
-        $planilla['lugar_trabajo_madre'] = $data[151]['H'];
-        $planilla['ingreso_mensual_madre'] = trim(str_replace('.', '',str_replace(',', '.', $data[151]['K'])));
-        $planilla['direccion_trabajo_madre'] = $data[156]['B'];
-        $planilla['correo_e_madre'] = $data[156]['I'];
-        $planilla['direccion_habitacion_madre'] = $data[161]['B'];
+        $planilla['apellidos_madre'] = $data[$filaBase+142]['B'];
+        $planilla['nombres_madre'] = $data[$filaBase+142]['H'];
+        $planilla['cedula_madre'] = trim(str_replace('.', '',str_replace(',', '', $data[$filaBase+147]['B'])));
+        $planilla['grado_instruccion_madre'] = array_key_exists (strtoupper(trim($data[$filaBase+147]['F'])), $nivelInstruccion) ? $nivelInstruccion[strtoupper(trim($data[$filaBase+147]['F']))] : null;
+        $planilla['telefono_fijo_madre'] = str_pad(str_replace('-', '', (string)$data[$filaBase+146]['K']), 11, '0', STR_PAD_LEFT);
+        $planilla['telefono_celular_madre'] = str_pad(str_replace('-', '', (string)$data[$filaBase+147]['K']), 11, '0', STR_PAD_LEFT);
+        $planilla['profesion_madre'] = $data[$filaBase+151]['B'];
+        $planilla['ocupacion_madre'] = $data[$filaBase+151]['E'];
+        $planilla['lugar_trabajo_madre'] = $data[$filaBase+151]['H'];
+        $planilla['ingreso_mensual_madre'] = trim(str_replace('.', '',str_replace(',', '.', $data[$filaBase+151]['K'])));
+        $planilla['direccion_trabajo_madre'] = $data[$filaBase+156]['B'];
+        $planilla['correo_e_madre'] = trim($data[$filaBase+156]['I']);
+        $planilla['direccion_habitacion_madre'] = $data[$filaBase+161]['B'];
 
-        $planilla['apellidos_representante'] = $data[174]['B'];
-        $planilla['nombres_representante'] = $data[174]['H'];
-        $planilla['cedula_representante'] = trim(str_replace('.', '',str_replace(',', '', $data[178]['B'])));
-        $planilla['grado_instruccion_representante'] = $nivelInstruccion[$data[178]['F']];
-        $planilla['telefono_fijo_representante'] = str_pad($data[177]['K'], 11, '0', STR_PAD_LEFT);
-        $planilla['telefono_celular_representante'] = str_pad($data[178]['K'], 11, '0', STR_PAD_LEFT);
-        $planilla['profesion_representante'] = $data[182]['B'];
-        $planilla['ocupacion_representante'] = $data[182]['E'];
-        $planilla['lugar_trabajo_representante'] = $data[182]['H'];
-        $planilla['ingreso_mensual_representante'] = $data[182]['K'];
-        $planilla['direccion_trabajo_representante'] = $data[187]['B'];
-        $planilla['correo_e_representante'] = $data[187]['I'];
-        $planilla['direccion_habitacion_representante'] = $data[192]['B'];
+        $planilla['apellidos_representante'] = $data[$filaBase+174]['B'];
+        $planilla['nombres_representante'] = $data[$filaBase+174]['H'];
+        $planilla['cedula_representante'] = trim(str_replace('.', '',str_replace(',', '', $data[$filaBase+178]['B'])));
+        $planilla['grado_instruccion_representante'] = array_key_exists (strtoupper(trim($data[$filaBase+178]['F'])), $nivelInstruccion) ? $nivelInstruccion[strtoupper(trim($data[$filaBase+178]['F']))] : null;
+        $planilla['telefono_fijo_representante'] = str_pad(str_replace('-', '', (string)$data[$filaBase+177]['K']), 11, '0', STR_PAD_LEFT);
+        $planilla['telefono_celular_representante'] = str_pad(str_replace('-', '', (string)$data[$filaBase+178]['K']), 11, '0', STR_PAD_LEFT);
+        $planilla['profesion_representante'] = $data[$filaBase+182]['B'];
+        $planilla['ocupacion_representante'] = $data[$filaBase+182]['E'];
+        $planilla['lugar_trabajo_representante'] = $data[$filaBase+182]['H'];
+        $planilla['ingreso_mensual_representante'] = trim(str_replace('.', '',str_replace(',', '.', $data[$filaBase+182]['K'])));
+        $planilla['direccion_trabajo_representante'] = $data[$filaBase+187]['B'];
+        $planilla['correo_e_representante'] = trim($data[$filaBase+187]['I']);
+        $planilla['direccion_habitacion_representante'] = $data[$filaBase+192]['B'];
 
-        $planilla['representante'] = $data[168]['C'];
+        $planilla['representante'] = mb_strtoupper(trim($data[$filaBase+168]['C']));
 
         // Registra el usuario en el sistema
         $model = new SignupForm();
@@ -525,7 +527,7 @@ class AdminInscripcionesController extends Controller
             $ret = FALSE;
         }
         // -----
-        //print_r($model);
+        print_r($model);
 
         // Registra el Estudiante
         if($ret){
@@ -548,7 +550,7 @@ class AdminInscripcionesController extends Controller
             }
         }
         // -----
-        //print_r($model);
+        print_r($model->getErrors());
 
         // Registra la Inscripción
         if($ret){
@@ -573,6 +575,7 @@ class AdminInscripcionesController extends Controller
             $model->codigo_vivienda_familia = $planilla['codigo_vivienda_familia'];
             $model->codigo_ingreso_familia = $planilla['codigo_ingreso_familia'];
             $model->codigo_grupo_familiar = $planilla['codigo_grupo_familiar'];
+            $model->cerrada = true;
   
             if ($model->save()) {
                 $ret = TRUE;
@@ -582,7 +585,7 @@ class AdminInscripcionesController extends Controller
             }
         }
         // -----
-        //print_r($model);
+        print_r($model->getErrors());
 
         // Registra los Datos Socioeconomicos
         if($ret){
@@ -603,13 +606,13 @@ class AdminInscripcionesController extends Controller
             $model->grado_instruccion_padre = $planilla['grado_instruccion_padre'];
             $model->telefono_fijo_padre = $planilla['telefono_fijo_padre'];
             $model->telefono_celular_padre = $planilla['telefono_celular_padre'];
-            $model->profesion_padre = $planilla['profesion_padre'];
-            $model->ocupacion_padre = $planilla['ocupacion_padre'];
-            $model->lugar_trabajo_padre = $planilla['lugar_trabajo_padre'];
-            $model->ingreso_mensual_padre = $planilla['ingreso_mensual_padre'];
-            $model->direccion_trabajo_padre = $planilla['direccion_trabajo_padre'];
-            $model->correo_e_padre = $planilla['correo_e_padre'];
-            $model->direccion_habitacion_padre = $planilla['direccion_habitacion_padre'];
+            $model->profesion_padre = !empty($planilla['profesion_padre']) ? $planilla['profesion_padre'] : 'No suministrado';
+            $model->ocupacion_padre = !empty($planilla['ocupacion_padre']) ? $planilla['ocupacion_padre'] : 'No suministrado';
+            $model->lugar_trabajo_padre = !empty($planilla['lugar_trabajo_padre']) ? $planilla['lugar_trabajo_padre'] : 'No suministrado';
+            $model->ingreso_mensual_padre = !empty($planilla['ingreso_mensual_padre']) ? $planilla['ingreso_mensual_padre'] : 0;
+            $model->direccion_trabajo_padre = !empty($planilla['direccion_trabajo_padre']) ? $planilla['direccion_trabajo_padre'] : 'No suministrado';
+            $model->correo_e_padre = !empty($planilla['correo_e_padre']) ? $planilla['correo_e_padre'] : $planilla['correo'];
+            $model->direccion_habitacion_padre = !empty($planilla['direccion_habitacion_padre']) ? $planilla['direccion_habitacion_padre'] : 'No suministrado';
 
             $model->apellidos_madre = $planilla['apellidos_madre'];
             $model->nombres_madre = $planilla['nombres_madre'];
@@ -617,29 +620,29 @@ class AdminInscripcionesController extends Controller
             $model->grado_instruccion_madre = $planilla['grado_instruccion_madre'];
             $model->telefono_fijo_madre = $planilla['telefono_fijo_madre'];
             $model->telefono_celular_madre = $planilla['telefono_celular_madre'];
-            $model->profesion_madre = $planilla['profesion_madre'];
-            $model->ocupacion_madre = $planilla['ocupacion_madre'];
-            $model->lugar_trabajo_madre = $planilla['lugar_trabajo_madre'];
-            $model->ingreso_mensual_madre = $planilla['ingreso_mensual_madre'];
-            $model->direccion_trabajo_madre = $planilla['direccion_trabajo_madre'];
-            $model->correo_e_madre = $planilla['correo_e_madre'];
-            $model->direccion_habitacion_madre = $planilla['direccion_habitacion_madre'];
+            $model->profesion_madre = empty($planilla['profesion_madre']) ? 'No suministrado' : $planilla['profesion_madre'];
+            $model->ocupacion_madre = empty($planilla['ocupacion_madre']) ? 'No suministrado' : $planilla['ocupacion_madre'];
+            $model->lugar_trabajo_madre = empty($planilla['lugar_trabajo_madre']) ? 'No suministrado' : $planilla['lugar_trabajo_madre'];
+            $model->ingreso_mensual_madre = empty($planilla['ingreso_mensual_madre']) ? 0 : $planilla['ingreso_mensual_madre'];
+            $model->direccion_trabajo_madre = empty($planilla['direccion_trabajo_madre']) ? 'No suministrado' : $planilla['direccion_trabajo_madre'];
+            $model->correo_e_madre = empty($planilla['correo_e_madre']) ? $planilla['correo'] : $planilla['correo_e_madre'];
+            $model->direccion_habitacion_madre = empty($planilla['direccion_habitacion_madre']) ? 'No suministrado' : $planilla['direccion_habitacion_madre'];
 
             $model->es_representante = $es_representante_data[$planilla['representante']];
             
-            $model->apellidos_representante = $planilla['apellidos_representante'];
-            $model->nombres_representante = $planilla['nombres_representante'];
+            $model->apellidos_representante = !empty($planilla['apellidos_representante']) ? $planilla['apellidos_representante'] : 'No suministrado';
+            $model->nombres_representante = !empty($planilla['nombres_representante']) ? $planilla['nombres_representante'] : 'No suministrado';
             $model->cedula_representante = $planilla['cedula_representante'];
             $model->grado_instruccion_representante = $planilla['grado_instruccion_representante'];
             $model->telefono_fijo_representante = $planilla['telefono_fijo_representante'];
             $model->telefono_celular_representante = $planilla['telefono_celular_representante'];
-            $model->profesion_representante = $planilla['profesion_representante'];
-            $model->ocupacion_representante = $planilla['ocupacion_representante'];
-            $model->lugar_trabajo_representante = $planilla['lugar_trabajo_representante'];
-            $model->ingreso_mensual_representante = $planilla['ingreso_mensual_representante'];
-            $model->direccion_trabajo_representante = $planilla['direccion_trabajo_representante'];
-            $model->correo_e_representante = $planilla['correo_e_representante'];
-            $model->direccion_habitacion_representante = $planilla['direccion_habitacion_representante'];
+            $model->profesion_representante = !empty($planilla['profesion_representante']) ? $planilla['profesion_representante'] : 'No suministrado';
+            $model->ocupacion_representante = !empty($planilla['ocupacion_representante']) ? $planilla['ocupacion_representante'] : 'No suministrado';
+            $model->lugar_trabajo_representante = !empty($planilla['lugar_trabajo_representante']) ? $planilla['lugar_trabajo_representante'] : 'No suministrado';
+            $model->ingreso_mensual_representante = !empty($planilla['ingreso_mensual_representante']) ? $planilla['ingreso_mensual_representante'] : 0;
+            $model->direccion_trabajo_representante = !empty($planilla['direccion_trabajo_representante']) ? $planilla['direccion_trabajo_representante'] : 'No suministrado';
+            $model->correo_e_representante = !empty($planilla['correo_e_representante']) ? $planilla['correo_e_representante'] : $planilla['correo'];;
+            $model->direccion_habitacion_representante = !empty($planilla['direccion_habitacion_representante']) ? $planilla['direccion_habitacion_representante'] : 'No suministrado';
             
             if ($model->save()) {
                 $ret = TRUE;
@@ -649,7 +652,7 @@ class AdminInscripcionesController extends Controller
             }
         }
         // -----
-        //print_r($model);
+        print_r($model->getErrors());
 
         // Si ret es FALSE al final de todo entonces se debe hacer un rollback de 
         // lo registrado
