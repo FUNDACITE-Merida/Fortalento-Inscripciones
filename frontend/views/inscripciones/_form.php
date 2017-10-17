@@ -374,24 +374,23 @@ $grados = array(
 	</div>
 	</br></br>
 
-<!--No se solicita al usuario datos socio económicos para el proceso 2017-2018 -->
-<!--  
+<!--No se solicitan tres de los datos socio económicos para el proceso 2017-2018 -->
+ <!--
     <div class="row">
 	  <div class="col-lg-6 col-md-10">
 		<?/*= $form->field($model, 'codigo_profesion_jefe_familia')->dropdownList(
 			ArrayHelper::map($profesionJefeFamilia, 'cod_prof_jf', 'descripcion'), 
 			['options'=>['0'=>['Selected'=>true]]]
-			);*/ ?>
+			); */?>
 			
 	  </div>
 
 	  <div class="col-lg-6 col-md-10">		
 		<?/*= $form->field($model, 'codigo_nivel_instruccion_madre')->dropdownList(
 			ArrayHelper::map($nivelInstruccionMadre, 'cod_nivel_mad', 'descripcion')
-			);*/ ?>
+			); */?>
 	  </div>	  
 	</div>
-	
 	<div class="row">
 	  <div class="col-lg-6 col-md-10">
 		<?/*= $form->field($model, 'codigo_fuente_ingreso_familia')->dropdownList(
@@ -399,25 +398,28 @@ $grados = array(
 			)->hint('Si su familia depende de indemnizaciones tales como jubilaciones 
 			o pensiones, elija la categoría que tenía cuando trabajaba'); */?>
 	  </div>
-	  <div class="col-lg-6 col-md-10">		
-		<?/*= $form->field($model, 'codigo_vivienda_familia')->dropdownList(
-			ArrayHelper::map($alojamientoVivienda, 'cod_vivienda', 'descripcion')
-			);*/ ?>
-	  </div>	  
-	</div>
-    <div class="row">
+	</div>  
+-->	  
+	<div class="row">
 	  <div class="col-lg-6 col-md-10">
-		<?/*= $form->field($model, 'codigo_ingreso_familia')->dropdownList(
+		<?= $form->field($model, 'codigo_ingreso_familia')->dropdownList(
 			ArrayHelper::map($ingresoFamiliar, 'cod_ing_fam', 'descripcion')
-			);*/ ?>
+			); ?>
 	  </div>
 	  <div class="col-lg-6 col-md-10">		
-		<?/*= $form->field($model, 'codigo_grupo_familiar')->dropdownList(
+		<?= $form->field($model, 'codigo_grupo_familiar')->dropdownList(
 			array_reverse(ArrayHelper::map($grupoFamiliar, 'cod_grupo_fam', 'descripcion'), true)
-			); *///Se aplica array_reverse para cumplir requerimiento de Ing. Ingrid Vivas?>
+			); //Se aplica array_reverse para cumplir requerimiento de Ing. Ingrid Vivas?>
 	  </div>	  
 	</div>
--->    
+	<div class="row">
+	  <div class="col-lg-6 col-md-10">		
+		<?= $form->field($model, 'codigo_vivienda_familia')->dropdownList(
+			ArrayHelper::map($alojamientoVivienda, 'cod_vivienda', 'descripcion')
+			); ?>
+	  </div>	  
+	</div>
+    
     <div class="form-group">
         <?= Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Datos del estudiante', ['estudiantes/create'], ['class' => 'btn btn-default', 'role' => 'button']) ?>
         <?= Html::submitButton('Siguiente <span class="glyphicon glyphicon-arrow-right"></span>', ['class' => 'btn btn-primary']) ?>
