@@ -23,6 +23,7 @@ use Yii;
 class Estudiantes extends \yii\db\ActiveRecord
 {
 	public $no_cedula = false;
+	public $repetir_cedula;
     /**
      * @inheritdoc
      */
@@ -39,11 +40,14 @@ class Estudiantes extends \yii\db\ActiveRecord
         return [
 			[['nombre', 'apellido', 'fecha_nacimiento', 'lugar_nacimiento', 'genero', 'es_venezolano', 'id_user'], 'required'],
             [['id_user'], 'integer'],
-			[['no_cedula'], 'safe'],
+			[['no_cedula','repetir_cedula'], 'safe'],
 			[['fecha_nacimiento'], 'date', 'max' => Yii::$app->formatter->asDate('now')],
             [['es_venezolano'], 'boolean'],
             [['cedula'], 'string', 'max' => 8, 'tooLong' => '{attribute} deberia contener máximo 8 números'],
+            [['repetir_cedula'], 'string', 'max' => 8, 'tooLong' => '{attribute} deberia contener máximo 8 números','on' => 'create'],
             [['cedula'], 'match', 'pattern' => '/^[0-9]*$/'],
+            [['repetir_cedula'], 'match', 'pattern' => '/^[0-9]*$/','on' => 'create'],
+            ['cedula', 'compare','compareAttribute' => 'repetir_cedula','on' => 'create'],
             [['nombre', 'apellido', 'lugar_nacimiento'], 'string', 'max' => 256],
             [['genero'], 'string', 'max' => 1],
             [['cedula'], 'unique'], 
@@ -51,11 +55,19 @@ class Estudiantes extends \yii\db\ActiveRecord
 
 			//caso especial cuando no se tiene cédula, el campo (cédula) no será requerido
             
-            ['cedula', 'required', 'when' => function ($model) {
+            [['cedula'], 'required', 'when' => function ($model) {
 				return $model->no_cedula == false;
 			}, 'whenClient' => "function (attribute, value) {
 					return $('#estudiantes-no_cedula').is(':checked') == false;
 				}"],
+				
+			//caso especial cuando no se tiene cédula, el campo (repetir cédula) no será requerido
+            
+            [['repetir_cedula'], 'required', 'when' => function ($model) {
+				return $model->no_cedula == false;
+			}, 'whenClient' => "function (attribute, value) {
+					return $('#estudiantes-no_cedula').is(':checked') == false;
+				}",'on' => 'create'],	
         ];
     }
 
@@ -75,6 +87,7 @@ class Estudiantes extends \yii\db\ActiveRecord
             'es_venezolano' => Yii::t('app', 'Nacionalidad'),
             'id_user' => Yii::t('app', 'Id del usuario que registró al estudiante'),
 			'no_cedula' => Yii::t('app', 'No tengo cédula'),
+			'repetir_cedula' => Yii::t('app', 'Repetir cédula de identidad'),
         ];
     }
 

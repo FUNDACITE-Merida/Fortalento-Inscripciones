@@ -13,10 +13,12 @@ $('#estudiantes-no_cedula').change(function() {
 			if ($(this).is(':checked')) 
 			{
 				$('#estudiantes-cedula').prop('readonly', true);
+				$('#estudiantes-repetir_cedula').prop('readonly', true);
 			}
 			else
 			{
 				$('#estudiantes-cedula').prop('readonly', false);
+				$('#estudiantes-repetir_cedula').prop('readonly', false);
 			}			
 		});
 ", 
@@ -44,8 +46,13 @@ if ($model->no_cedula == true)
     <div class="row">
 	  <div class="col-lg-5 col-md-10">
 		  <?= $form->field($model, 'cedula')->textInput(['maxlength' => true, 'readonly' => $sincedula]) ?>
-		  <?= $form->field($model, 'no_cedula')->checkbox() ?>
+		  <!--Repetir cédula cuando sea un registro nuevo-->
+		  <?php if($model->isNewRecord) { 
+		  ?>
+				<?= $form->field($model, 'repetir_cedula')->textInput(['maxlength' => true, 'readonly' => $sincedula]) ?>
+		  <?php }?>		
 		
+		  <?= $form->field($model, 'no_cedula')->checkbox() ?>
 	  </div>
 	  <div class="col-lg-5 col-md-10">
 		<?= $form->field($model, 'es_venezolano')->radioList(['1' => 'Venezolana', '0' => 'Extranjera']) ?>
