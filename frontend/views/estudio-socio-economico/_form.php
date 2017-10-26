@@ -115,145 +115,156 @@ $nivelInstruccion = array(
 
 	</br></br>
 -->	
+<!-- No se solicitan los datos del padre para el proceso 2017-2018 -->
+<!--
 	<fieldset>
 	  <legend>Datos del padre</legend>
 		<div class="row">
 		  <div class="col-lg-6 col-md-10">
-			  <?= $form->field($model, 'apellidos_padre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'apellidos_padre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <div class="col-lg-6 col-md-10">		
 			<div class="form-group">
-			  <?= $form->field($model, 'nombres_padre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'nombres_padre')->textInput(['maxlength' => true]) ?>
 			</div>
 		  </div>	  
 		</div>
 		
 		<div class="row">
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'cedula_padre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'cedula_padre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'grado_instruccion_padre')->dropdownList(
+			  <?/*= $form->field($model, 'grado_instruccion_padre')->dropdownList(
 					$nivelInstruccion
-					); ?>
+					); */ ?>
 		  </div>	  
-		  <div class="col-lg-3 col-md-10">
+		  <div class="col-lg-3 col-md-10">  -->
 			  <!-- TODO: FALTAN VALIDACIONES DE TODOS LOS TELEFONOS -->
-			  <?= $form->field($model, 'telefono_fijo_padre')
+<!--
+			  <?/*= $form->field($model, 'telefono_fijo_padre')
 							->textInput(['maxlength' => true])
-							->hint('Ejemplo: 02742447111'); ?>
+							->hint('Ejemplo: 02742447111');*/ ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">		
-			  <?= $form->field($model, 'telefono_celular_padre')
+			  <?/*= $form->field($model, 'telefono_celular_padre')
 							->textInput(['maxlength' => true])
-							->hint('Ejemplo: 04161115555'); ?>
+							->hint('Ejemplo: 04161115555');*/ ?>
 		  </div>
 		</div>
 		
 		<div class="row">
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'profesion_padre')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en electrónica, licenciado, ingeniero o afines.'); ?>
+			  <?//= $form->field($model, 'profesion_padre')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en electrónica, licenciado, ingeniero o afines.'); ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'ocupacion_padre')->textInput(['maxlength' => true])->hint('Ejemplo: analista, mecánico, chofer, obrero, trabajador de la agrícultura, maestro, entre otras.'); ?>
+			  <?//= $form->field($model, 'ocupacion_padre')->textInput(['maxlength' => true])->hint('Ejemplo: analista, mecánico, chofer, obrero, trabajador de la agrícultura, maestro, entre otras.'); ?>
 		  </div>	  
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'lugar_trabajo_padre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'lugar_trabajo_padre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">		
-			  <?= $form->field($model, 'ingreso_mensual_padre')->textInput() ?>
+			  <?//= $form->field($model, 'ingreso_mensual_padre')->textInput() ?>
 		  </div>
 		</div>
 		
 		<div class="row">
 		  <div class="col-lg-6 col-md-10">
-			  <?= $form->field($model, 'direccion_trabajo_padre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'direccion_trabajo_padre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <div class="col-lg-6 col-md-10">
+-->		  
 			  <!-- TODO: FALTAN VALIDACIONES DE TODOS LOS CORREOS -->
-			  <?= $form->field($model, 'correo_e_padre')->textInput(['maxlength' => true]) ?>
+<!--			  
+			  <?//= $form->field($model, 'correo_e_padre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		</div>
 		
 
 		<div class="row">
 		  <div class="col-lg-12 col-md-10">
-			  <?= $form->field($model, 'direccion_habitacion_padre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'direccion_habitacion_padre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		</div>
     </fieldset>
-	
-	
+-->	
+<!-- No se solicitan los datos de la madre para el proceso 2017-2018 -->
+<!--
 	</br></br>
     <fieldset>
 	  <legend>Datos de la madre</legend>
 	  <div class="row">
 		  <div class="col-lg-6 col-md-10">
-			  <?= $form->field($model, 'apellidos_madre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'apellidos_madre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <div class="col-lg-6 col-md-10">		
 			<div class="form-group">
-			  <?= $form->field($model, 'nombres_madre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'nombres_madre')->textInput(['maxlength' => true]) ?>
 			</div>
 		  </div>	  
 		</div>
 		
 		<div class="row">
 		  <div class="col-lg-3 col-md-10">
-			   <?= $form->field($model, 'cedula_madre')->textInput(['maxlength' => true]) ?>
+			   <?//= $form->field($model, 'cedula_madre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'grado_instruccion_madre')->dropdownList(
+			  <?/*= $form->field($model, 'grado_instruccion_madre')->dropdownList(
 					$nivelInstruccion
-					); ?>
+					);*/ ?>
 		  </div>	  
 		  <div class="col-lg-3 col-md-10">
+-->		  
 			  <!-- TODO: FALTAN VALIDACIONES DE TODOS LOS TELEFONOS -->
-			  <?= $form->field($model, 'telefono_fijo_madre')
+<!--			  
+			  <?/*= $form->field($model, 'telefono_fijo_madre')
 							->textInput(['maxlength' => true])
-							->hint('Ejemplo: 02742447111'); ?>
+							->hint('Ejemplo: 02742447111');*/ ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">		
-			  <?= $form->field($model, 'telefono_celular_madre')
+			  <?/*= $form->field($model, 'telefono_celular_madre')
 							->textInput(['maxlength' => true])
-							->hint('Ejemplo: 04161115555');?>
+							->hint('Ejemplo: 04161115555');*/?>
 		  </div>
 		</div>
 		
 		<div class="row">
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'profesion_madre')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en informática, licenciada, ingeniero o afines.'); ?>
+			  <?//= $form->field($model, 'profesion_madre')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en informática, licenciada, ingeniero o afines.'); ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'ocupacion_madre')->textInput(['maxlength' => true])->hint('Ejemplo: analista, obrera, trabajadora de la agrícultura, maestra, ama de casa, entre otras.'); ?>
+			  <?//= $form->field($model, 'ocupacion_madre')->textInput(['maxlength' => true])->hint('Ejemplo: analista, obrera, trabajadora de la agrícultura, maestra, ama de casa, entre otras.'); ?>
 		  </div>	  
 		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'lugar_trabajo_madre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'lugar_trabajo_madre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">		
-			  <?= $form->field($model, 'ingreso_mensual_madre')->textInput() ?>
+			  <?//= $form->field($model, 'ingreso_mensual_madre')->textInput() ?>
 		  </div>
 		</div>
 		
 		<div class="row">
 		  <div class="col-lg-6 col-md-10">
-			  <?= $form->field($model, 'direccion_trabajo_madre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'direccion_trabajo_madre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <div class="col-lg-6 col-md-10">
+-->		  
 			  <!-- TODO: FALTAN VALIDACIONES DE TODOS LOS CORREOS -->
-			  <?= $form->field($model, 'correo_e_madre')->textInput(['maxlength' => true]) ?>
+<!--			  
+			  <?//= $form->field($model, 'correo_e_madre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		</div>
 
 		<div class="row">
 		  <div class="col-lg-12 col-md-10">
-			  <?= $form->field($model, 'direccion_habitacion_madre')->textInput(['maxlength' => true]) ?>
+			  <?//= $form->field($model, 'direccion_habitacion_madre')->textInput(['maxlength' => true]) ?>
 		  </div>
 		</div>
 	</fieldset>
 
     
 	</br></br>
+-->	
     <fieldset>
 	  <legend>Datos del representante</legend>
 		<div class="row">
