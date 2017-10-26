@@ -62,57 +62,59 @@ $nivelInstruccion = array(
 			]);?>
 	<?php endif; ?>
     <?php $form = ActiveForm::begin(); ?>
-
+<!--No se visualizan los datos del solicitante para el proceso 2017-2018-->
+<!--
     <fieldset>
 	  <legend>Datos del solicitante</legend>
 	  <div class="row">
 	  <div class="col-lg-6 col-md-10">
-		  <?= $form->field($estudiante, 'apellido')->textInput(['readonly' => true]); ?>
+		  <?//= $form->field($estudiante, 'apellido')->textInput(['readonly' => true]); ?>
 	  </div>
 	  <div class="col-lg-6 col-md-10">
-		  <?= $form->field($estudiante, 'nombre')->textInput(['readonly' => true]); ?>
+		  <?//= $form->field($estudiante, 'nombre')->textInput(['readonly' => true]); ?>
 	  </div>	  
 	</div>
 	<div class="row">
 	  <div class="col-lg-3 col-md-10">
-		<?= $form->field($estudiante, 'cedula')->textInput(['readonly' => true]) ?>
+		<?//= $form->field($estudiante, 'cedula')->textInput(['readonly' => true]) ?>
 	  </div>
 	  <div class="col-lg-3 col-md-10">
-		<?= $form->field($model, 'telefono_fijo_solicitante')
-						->textInput(['maxlength' => true])
-						->hint('Ejemplo: 02742447111'); ?>
+		<?//= $form->field($model, 'telefono_fijo_solicitante')
+			//			->textInput(['maxlength' => true])
+			//			->hint('Ejemplo: 02742447111'); ?>
 	  </div>
 	  <div class="col-lg-3 col-md-10">
-		<?= $form->field($model, 'telefono_celular_solicitante')
-						->textInput(['maxlength' => true])
-						->hint('Ejemplo: 04161115555'); ?>
+		<?//= $form->field($model, 'telefono_celular_solicitante')
+			//			->textInput(['maxlength' => true])
+			//			->hint('Ejemplo: 04161115555'); ?>
 	  </div>
 	  <div class="col-lg-3 col-md-10">
-		  <?= $form->field($model, 'vive_con_padres_solicitante')->radioList(['1' => 'Si', '0' => 'No']) ?>
+		  <?//= $form->field($model, 'vive_con_padres_solicitante')->radioList(['1' => 'Si', '0' => 'No']) ?>
 	  </div>
 	</div>
 	<div class="row">
 	  <div class="col-lg-3 col-md-10">
-		<?= $form->field($estudianteInscripcion, 'id')->textInput(['readonly' => true]) ?>
+		<?//= $form->field($estudianteInscripcion, 'id')->textInput(['readonly' => true]) ?>
 	  </div>
 	  <div class="col-lg-3 col-md-10">
-		<?= Html::label('Último año/grado culminado', 'gradoCulminado', ['class' => 'control-label']) ?>
-		<?= Html::input('text', 'gradoCulminado', $grados[$estudianteInscripcion->codigo_ultimo_grado],
+		<?//= Html::label('Último año/grado culminado', 'gradoCulminado', ['class' => 'control-label']) ?>
+		<?/*= Html::input('text', 'gradoCulminado', $grados[$estudianteInscripcion->codigo_ultimo_grado],
 						['class' => 'form-control',
 						 'readonly' => true,
-						]) ?>
+						]) */?>
 	  </div>
 	  <div class="col-lg-6 col-md-10">
-		<?= Html::label('Correo electrónico', 'correo-e', ['class' => 'control-label']) ?>
-		<?= Html::input('text', 'correo-e', $estudianteCorreo->email,
+		<?//= Html::label('Correo electrónico', 'correo-e', ['class' => 'control-label']) ?>
+		<?/*= Html::input('text', 'correo-e', $estudianteCorreo->email,
 						['class' => 'form-control',
 						 'readonly' => true,
-						]) ?>
+						])*/ ?>
 	  </div>
 
     </fieldset>
 
 	</br></br>
+-->	
 	<fieldset>
 	  <legend>Datos del padre</legend>
 		<div class="row">

@@ -84,8 +84,9 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
      */
     public function rules()
     {
+		/* No se solicita el campo vive_con_padres_solicitante para el para el proceso 2017-2018 */
         return [
-            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', 'vive_con_padres_solicitante'], 'required'],
+            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', /*'vive_con_padres_solicitante'*/], 'required'],
             [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'grado_instruccion_padre', 'grado_instruccion_madre', 'grado_instruccion_representante'], 'integer'],
             //[['grado_instruccion_representante'], 'in', 'range' => [1, 2, 3]],
             [['vive_con_padres_solicitante'], 'boolean'],
