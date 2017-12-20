@@ -47,7 +47,7 @@ $nivelInstruccion = array(
 			'' => '-- Seleccione --',
 			'1' => 'Primaria',
 			'2' => 'Secundaria',
-			'3' => 'Superior',
+			'3' => 'Universitario',
 		  );
 		  
 $tipoCuentaBancaria = array(
@@ -306,13 +306,13 @@ $bancos = array(
 -->	
     <fieldset>
 	  <legend>Datos del representante</legend>
-		<div class="row">
+		<!--<div class="row">
 		  <div class="col-lg-12 col-md-10">
-			  <?= $form->field($model, 'es_representante')->dropdownList(
+			  <?/*= $form->field($model, 'es_representante')->dropdownList(
 					$model->es_representante_data)
-					->hint('Si el representante no es la madre o el padre deberás ingresar la información del representante'); ?>
+					->hint('Si el representante no es la madre o el padre deberás ingresar la información del representante'); */?>
 		  </div>
-		</div>
+		</div>-->
 		<div id="datos-representante">
 	  <div class="row">
 		  <div class="col-lg-6 col-md-10">
@@ -357,9 +357,9 @@ $bancos = array(
 		  <div class="col-lg-3 col-md-10">
 			  <?= $form->field($model, 'lugar_trabajo_representante')->textInput(['maxlength' => true]) ?>
 		  </div>
-		  <div class="col-lg-3 col-md-10">		
-			  <?= $form->field($model, 'ingreso_mensual_representante')->textInput() ?>
-		  </div>
+		  <!--<div class="col-lg-3 col-md-10">		
+			  <?/*= $form->field($model, 'ingreso_mensual_representante')->textInput() */?>
+		  </div>-->
 		</div>
 		
 		<div class="row">
