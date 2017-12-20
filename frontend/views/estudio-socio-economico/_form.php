@@ -102,10 +102,10 @@ $bancos = array(
 	<?php endif; ?>
     <?php $form = ActiveForm::begin(); ?>
 <!--No se visualizan los datos del solicitante para el proceso 2017-2018-->
-<!--
+
     <fieldset>
-	  <legend>Datos del solicitante</legend>
-	  <div class="row">
+	  <legend>Datos de contacto del solicitante</legend>
+<!--	  <div class="row">
 	  <div class="col-lg-6 col-md-10">
 		  <?//= $form->field($estudiante, 'apellido')->textInput(['readonly' => true]); ?>
 	  </div>
@@ -116,17 +116,18 @@ $bancos = array(
 	<div class="row">
 	  <div class="col-lg-3 col-md-10">
 		<?//= $form->field($estudiante, 'cedula')->textInput(['readonly' => true]) ?>
+	  </div>-->
+	  <div class="col-lg-3 col-md-10">
+		<?= $form->field($model, 'telefono_fijo_solicitante')
+						->textInput(['maxlength' => true])
+						->hint('Ejemplo: 02742447111'); ?>
 	  </div>
 	  <div class="col-lg-3 col-md-10">
-		<?//= $form->field($model, 'telefono_fijo_solicitante')
-			//			->textInput(['maxlength' => true])
-			//			->hint('Ejemplo: 02742447111'); ?>
+		<?= $form->field($model, 'telefono_celular_solicitante')
+						->textInput(['maxlength' => true])
+						->hint('Ejemplo: 04161115555'); ?>
 	  </div>
-	  <div class="col-lg-3 col-md-10">
-		<?//= $form->field($model, 'telefono_celular_solicitante')
-			//			->textInput(['maxlength' => true])
-			//			->hint('Ejemplo: 04161115555'); ?>
-	  </div>
+	  <!--
 	  <div class="col-lg-3 col-md-10">
 		  <?//= $form->field($model, 'vive_con_padres_solicitante')->radioList(['1' => 'Si', '0' => 'No']) ?>
 	  </div>
@@ -149,11 +150,11 @@ $bancos = array(
 						 'readonly' => true,
 						])*/ ?>
 	  </div>
-
+-->
     </fieldset>
 
 	</br></br>
--->	
+	
 <!-- No se solicitan los datos del padre para el proceso 2017-2018 -->
 <!--
 	<fieldset>
