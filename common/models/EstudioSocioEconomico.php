@@ -101,6 +101,9 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             [['correo_e_padre','correo_e_madre','correo_e_representante'], 'email'],
 			[['id_estudiante'], 'exist', 'skipOnError' => true, 'targetClass' => Estudiantes::className(), 'targetAttribute' => ['id_estudiante' => 'id']],
             [['id_proceso'], 'exist', 'skipOnError' => true, 'targetClass' => Procesos::className(), 'targetAttribute' => ['id_proceso' => 'id']],
+            [['tipo_cuenta_bancaria_representante','banco_representante','cuenta_bancaria_representante'],'required'], 
+            [['cuenta_bancaria_representante'], 'string', 'length' => 20, 'notEqual' => '{attribute} debe contener 20 números'],
+            [['cuenta_bancaria_representante'], 'match', 'pattern' => '/^[0-9]*$/'],
 
             // Validaciones para seleccionar el representante
             ['es_representante', 'integer',	'min' => 0, 'max' => 2],

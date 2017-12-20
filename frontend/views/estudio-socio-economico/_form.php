@@ -49,6 +49,45 @@ $nivelInstruccion = array(
 			'2' => 'Secundaria',
 			'3' => 'Superior',
 		  );
+		  
+$tipoCuentaBancaria = array(
+			'' => '-- Seleccione --',
+			'Ahorro' => 'Ahorro',
+			'Corriente' => 'Corriente',
+		  );		  
+		
+$bancos = array(
+			'' => '-- Seleccione --',
+			'Banco de Venezuela' => 'Banco de Venezuela',
+			'Banco Venezolano de Crédito' => 'Banco Venezolano de Crédito',
+			'Banco Mercantil' => 'Banco Mercantil',
+			'Banco Provincial' => 'Banco Provincial',
+			'Bancaribe' => 'Bancaribe',
+			'Banco Exterior' => 'Banco Exterior',
+			'Banco Occidental de Descuento' => 'Banco Occidental de Descuento',
+			'Banco Caroní' => 'Banco Caroní',
+			'Banesco' => 'Banesco',
+			'Banco Sofitasa' => 'Banco Sofitasa',
+			'Banco Plaza' => 'Banco Plaza',
+			'Bangente' => 'Bangente',
+			'Banco Fondo Común' => 'Banco Fondo Común',
+			'100% Banco' => '100% Banco',
+			'Banco del Sur' => 'Banco del Sur',
+			'Banco del Tesoro' => 'Banco del Tesoro',
+			'Banco Agrícola de Venezuela' => 'Banco Agrícola de Venezuela',
+			'Bancrecer' => 'Bancrecer',
+			'Mi Banco' => 'Mi Banco',
+			'Banco Activo' => 'Banco Activo',
+			'Bancamiga' => 'Bancamiga',
+			'Banco Internacional de Desarrollo' => 'Banco Internacional de Desarrollo',
+			'Banplus' => 'Banplus',
+			'Banco Bicentenario' => 'Banco Bicentenario',
+			'Banco de la Fuerza Armada Nacional Bolivariana' => 'Banco de la Fuerza Armada Nacional Bolivariana',
+			'Citibank' => 'Citibank',
+			'Banco Nacional de Crédito' => 'Banco Nacional de Crédito',
+			'Instituto Municipal de Crédito Popular' => 'Instituto Municipal de Crédito Popular',
+			'ITALCAMBIO Casa de Cambio' => 'ITALCAMBIO Casa de Cambio',
+		);		  		  
 ?>
 
 <div class="estudio-socio-economico-form">
@@ -339,6 +378,26 @@ $nivelInstruccion = array(
 		</div>
 	</div> <!-- Datos del representante --> 
 	</fieldset>
+    
+    <!-- Datos bancarios del representante -->
+    <fieldset>
+	  <legend>Datos bancarios del representante</legend>
+		<div class="row">
+		    <div class="col-lg-3 col-md-10">
+			  <?= $form->field($model, 'tipo_cuenta_bancaria_representante')->dropdownList(
+					$tipoCuentaBancaria
+					); ?>
+		  </div>
+		    <div class="col-lg-3 col-md-10">
+			  <?= $form->field($model, 'banco_representante')->dropdownList(
+					$bancos
+					); ?>
+		  </div>
+		  <div class="col-lg-6 col-md-10">
+			   <?= $form->field($model, 'cuenta_bancaria_representante')->textInput(['maxlength' => true]) ?>
+		  </div>
+		</div>
+	</fieldset>	
     
     <div class="form-group">
 		<?= Html::a('<span class="glyphicon glyphicon-arrow-left"></span> Datos de inscripción', ['inscripciones/create'], ['class' => 'btn btn-default', 'role' => 'button']) ?>
