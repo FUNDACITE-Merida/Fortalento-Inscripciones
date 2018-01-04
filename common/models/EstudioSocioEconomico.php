@@ -110,7 +110,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             
             // Si es OTRO
             [['apellidos_representante', 'nombres_representante', 'cedula_representante', 'grado_instruccion_representante', 'telefono_fijo_representante', 
-            'telefono_celular_representante', 'profesion_representante', 'ocupacion_representante', 'lugar_trabajo_representante', 'ingreso_mensual_representante', 
+            'telefono_celular_representante', 'profesion_representante', /*'ocupacion_representante',*/ 'lugar_trabajo_representante', 'ingreso_mensual_representante', 
             'direccion_trabajo_representante', 'direccion_habitacion_representante', 'correo_e_representante'], 'required',
             'when' => function ($model) {
 							return $model->es_representante == self::REP_ES_OTRO;
@@ -189,7 +189,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             'grado_instruccion_representante' => Yii::t('app', 'Grado instrucción del representante'),
             'telefono_fijo_representante' => Yii::t('app', 'Teléfono fijo del representante'),
             'telefono_celular_representante' => Yii::t('app', 'Teléfono celular del representante'),
-            'profesion_representante' => Yii::t('app', 'Profesión del representante'),
+            'profesion_representante' => Yii::t('app', 'Profesión u ocupación del representante'),
             'ocupacion_representante' => Yii::t('app', 'Ocupación del representante'),
             'lugar_trabajo_representante' => Yii::t('app', 'Lugar de trabajo del representante'),
             'ingreso_mensual_representante' => Yii::t('app', 'Ingreso mensual del representante'),

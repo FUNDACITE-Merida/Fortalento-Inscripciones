@@ -105,8 +105,8 @@ $bancos = array(
 
     <fieldset>
 	  <legend>Datos de contacto del solicitante</legend>
-<!--	  <div class="row">
-	  <div class="col-lg-6 col-md-10">
+	  <div class="row">
+<!--	  <div class="col-lg-6 col-md-10">
 		  <?//= $form->field($estudiante, 'apellido')->textInput(['readonly' => true]); ?>
 	  </div>
 	  <div class="col-lg-6 col-md-10">
@@ -130,9 +130,9 @@ $bancos = array(
 	  <!--
 	  <div class="col-lg-3 col-md-10">
 		  <?//= $form->field($model, 'vive_con_padres_solicitante')->radioList(['1' => 'Si', '0' => 'No']) ?>
-	  </div>
+	  </div>-->
 	</div>
-	<div class="row">
+	<!--<div class="row">
 	  <div class="col-lg-3 col-md-10">
 		<?//= $form->field($estudianteInscripcion, 'id')->textInput(['readonly' => true]) ?>
 	  </div>
@@ -349,13 +349,14 @@ $bancos = array(
 		</div>
 		
 		<div class="row">
-		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'profesion_representante')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en electrónica, licenciado, ingeniero o afines.'); ?>
+		  <div class="col-lg-6 col-md-10">
+			  <!--<?/*= $form->field($model, 'profesion_representante')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en electrónica, licenciado, ingeniero o afines.'); */?>-->
+			  <?= $form->field($model, 'profesion_representante')->textInput(['maxlength' => true]); ?>
 		  </div>
-		  <div class="col-lg-3 col-md-10">
-			  <?= $form->field($model, 'ocupacion_representante')->textInput(['maxlength' => true])->hint('Ejemplo: analista, mecánico, chofer, obrero, trabajador de la agrícultura, maestro, entre otras.'); ?>
-		  </div>	  
-		  <div class="col-lg-3 col-md-10">
+		  <!--<div class="col-lg-3 col-md-10">
+			  <?/*= $form->field($model, 'ocupacion_representante')->textInput(['maxlength' => true])->hint('Ejemplo: analista, mecánico, chofer, obrero, trabajador de la agrícultura, maestro, entre otras.');*/ ?>
+		  </div>-->	  
+		  <div class="col-lg-6 col-md-10">
 			  <?= $form->field($model, 'lugar_trabajo_representante')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <!--<div class="col-lg-3 col-md-10">		
