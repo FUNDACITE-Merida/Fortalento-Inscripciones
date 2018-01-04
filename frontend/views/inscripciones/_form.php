@@ -247,8 +247,8 @@ $grados = array(
 		</div>	
 
 	  </div>
-	  <div class="col-lg-6 col-md-10">
-		 <?= Alert::widget([
+	 <!-- <div class="col-lg-6 col-md-10">
+		 <?/*= Alert::widget([
 				'options' => [
 					'class' => 'alert-danger',
 				],
@@ -256,15 +256,12 @@ $grados = array(
 							se deben hacer las siguientes equivalencias según el literal de calificación obtenido: 
 							A: entre 19 y 20 / B: entre 17 y 18 / C: entre 15 y 16',
 				'closeButton' => false,
-			]);
+			]);*/
 		 ?>
-	  </div>	  
+	  </div>-->	  
 	</div>    
-    
+	
 	<div class="row">
-	  <div class="col-lg-6 col-md-10">
-		<?= $form->field($model, 'localidad_plantel')->textInput(['maxlength' => true]) ?>
-	  </div>
 	  <div class="col-lg-6 col-md-10">
 		<div class="form-group">
 			<?= Html::label('Municipio del plantel', 'municipio', ['class' => 'control-label', 'for' => 'municipios']) ?>
@@ -276,6 +273,21 @@ $grados = array(
 		</div>
 	  </div>	  
 	</div>
+	<div class="row">
+	  <div class="col-lg-6 col-md-10">
+		<?= $form->field($model, 'localidad_plantel')->textInput(['maxlength' => true]) ?>
+	  </div>
+	  <!--<div class="col-lg-6 col-md-10">
+		<div class="form-group">
+			<?//= Html::label('Municipio del plantel', 'municipio', ['class' => 'control-label', 'for' => 'municipios']) ?>
+			<?//= Html::dropDownList('municipios', $cod_municipio,
+								//ArrayHelper::map($municipios, 'cod_municipio', 'municipio'), 
+								//['class' => 'form-control',
+								//'id' => 'municipios',
+								//'prompt' => '-- Seleccione --']) ?>
+		</div>
+	  </div>-->	  
+	</div>
 	
 	<div class="row">
 	  <div class="col-lg-6 col-md-10">
@@ -284,8 +296,27 @@ $grados = array(
 			);
 		?>
 	  </div>
-	  <div class="col-lg-6 col-md-10">
-		  <?= Html::label('Postulado para', 'postuladoPara', ['class' => 'control-label']) ?>
+	 <!-- <div class="col-lg-6 col-md-10">
+		  <?//= Html::label('¿Para cuál de los premios se postula el estudiante?', 'postuladoPara', ['class' => 'control-label']) ?>
+		  <?//= $form->field($model, 'postulado_para_premio')->checkbox(['value' => 'P']) ?>	  
+		  <?//= $form->field($model, 'postulado_para_beca')->checkbox(['value' => 'B']) ?>	  -->
+		<!-- <div class="form-group field-inscripciones-postulado_para_premio field-inscripciones-postulado_para_beca">
+			
+			<div class="checkbox">
+				<?//= Html::activeCheckbox($model, 'postulado_para_premio', ['value' => 'P']) ?>
+				<?//= Html::error($model, 'postulado_para_premio') ?>
+				<?//= Html::activeCheckbox($model, 'postulado_para_beca', ['value' => 'B']) ?>
+				<?//= Html::error($model, 'postulado_para_beca') ?>
+			</div> -->
+		<!--<div class="help-block"></div>
+		</div>
+	  </div>-->	  
+	</div>
+	
+	
+	<div class="row">
+		<div class="col-lg-6 col-md-10">
+		  <?= Html::label('¿Para cuál de los premios se postula el estudiante?', 'postuladoPara', ['class' => ['control-label','text-info','h2','text-justify']]) ?>
 		  <?= $form->field($model, 'postulado_para_premio')->checkbox(['value' => 'P']) ?>	  
 		  <?= $form->field($model, 'postulado_para_beca')->checkbox(['value' => 'B']) ?>	  
 		<!-- <div class="form-group field-inscripciones-postulado_para_premio field-inscripciones-postulado_para_beca">
@@ -298,8 +329,40 @@ $grados = array(
 			</div> -->
 			<div class="help-block"></div>
 		</div>
-	  </div>	  
-	</div>
+		<div class="col-lg-6 col-md-10">
+			<div id="mensajePremio">
+				<!--<div class="col-lg-6 col-md-10">-->
+				<?= Alert::widget([
+					'options' => [
+					'class' => 'alert-warning',
+					],
+					'body' => 'Optan por el <strong>Premio de reconocimiento a la excelencia</strong> los alumnos que hayan finalizado 6to. Grado
+							de Educación Básica, 3er. Año de Educación Media General, 5to. Año de Educación Media General o
+							6to. Año de Educación Media Técnica',
+							'closeButton' => false,
+					]);
+				?>
+			<!--</div>-->
+            </div>  		
+		<!--<div class="col-lg-6 col-md-10">-->
+		    <div>
+				<?= Alert::widget([
+						'options' => [
+						'class' => 'alert-info',
+					],
+					'body' => 'Optan por el Incentivo al alto rendimiento estudiantil los estudiantes que han culminado el 6to. Grado de 
+					Educación Básica hasta los que han culminado el 5to. Año de Educación
+					Media General y/o el 6to. Año de Educación Media Técnica (Escuelas Técnicas)',
+					'closeButton' => false,
+					]);
+					?>
+        <!--</div>-->
+            </div>
+        </div>
+	</div>	  
+	
+	
+    
 	
     <div class="row">
 	  <div class="col-lg-6 col-md-10">
@@ -307,8 +370,21 @@ $grados = array(
 			$grados
 			); ?>
 	  </div>
+	  
 	  <div class="col-lg-6 col-md-10">
 		 <?= Alert::widget([
+				'options' => [
+					'class' => 'alert-danger',
+				],
+				'body' => '<strong>¡Importante!</strong> Para el caso de 4to, 5to y 6to grado de Educación Básica 
+							se deben hacer las siguientes equivalencias según el literal de calificación obtenido: 
+							A: entre 19 y 20 / B: entre 17 y 18 / C: entre 15 y 16',
+				'closeButton' => false,
+			]);
+		 ?>
+	  </div>	  
+	  <!--<div class="col-lg-6 col-md-10">
+		 <?/*= Alert::widget([
 				'options' => [
 					'class' => 'alert-info',
 				],
@@ -316,9 +392,9 @@ $grados = array(
 		Educación Básica hasta los que han culminado el 5to. Año de Educación
 		Media General y/o el 6to. Año de Educación Media Técnica (Escuelas Técnicas)',
 				'closeButton' => false,
-			]);
+			]);*/
 		 ?>
-	  </div>	  
+	  </div>-->	  
 	</div>
 
 	<div id="promedio" class="row" <?= $mostrarPromedio; ?>>
@@ -338,9 +414,9 @@ $grados = array(
 	  </div>
 	</div>
     
-	<div id="mensajePremio" class="row">
+	<!--<div id="mensajePremio" class="row">
 	  <div class="col-lg-12 col-md-10">
-		<?= Alert::widget([
+		<?/*= Alert::widget([
 				'options' => [
 					'class' => 'alert-warning',
 				],
@@ -348,10 +424,10 @@ $grados = array(
 							de Educación Básica, 3er. Año de Educación Media General, 5to. Año de Educación Media General o
 							6to. Año de Educación Media Técnica',
 				'closeButton' => false,
-			]);
+			]);*/
 		 ?>
 	  </div>
-	</div>
+	</div>-->
 
 	<div id="notas" class="row" <?= $mostrarNotas; ?>>
 	  <?= Alert::widget([
@@ -397,7 +473,7 @@ $grados = array(
 			ArrayHelper::map($fuenteIngreso, 'cod_fuente_ing', 'descripcion')
 			)->hint('Si su familia depende de indemnizaciones tales como jubilaciones 
 			o pensiones, elija la categoría que tenía cuando trabajaba'); */?>
-	  </div>
+	  </div>gra
 	</div>  
 -->	  
 	<div class="row">
