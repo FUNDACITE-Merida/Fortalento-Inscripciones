@@ -399,7 +399,7 @@ $grados = array(
 
 	<div id="promedio" class="row" <?= $mostrarPromedio; ?>>
 	  <div class="col-lg-6 col-md-10">
-		<?= $form->field($model, 'promedio')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 15 puntos y debe poseer tres decimales'); ?>
+		<?= $form->field($model, 'promedio')->textInput()->hint('El promedio mínimo debe ser igual o mayor a 17 puntos y debe poseer tres decimales'); ?>
 	  </div>
 	  <div class="col-lg-6 col-md-10">
 		  <?= Alert::widget([
