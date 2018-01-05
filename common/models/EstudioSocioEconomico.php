@@ -84,8 +84,9 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
      */
     public function rules()
     {
+		/* No se solicita el campo vive_con_padres_solicitante para el para el proceso 2017-2018 */
         return [
-            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', 'vive_con_padres_solicitante'], 'required'],
+            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', /*'vive_con_padres_solicitante'*/], 'required'],
             [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'grado_instruccion_padre', 'grado_instruccion_madre', 'grado_instruccion_representante'], 'integer'],
             //[['grado_instruccion_representante'], 'in', 'range' => [1, 2, 3]],
             [['vive_con_padres_solicitante'], 'boolean'],
@@ -100,13 +101,16 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             [['correo_e_padre','correo_e_madre','correo_e_representante'], 'email'],
 			[['id_estudiante'], 'exist', 'skipOnError' => true, 'targetClass' => Estudiantes::className(), 'targetAttribute' => ['id_estudiante' => 'id']],
             [['id_proceso'], 'exist', 'skipOnError' => true, 'targetClass' => Procesos::className(), 'targetAttribute' => ['id_proceso' => 'id']],
+            [['tipo_cuenta_bancaria_representante','banco_representante','cuenta_bancaria_representante'],'required'], 
+            [['cuenta_bancaria_representante'], 'string', 'length' => 20, 'notEqual' => '{attribute} debe contener 20 números'],
+            [['cuenta_bancaria_representante'], 'match', 'pattern' => '/^[0-9]*$/'],
 
             // Validaciones para seleccionar el representante
             ['es_representante', 'integer',	'min' => 0, 'max' => 2],
             
             // Si es OTRO
             [['apellidos_representante', 'nombres_representante', 'cedula_representante', 'grado_instruccion_representante', 'telefono_fijo_representante', 
-            'telefono_celular_representante', 'profesion_representante', 'ocupacion_representante', 'lugar_trabajo_representante', 'ingreso_mensual_representante', 
+            'telefono_celular_representante', 'profesion_representante', /*'ocupacion_representante',*/ 'lugar_trabajo_representante', 'ingreso_mensual_representante', 
             'direccion_trabajo_representante', 'direccion_habitacion_representante', 'correo_e_representante'], 'required',
             'when' => function ($model) {
 							return $model->es_representante == self::REP_ES_OTRO;
@@ -185,7 +189,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             'grado_instruccion_representante' => Yii::t('app', 'Grado instrucción del representante'),
             'telefono_fijo_representante' => Yii::t('app', 'Teléfono fijo del representante'),
             'telefono_celular_representante' => Yii::t('app', 'Teléfono celular del representante'),
-            'profesion_representante' => Yii::t('app', 'Profesión del representante'),
+            'profesion_representante' => Yii::t('app', 'Profesión u ocupación del representante'),
             'ocupacion_representante' => Yii::t('app', 'Ocupación del representante'),
             'lugar_trabajo_representante' => Yii::t('app', 'Lugar de trabajo del representante'),
             'ingreso_mensual_representante' => Yii::t('app', 'Ingreso mensual del representante'),

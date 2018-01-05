@@ -50,8 +50,9 @@ class Inscripciones extends \yii\db\ActiveRecord
      */
     public function rules()
     {
-        return [
-            [['id_proceso', 'id_estudiante', 'fecha_inscripcion', 'codigo_plantel', 'localidad_plantel', 'codigo_ultimo_grado', 'postulado_para_beca', 'postulado_para_premio', 'codigo_profesion_jefe_familia', 'codigo_nivel_instruccion_madre', 'codigo_fuente_ingreso_familia', 'codigo_vivienda_familia', 'codigo_ingreso_familia', 'codigo_grupo_familiar'], 'required'],
+	return [
+	        /*Tres variables de datos socio económicos no se le solicita al usuario para el proceso 2017-2018, no son variables requeridas*/   
+            [['id_proceso', 'id_estudiante', 'fecha_inscripcion', 'codigo_plantel', 'localidad_plantel', 'codigo_ultimo_grado', 'postulado_para_beca', 'postulado_para_premio', /* 'codigo_profesion_jefe_familia', 'codigo_nivel_instruccion_madre', 'codigo_fuente_ingreso_familia',*/ 'codigo_vivienda_familia', 'codigo_ingreso_familia', 'codigo_grupo_familiar'], 'required'],
             [['id_proceso', 'id_estudiante','codigo_profesion_jefe_familia', 'codigo_nivel_instruccion_madre', 'codigo_fuente_ingreso_familia', 'codigo_vivienda_familia', 'codigo_ingreso_familia', 'codigo_grupo_familiar'], 'integer'],
             
             [['cerrada'], 'boolean'],
@@ -65,7 +66,7 @@ class Inscripciones extends \yii\db\ActiveRecord
             
             ['promedio', 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 15, 'max' => 20,
+				'min' => 17, 'max' => 20,
 				'message' => '{attribute} debe ser un número de dos enteros y tres decimales',
 				'when' => function ($model) {
 							return $model->postulado_para_beca == true;
@@ -76,7 +77,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 			
 			[['nota1', 'nota2'], 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 14, 'max' => 20,
+				'min' => 0, 'max' => 20,
 				'message' => '{attribute} debe ser un número de dos enteros y tres decimales',
 				'when' => function ($model) {
 							return $model->postulado_para_premio == true;
@@ -108,7 +109,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 			 
 			 [['nota3'], 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 14, 'max' => 20,
+				'min' => 0, 'max' => 20,
 				'message' => '{attribute} debe ser un número de dos enteros y tres decimales',
 				'when' => function ($model) {
 							return ($model->postulado_para_premio == true && $model->codigo_ultimo_grado != 11);
@@ -156,9 +157,9 @@ class Inscripciones extends \yii\db\ActiveRecord
             'id_proceso' => Yii::t('app', 'Clave foránea que referencia a la tabla procesos'),
             'id_estudiante' => Yii::t('app', 'Clave foránea que referencia a la tabla estudiantes'),
             'fecha_inscripcion' => Yii::t('app', 'Fecha de solicitud'),
-            'codigo_plantel' => Yii::t('app', 'Seleccione el plantel'),
+            'codigo_plantel' => Yii::t('app', 'Seleccione el plantel, donde curso el ultimo año (Julio 2017)'),
             'localidad_plantel' => Yii::t('app', 'Localidad del plantel'),
-            'codigo_ultimo_grado' => Yii::t('app', 'Último año/grado culminado'),
+            'codigo_ultimo_grado' => Yii::t('app', 'Último año/grado culminado (Julio 2017)'),
             'postulado_para_beca' => Yii::t('app', 'Incentivo al alto rendimiento estudiantil'),
             'postulado_para_premio' => Yii::t('app', 'Premio de reconocimiento a la excelencia'),
             'promedio' => Yii::t('app', 'Promedio de notas del último año/grado culminado'),
@@ -231,6 +232,11 @@ class Inscripciones extends \yii\db\ActiveRecord
     
     public function beforeSave()
     {
+		/*Las siguientes variables es información que ya no se le solicita al usuario para el proceso 2017-2018, se le asigna 0*/	
+		$this->codigo_profesion_jefe_familia = 0;
+		$this->codigo_nivel_instruccion_madre = 0;
+		$this->codigo_fuente_ingreso_familia = 0;
+							
 		if ($this->postulado_para_beca == true)
 		{
 			$this->promedio = str_replace(',','.',$this->promedio);
