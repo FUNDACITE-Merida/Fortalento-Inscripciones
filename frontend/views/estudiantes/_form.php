@@ -46,12 +46,9 @@ if ($model->no_cedula == true)
     <div class="row">
 	  <div class="col-lg-5 col-md-10">
 		  <?= $form->field($model, 'cedula')->textInput(['maxlength' => true, 'readonly' => $sincedula]) ?>
-		  <!--Repetir cédula cuando sea un registro nuevo-->
-		  <?php if($model->isNewRecord) { 
-		  ?>
-				<?= $form->field($model, 'repetir_cedula')->textInput(['maxlength' => true, 'readonly' => $sincedula]) ?>
-		  <?php }?>		
-		
+		  
+		  <?= $form->field($model, 'repetir_cedula')->textInput(['value'=>$model->cedula,'maxlength' => true, 'readonly' => $sincedula]) ?>
+		 		
 		  <?= $form->field($model, 'no_cedula')->checkbox() ?>
 	  </div>
 	  <div class="col-lg-5 col-md-10">
