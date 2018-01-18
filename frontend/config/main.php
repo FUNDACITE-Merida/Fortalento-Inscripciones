@@ -9,7 +9,7 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'language' => 'es-VE',
-    'name' => 'FORTALENTO',
+    'name' => 'SISTEMA DE INSCRIPCIONES - PROGRAMA FORTALENTO',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
