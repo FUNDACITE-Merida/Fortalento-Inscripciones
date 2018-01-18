@@ -86,15 +86,15 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
     {
 		/* No se solicita el campo vive_con_padres_solicitante para el para el proceso 2017-2018 */
         return [
-            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado', /*'vive_con_padres_solicitante'*/], 'required'],
+            [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'codigo_ultimo_grado'/*, 'vive_con_padres_solicitante'*/], 'required'],
             [['id_proceso', 'id_estudiante', 'n_planilla_inscripcion', 'grado_instruccion_padre', 'grado_instruccion_madre', 'grado_instruccion_representante'], 'integer'],
             //[['grado_instruccion_representante'], 'in', 'range' => [1, 2, 3]],
             [['vive_con_padres_solicitante'], 'boolean'],
-            [['ingreso_mensual_padre', 'ingreso_mensual_madre', 'ingreso_mensual_representante'], 'number'],
+            [['ingreso_mensual_padre', 'ingreso_mensual_madre'/*, 'ingreso_mensual_representante'*/], 'number'],
             [['codigo_ultimo_grado'], 'string', 'max' => 4],
             [['telefono_fijo_solicitante', 'telefono_celular_solicitante', 'telefono_fijo_padre', 'telefono_celular_padre', 'telefono_fijo_madre', 'telefono_celular_madre', 'telefono_fijo_representante', 'telefono_celular_representante'], 'string', 'max' => 11, 'min' => 11, 'tooShort' => '{attribute} deberia contener 11 números', 'tooLong' => '{attribute} deberia contener 11 números'],
             //[['telefono_fijo_solicitante', 'telefono_celular_solicitante', 'telefono_fijo_padre', 'telefono_celular_padre', 'telefono_fijo_madre', 'telefono_celular_madre', 'telefono_fijo_representante', 'telefono_celular_representante'], 'match', 'pattern' => '/^[0][2,4][0-9]*$/'],
-            [['apellidos_padre', 'nombres_padre', 'profesion_padre', 'ocupacion_padre', 'apellidos_madre', 'nombres_madre', 'profesion_madre', 'ocupacion_madre', 'apellidos_representante', 'nombres_representante', 'profesion_representante', 'ocupacion_representante'], 'string', 'max' => 128],
+            [['apellidos_padre', 'nombres_padre', 'profesion_padre', 'ocupacion_padre', 'apellidos_madre', 'nombres_madre', 'profesion_madre', 'ocupacion_madre', 'apellidos_representante', 'nombres_representante', 'profesion_representante'/*, 'ocupacion_representante'*/], 'string', 'max' => 128],
             [['cedula_padre', 'cedula_madre', 'cedula_representante'], 'string', 'max' => 8, 'tooLong' => '{attribute} deberia contener máximo 8 números'],
             [['cedula_padre', 'cedula_madre', 'cedula_representante'], 'match', 'pattern' => '/^[0-9]*$/'],
             [['lugar_trabajo_padre', 'direccion_trabajo_padre', 'correo_e_padre', 'direccion_habitacion_padre', 'lugar_trabajo_madre', 'direccion_trabajo_madre', 'correo_e_madre', 'direccion_habitacion_madre', 'lugar_trabajo_representante', 'direccion_trabajo_representante', 'correo_e_representante', 'direccion_habitacion_representante'], 'string', 'max' => 256],
@@ -110,7 +110,7 @@ class EstudioSocioEconomico extends \yii\db\ActiveRecord
             
             // Si es OTRO
             [['apellidos_representante', 'nombres_representante', 'cedula_representante', 'grado_instruccion_representante', 'telefono_fijo_representante', 
-            'telefono_celular_representante', 'profesion_representante', /*'ocupacion_representante',*/ 'lugar_trabajo_representante', 'ingreso_mensual_representante', 
+            'telefono_celular_representante', 'profesion_representante', /*'ocupacion_representante',*/ 'lugar_trabajo_representante',/* 'ingreso_mensual_representante',*/ 
             'direccion_trabajo_representante', 'direccion_habitacion_representante', 'correo_e_representante'], 'required',
             'when' => function ($model) {
 							return $model->es_representante == self::REP_ES_OTRO;
