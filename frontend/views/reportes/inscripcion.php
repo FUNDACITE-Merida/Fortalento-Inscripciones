@@ -606,7 +606,7 @@ $nivelInstruccion = array(
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
-			<tr class="ro1">
+			<!--<tr class="ro1">
 				<td style="text-align:left;width:2.831cm; " class="ce1"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
@@ -615,9 +615,9 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce2"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>-->
 			<!--<tr class="ro1">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce19">
 					<p>Rellenar el óvalo correspondiente</p>
@@ -1098,21 +1098,7 @@ $nivelInstruccion = array(
 				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			<!--</tr>-->
-			<tr class="ro2">
-				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
-				<td style="text-align:left;width:0.788cm; " class="ce3"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
-				<td style="text-align:left;width:0.788cm; " class="ce3"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
-				<td style="text-align:left;width:0.762cm; " class="ce3"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
-				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<br />
+			
 			<tr class="ro1">
 				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce102">
 					<p>DATOS DEL SOLICITANTE</p></td>
@@ -1908,48 +1894,23 @@ $nivelInstruccion = array(
 				</tr>
 				<tr class="ro1">
 					<td colspan="11" style="text-align:center;width:2.258cm; " class="ce18">
-						<p>DOCUMENTOS QUE DEBEN ACOMPAÑAR ESTA SOLICITUD</p>
+						<p>RECUERDA CONSIGNAR LOS SIGUIENTES DOCUMENTOS</p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
 				</tr>
-				<tr class="ro1">
-					<td colspan="3" style="text-align:left;width:2.258cm; " class="ce20">
-						<p>1) Planilla de solicitud de beca.</p>
-					</td>
-					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-					<!-- <td style="text-align:left;width:0.788cm; " class="Default"> </td> -->
-					<td colspan="8" style="text-align:left;width:2.258cm; " class="ce20">
-						<p>2) Copia de la cédula de Identidad (aspirante y representante).</p>
-					</td>
-					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-					<!-- <td style="text-align:left;width:0.788cm; " class="Default"> </td>
-					<td style="text-align:left;width:2.258cm; " class="Default"> </td> 
-					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-					<td style="text-align:left;width:0.762cm; " class="Default"> </td>
-					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-					<td style="text-align:left;width:2.531cm; " class="Default"> </td> -->
-					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
 				<tr class="ro1">
 					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce20">
-						<p>3) Constancia de notas del grado finalizado, selladas y firmadas por el Director del plantel donde se especifique el promedio global obtenido.</p>
+						<p>1) Copia del boletin correspondiente al año escolar 2016-2017, para optar a la modalidad de Incentivo al Alto Rendimiento Estudiantil.</p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
 				</tr>
 				<tr class="ro1">
 					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce20">
-						<p>4) Constancia de Ingresos de los representantes (en su defecto carta de desempleo expedida por la prefectura).</p>
+						<p>2) Copia del boletin correspondiente a los años escolares 2014-2015, 2015-2016, 2016-2017 para optar a la modalidad de Premio de Reconocimiento a la Excelencia.</p>
 					</td>
-					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td>
-					<td style="text-align:left;width:0.788cm; " class="Default"> </td>
 					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-					<td style="text-align:left;width:0.788cm; " class="Default"> </td>
-					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-					<td style="text-align:left;width:0.762cm; " class="Default"> </td>
-					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-					<td style="text-align:left;width:2.531cm; " class="Default"> </td>
-					<td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
+				
+				
 			</table>
