@@ -331,23 +331,28 @@ $bancos = array(
 			   <?= $form->field($model, 'cedula_representante')->textInput(['maxlength' => true]) ?>
 		  </div>
 		  <div class="col-lg-3 col-md-10">
+			   <?= $form->field($model, 'repetir_cedula_representante')->textInput(['value'=>$model->cedula_representante,'maxlength' => true]) ?>
+		  </div>
+		  <div class="col-lg-6 col-md-10">
 			  <?= $form->field($model, 'grado_instruccion_representante')->dropdownList(
 					$nivelInstruccion
 					); ?>
-		  </div>	  
-		  <div class="col-lg-3 col-md-10">
-			  <!-- TODO: FALTAN VALIDACIONES DE TODOS LOS TELEFONOS -->
-			  <?= $form->field($model, 'telefono_fijo_representante')
-							->textInput(['maxlength' => true])
-							->hint('Ejemplo: 02742447111');?>
-		  </div>
-		  <div class="col-lg-3 col-md-10">		
-			  <?= $form->field($model, 'telefono_celular_representante')
-							->textInput(['maxlength' => true])
-							->hint('Ejemplo: 04161115555'); ?>
 		  </div>
 		</div>
-		
+		  <div class="row">	  
+			  <div class="col-lg-6 col-md-10">
+				  <!-- TODO: FALTAN VALIDACIONES DE TODOS LOS TELEFONOS -->
+				  <?= $form->field($model, 'telefono_fijo_representante')
+								->textInput(['maxlength' => true])
+								->hint('Ejemplo: 02742447111');?>
+			  </div>
+			  <div class="col-lg-6 col-md-10">		
+				  <?= $form->field($model, 'telefono_celular_representante')
+								->textInput(['maxlength' => true])
+								->hint('Ejemplo: 04161115555'); ?>
+			  </div>
+			
+		</div>
 		<div class="row">
 		  <div class="col-lg-6 col-md-10">
 			  <!--<?/*= $form->field($model, 'profesion_representante')->textInput(['maxlength' => true])->hint('Ejemplo: bachiller,  técnico en electrónica, licenciado, ingeniero o afines.'); */?>-->
@@ -383,7 +388,7 @@ $bancos = array(
     
     <!-- Datos bancarios del representante -->
     <fieldset>
-	  <legend>Datos bancarios del representante</legend>
+	  <legend>Datos bancarios del representante <h5>(El representante debe ser el titular de la cuenta bancaria)</h5></legend>
 		<div class="row">
 		    <div class="col-lg-3 col-md-10">
 			  <?= $form->field($model, 'tipo_cuenta_bancaria_representante')->dropdownList(
@@ -395,8 +400,12 @@ $bancos = array(
 					$bancos
 					); ?>
 		  </div>
-		  <div class="col-lg-6 col-md-10">
+		  <div class="col-lg-3 col-md-10">
 			   <?= $form->field($model, 'cuenta_bancaria_representante')->textInput(['maxlength' => true]) ?>
+		  </div>
+		  <div class="col-lg-3 col-md-10">
+			   <?= $form->field($model, 'repetir_cuenta_bancaria_representante')->textInput(['value'=>$model->cuenta_bancaria_representante,'maxlength' => true]) ?>
+
 		  </div>
 		</div>
 	</fieldset>	

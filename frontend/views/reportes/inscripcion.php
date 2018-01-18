@@ -618,12 +618,12 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
-			<tr class="ro1">
+			<!--<tr class="ro1">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce19">
 					<p>Rellenar el óvalo correspondiente</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-			</tr>
+			</tr>-->
 			<tr class="ro1">
 				<td style="text-align:left;width:2.831cm; " class="ce2"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce2"> </td>
@@ -636,55 +636,55 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:3.54cm; " class="ce2"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
-			<tr class="ro12">
+			<!--<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce12">
 					<p>Profesión del Jefe de la Familia:</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>-->
+			<!--<tr class="ro12">
+				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
+					<p>--> <?/*= ($inscripcion->codigo_profesion_jefe_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1";*/ ?>    <?/*= $profesionJefeFamilia[1]*/?><!-- Profesión universitaria o su equivalente--><!-- .</p>-->
+			<!--</td>
+				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    <?= $profesionJefeFamilia[1]?><!-- Profesión universitaria o su equivalente -->.</p>
-				</td>
+					<p>->> <?/*= ($inscripcion->codigo_profesion_jefe_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; */?>    <?/*=$profesionJefeFamilia[2]*/?><!-- Profesiones técnicas especializadas--><!-- . </p>-->
+			<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    <?= $profesionJefeFamilia[2]?><!-- Profesiones técnicas especializadas -->. </p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_profesion_jefe_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3";*/?>    <?/*= $profesionJefeFamilia[3]*/?><!-- Empleados sin profesión universitaria o técnica. Se incluyen los pequeños comerciantes--><!-- .</p>-->
+			<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    <?= $profesionJefeFamilia[3]?><!-- Empleados sin profesión universitaria o técnica. Se incluyen los pequeños comerciantes -->.</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_profesion_jefe_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4";*/?>    <?/*= $profesionJefeFamilia[4]*/?><!-- Obreros especializados--><!-- .</p>-->
+			<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    <?= $profesionJefeFamilia[4]?><!-- Obreros especializados -->.</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_profesion_jefe_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5";*/?>    <?/*= $profesionJefeFamilia[5]*/?><!-- Obreros no especializados--><!-- .</p>-->
+			<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro12">
-				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_profesion_jefe_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    <?= $profesionJefeFamilia[5]?><!-- Obreros no especializados -->.</p>
-				</td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
-				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro1">
+			<!--</tr>-->
+			<!--<tr class="ro1">
 				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -693,10 +693,10 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro1">
+			<!--</tr>-->
+			<!--<tr class="ro1">
 				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
@@ -705,56 +705,68 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro12">
+			<!--</tr>-->
+			<!--<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce12">
 					<p>Nivel de Instrucción de la Madre:</p></td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro12">
+			<!--</tr>-->
+			<!--<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    <?= $nivelInstruccionMadre[1]?><!-- Instrucción universitaria o equivalente -->.</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_nivel_instruccion_madre == 1) ? "<span><strong>(1)</strong></span>" : " 1";*/ ?>    <?/*= $nivelInstruccionMadre[1]*/?><!-- Instrucción universitaria o equivalente --><!--.</p>-->
+			<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    <?= $nivelInstruccionMadre[2]?><!-- Instrucción secundaria completa -->.</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_nivel_instruccion_madre == 2) ? "<span><strong>(2)</strong></span>" : " 2";*/ ?>    <?/*= $nivelInstruccionMadre[2]*/?><!-- Instrucción secundaria completa --><!--.</p>-->
+			<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    <?= $nivelInstruccionMadre[3]?><!-- Instrucción secundaria incompleta -->.</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_nivel_instruccion_madre == 3) ? "<span><strong>(3)</strong></span>" : " 3";*/ ?>    <?/*= $nivelInstruccionMadre[3]*/?><!-- Instrucción secundaria incompleta --><!--.</p>-->
+			<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    <?= $nivelInstruccionMadre[1]?><!-- Instrucción primaria completa o incompleta -->.</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_nivel_instruccion_madre == 4) ? "<span><strong>(4)</strong></span>" : " 4";*/ ?>    <?/*= $nivelInstruccionMadre[1]*/?><!-- Instrucción primaria completa o incompleta --><!--.</p>-->
+				<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_nivel_instruccion_madre == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    <?= $nivelInstruccionMadre[1]?><!-- Analfabeta -->.</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_nivel_instruccion_madre == 5) ? "<span><strong>(5)</strong></span>" : " 5";*/ ?>    <?/*= $nivelInstruccionMadre[1]*/?><!-- Analfabeta --><!--.</p>-->
+			<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce27"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce27"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>-->
+			<!--<tr class="ro1">
+				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
+				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce27"> </td>-->
+				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+			<!--</tr>
 			<tr class="ro1">
 				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -764,60 +776,48 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce27"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce27"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro1">
-				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce27"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce27"> </td>
-				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro12">
+			<!--</tr>-->
+			<!--<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce12">
 					<p>Fuente de ingreso:</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce28"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce28"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1"; ?>    <?= $fuenteIngreso[1]?><!-- La fuente principal de ingreso familiar corresponde a inversión en empresas, entidades financieras o fortunas heredadas --> .</p>
-				</td>
+					<p>--><?/*= ($inscripcion->codigo_fuente_ingreso_familia == 1) ? "<span><strong>(1)</strong></span>" : " 1";*/ ?>    <?/*= $fuenteIngreso[1]*/?><!-- La fuente principal de ingreso familiar corresponde a inversión en empresas, entidades financieras o fortunas heredadas --><!-- .</p>-->
+				<!--</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; ?>    <?= $fuenteIngreso[2]?><!-- Los ingresos consisten en honorarios profesionales --> .</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_fuente_ingreso_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2";*/ ?>    <?/*= $fuenteIngreso[2]*/?><!-- Los ingresos consisten en honorarios profesionales --> <!--.</p>-->
+				<!--</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3"; ?>    <?= $fuenteIngreso[3]?><!-- El ingreso es un sueldo, es decir una remuneración calculada sobre base mensual o anual -->.</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_fuente_ingreso_familia == 3) ? "<span><strong>(3)</strong></span>" : " 3";*/ ?>    <?/*= $fuenteIngreso[3]*/?><!-- El ingreso es un sueldo, es decir una remuneración calculada sobre base mensual o anual --><!--.</p>-->
+				<!--</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4"; ?>    <?= $fuenteIngreso[4]?><!-- El ingreso consiste en un salario fijo, es decir remuneración calculada por semana o por día --> .</p>
-				</td>
+					<p>--> <?/*= ($inscripcion->codigo_fuente_ingreso_familia == 4) ? "<span><strong>(4)</strong></span>" : " 4";*/ ?>    <?/*= $fuenteIngreso[4]*/?><!-- El ingreso consiste en un salario fijo, es decir remuneración calculada por semana o por día --> <!--.</p>-->
+				<!--</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro12">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
-					<p> <?= ($inscripcion->codigo_fuente_ingreso_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; ?>    <?= $fuenteIngreso[5]?><!-- El ingreso proviene de la ejecución de trabajos ocasionales o tareas a destajo --> .</p>
-				</td>
+					<p>--><?/*= ($inscripcion->codigo_fuente_ingreso_familia == 5) ? "<span><strong>(5)</strong></span>" : " 5"; */?>    <?/*= $fuenteIngreso[5]*/?><!-- El ingreso proviene de la ejecución de trabajos ocasionales o tareas a destajo --> <!--.</p>-->
+				<!--</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro1">
+			<!--</tr>-->
+			<!--<tr class="ro1">
 				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
@@ -826,18 +826,18 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce28"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce28"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro13">
+			<!--</tr>-->
+			<!--<tr class="ro13">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20">
 					<p><span class="T4">Observación: </span>
 					<span class="T5">Si su familia depende de indemnizaciones tales como jubilaciones o pensiones, rellene la categoría que tenia cuando trabajaba.</span>
 					</p>
-				</td>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro1">
+			<!--</tr>-->
+			<!--<tr class="ro1">
 				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
@@ -846,9 +846,9 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce28"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce28"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce28"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro1">
 				<td style="text-align:left;width:2.831cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -858,9 +858,9 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--/tr>-->
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce12">
 					<p>Alojamiento y vivienda:</p>
@@ -911,18 +911,7 @@ $nivelInstruccion = array(
 				</td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
-			<tr class="ro1">
-				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
-				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			
 			<tr class="ro1">
 				<td colspan="9" style="text-align:left;width:2.831cm; " class="ce20"> </td>
 				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
@@ -970,18 +959,6 @@ $nivelInstruccion = array(
 			</tr>
 			<tr class="ro1">
 				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
-				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
-			<tr class="ro1">
-				<td style="text-align:left;width:2.831cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -1058,7 +1035,7 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
-			<tr class="ro12">
+			<!--<tr class="ro12">
 				<td style="text-align:left;width:2.831cm; " class="ce20"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
@@ -1067,26 +1044,26 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
-				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>
+				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td>-->
-			</tr>
-			<tr class="ro1">
+			<!--</tr>-->
+			<!--<tr class="ro1">
 				<td colspan="4" style="text-align:left;width:2.831cm; " class="ce24"> </td>
 				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-				<td colspan="4" style="text-align:left;width:2.258cm; " class="ce24"><br><br><br /> </td>
+				<td colspan="4" style="text-align:left;width:2.258cm; " class="ce24"><br><br><br /> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro1">
 				<td colspan="4" style="text-align:center;width:2.831cm; " class="ce25">
 					<p>Firma del Solicitante</p></td><td style="text-align:left;width:2.258cm; " class="ce29"> 
 				</td>
 				<td colspan="4" style="text-align:center;width:2.258cm; " class="ce41">
 					<p>Firma del Receptor</p>
-				</td>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>-->
 		</table>
-		<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+		<!--<br /><br /><br /><br /><br /><br /><br /><br /><br /><br />-->
 		<table border="0" cellspacing="0" cellpadding="0" class="ta1">
 			<colgroup>
 				<col width="99"/>
@@ -1102,13 +1079,13 @@ $nivelInstruccion = array(
 				<col width="111"/>
 				<col width="99"/>
 			</colgroup>
-			<tr class="ro1">
+			<!--<tr class="ro1">
 				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce1">
 					<p>PLANILLA DE ESTUDIO SOCIO ECONOMICO</p>
-				</td>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> 
 				</td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro1">
 				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce102">
 					<p>PROGRAMA DE FORTALECIMIENTO AL TALENTO Y LIDERAZGO ESTUDIANTIL</p>
@@ -1118,9 +1095,9 @@ $nivelInstruccion = array(
 			<tr class="ro1">
 				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce102">
 					<p>-FORTALENTO-</p>
-				</td>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>-->
 			<tr class="ro2">
 				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce3"> </td>
@@ -1197,22 +1174,22 @@ $nivelInstruccion = array(
 					<span class="textoNormal">&nbsp;<?= $estudio->telefono_celular_solicitante; ?></span>
 				</td>
 				<td style="text-align:left;width:0.762cm; " class="ce23"> </td>
-				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce23">
+				<!--<td colspan="2" style="text-align:left;width:2.258cm; " class="ce23">
 					<p>¿VIVE CON LOS PADRES?</p>
 				</td>
-				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro4">
 				<td style="text-align:left;width:0.788cm; " class="ce23"> </td>
 				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce23"> </td>
-				<td style="text-align:left;width:2.258cm; " class="ce41">
-					<p>SI <span class="textoNormal"><strong><?= $estudio->vive_con_padres_solicitante ? '[*]' : null; ?></strong></span></p>
+				<!--<td style="text-align:left;width:2.258cm; " class="ce41">
+					<p>SI <span class="textoNormal"><strong><?/*= $estudio->vive_con_padres_solicitante ? '[*]' : null; */?></strong></span></p>
 				</td>
 				<td style="text-align:left;width:2.531cm; " class="ce41">
-					<p>NO <span class="textoNormal"><strong><?= !$estudio->vive_con_padres_solicitante ? '[*]' : null; ?></strong></span></p>
-				</td>
+					<p>NO <span class="textoNormal"><strong><?/*= !$estudio->vive_con_padres_solicitante ? '[*]' : null;*/ ?></strong></span></p>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
 			<tr class="ro2">
@@ -1264,12 +1241,12 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 			</tr>
-			<tr class="ro1">
+			<!--<tr class="ro1">
 				<td colspan="11" style="text-align:center;width:2.258cm; " class="ce109">
 					<p>DATOS DE LOS PADRES</p>
-				</td>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro1">
 				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce110">
 					<p>DATOS DEL PADRE:</p>
@@ -1283,9 +1260,9 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro2">
 				<td style="text-align:left;width:2.258cm; " class="ce110"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
@@ -1297,21 +1274,21 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro3">
 				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>APELLIDOS:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->apellidos_padre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->apellidos_padre;*/ ?></span>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
 				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>NOMBRES:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->nombres_padre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->nombres_padre;*/ ?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro2">
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
@@ -1323,46 +1300,46 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro5">
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>CEDULA DE IDENTIDAD:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->cedula_padre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->cedula_padre;*/ ?></span>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
 				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce11">
 					<p>GRADO DE INSTRUCCIÓN:</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
-				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="ce11"> </td> -->
-				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
+				<!--<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
 					<p>TELEFONO FIJO:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->telefono_fijo_padre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->telefono_fijo_padre;*/ ?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro5">
 				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce29">
-					<p>PRIMARIA <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_padre == 1) ? '[*]' : null; ?></strong></span></p>
+					<p>PRIMARIA <span class="textoNormal"><strong><?/*= ($estudio->grado_instruccion_padre == 1) ? '[*]' : null;*/ ?></strong></span></p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce29">
-					<p>SECUNDARIA<span class="textoNormal"><strong><?= ($estudio->grado_instruccion_padre == 2) ? '[*]' : null; ?></strong></span></p>
+					<p>SECUNDARIA<span class="textoNormal"><strong><?/*= ($estudio->grado_instruccion_padre == 2) ? '[*]' : null;*/ ?></strong></span></p>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce33"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce29">
-					<p>SUPERIOR <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_padre == 3) ? '[*]' : null; ?></strong></span></p>
+					<p>SUPERIOR <span class="textoNormal"><strong><?/*= ($estudio->grado_instruccion_padre == 3) ? '[*]' : null;*/ ?></strong></span></p>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
 				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
 					<p>TELEFONO CELULAR:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->telefono_celular_padre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->telefono_celular_padre;*/ ?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro2">
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
@@ -1374,31 +1351,31 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro4">
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>PROFESION:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->profesion_padre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->profesion_padre;*/ ?></span>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>OCUPACION:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->ocupacion_padre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->ocupacion_padre;*/ ?></span>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>LUGAR DE TRABAJO:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->lugar_trabajo_padre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->lugar_trabajo_padre;*/ ?></span>
 				</td>
 				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>INGRESO MENSUAL:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->ingreso_mensual_padre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->ingreso_mensual_padre;*/ ?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro4">
 				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
 				<td style="text-align:left;width:0.788cm; " class="ce30"> </td>
@@ -1416,20 +1393,20 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce105"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro5">
 				<td colspan="7" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>DIRECCION DE TRABAJO:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->direccion_trabajo_padre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->direccion_trabajo_padre;*/ ?></span>
 				</td>
 				<td colspan="4" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>  CORREO ELECTRONICO:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->correo_e_padre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->correo_e_padre; */?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro5">
 				<td style="text-align:left;width:2.258cm; " class="Default"> </td>
 			</tr>
@@ -1444,16 +1421,16 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro6">
 				<td colspan="11" style="text-align:left;width:2.258cm; " class="ce114">
 					<p>DIRECCION DE HABITACION (INDIQUE UN PUNTO DE REFERENCIA):</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->direccion_habitacion_padre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->direccion_habitacion_padre;*/ ?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-				</tr>
+				<!--</tr>
 			<tr class="ro1">
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
@@ -1465,9 +1442,9 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td>-->
-			</tr>
+			<!--</tr>
 			<tr class="ro1">
 				<td colspan="2" style="text-align:left;width:2.258cm; " class="ce110">
 					<p>DATOS DE LA MADRE:</p>
@@ -1481,9 +1458,9 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro2">
 				<td style="text-align:left;width:2.258cm; " class="ce110"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
@@ -1495,21 +1472,21 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce8"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro3">
 				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>APELLIDOS:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->apellidos_madre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->apellidos_madre; */?></span>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
 				<td colspan="5" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>NOMBRES:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->nombres_madre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->nombres_madre;*/ ?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro2">
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
@@ -1521,46 +1498,46 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro5">
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>CEDULA DE IDENTIDAD:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->cedula_madre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->cedula_madre;*/ ?></span>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
 				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce11">
 					<p>GRADO DE INSTRUCCIÓN:</p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
-				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="ce11"> </td> -->
-				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
+				<!--<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
 					<p>TELEFONO FIJO:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->telefono_fijo_madre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->telefono_fijo_madre;*/ ?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-				</tr>
+				<!--</tr>
 			<tr class="ro5">
 				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce29">
-					<p>PRIMARIA <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_madre == 1) ? '[*]' : null; ?></strong></span></p>
+					<p>PRIMARIA <span class="textoNormal"><strong><?/*= ($estudio->grado_instruccion_madre == 1) ? '[*]' : null;*/ ?></strong></span></p>
 				</td>
 				<td style="text-align:left;width:2.258cm; " class="ce29">
-					<p>SECUNDARIA<span class="textoNormal"><strong><?= ($estudio->grado_instruccion_madre == 2) ? '[*]' : null; ?></strong></span></p>
+					<p>SECUNDARIA<span class="textoNormal"><strong><?/*= ($estudio->grado_instruccion_madre == 2) ? '[*]' : null;*/ ?></strong></span></p>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce33"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce29">
-					<p>SUPERIOR <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_madre == 3) ? '[*]' : null; ?></strong></span></p>
+					<p>SUPERIOR <span class="textoNormal"><strong><?/*= ($estudio->grado_instruccion_madre == 3) ? '[*]' : null;*/ ?></strong></span></p>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce33"> </td>
 				<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
 					<p>TELEFONO CELULAR:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->telefono_celular_madre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->telefono_celular_madre;*/ ?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro2">
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
@@ -1572,31 +1549,31 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
 				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 				<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+				<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-			</tr>
+			<!--</tr>
 			<tr class="ro5">
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>PROFESION:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->profesion_madre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->profesion_madre;*/ ?></span>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>OCUPACION:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->ocupacion_madre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->ocupacion_madre;*/ ?></span>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>LUGAR DE TRABAJO:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->lugar_trabajo_madre; ?></span>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->lugar_trabajo_madre;*/ ?></span>
 				</td>
 				<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>INGRESO MENSUAL:</p>
-					<span class="textoNormal">&nbsp;<?= $estudio->ingreso_mensual_madre; ?></span>
-				</td>
+					<span class="textoNormal">&nbsp;<?/*= $estudio->ingreso_mensual_madre;*/ ?></span>
+				</td>-->
 				<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-				</tr>
+				<!--</tr>
 				<tr class="ro5">
 					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
 					<td style="text-align:left;width:0.788cm; " class="ce30"> </td>
@@ -1614,20 +1591,20 @@ $nivelInstruccion = array(
 					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
 					<td style="text-align:left;width:0.762cm; " class="ce105"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td>-->
-				</tr>
+				<!--</tr>
 				<tr class="ro3">
 					<td colspan="7" style="text-align:left;width:2.258cm; " class="ce104">
 						<p>DIRECCION DE TRABAJO:</p>
-						<span class="textoNormal">&nbsp;<?= $estudio->direccion_trabajo_madre; ?></span>
+						<span class="textoNormal">&nbsp;<?/*= $estudio->direccion_trabajo_madre;*/ ?></span>
 					</td>
 					<td colspan="4" style="text-align:left;width:2.258cm; " class="ce104">
 						<p>  CORREO ELECTRONICO:</p>
-						<span class="textoNormal">&nbsp;<?= $estudio->correo_e_madre; ?></span>
-					</td>
+						<span class="textoNormal">&nbsp;<?/*= $estudio->correo_e_madre;*/ ?></span>
+					</td>-->
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-				</tr>
+				<!--</tr>
 				<tr class="ro2">
 					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
@@ -1639,16 +1616,16 @@ $nivelInstruccion = array(
 					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-				</tr>
+				<!--</tr>
 				<tr class="ro3">
 					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce15">
 						<p>DIRECCION DE HABITACION (INDIQUE UN PUNTO DE REFERENCIA):</p>
-						<span class="textoNormal">&nbsp;<?= $estudio->direccion_habitacion_madre; ?></span>
-					</td>
+						<span class="textoNormal">&nbsp;<?/*= $estudio->direccion_habitacion_madre;*/ ?></span>
+					</td>-->
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-				</tr>
+				<!--</tr>
 				<tr class="ro1">
 					<td style="text-align:left;width:2.258cm; " class="ce116"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce126"> </td>
@@ -1660,11 +1637,11 @@ $nivelInstruccion = array(
 					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
-					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>-->
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
-				</tr>
+				<!--</tr>-->
 				<tr class="ro1">
-					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce109">
+					<td colspan="11" style="text-align:center;width:2.258cm; " class="ce109">
 						<p>DATOS DEL REPRESENTANTE</p>
 					</td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
@@ -1738,7 +1715,7 @@ $nivelInstruccion = array(
 					</td>
 					<td style="text-align:left;width:0.788cm; " class="ce33"> </td>
 					<td style="text-align:left;width:2.258cm; " class="ce29">
-						<p>SUPERIOR <span class="textoNormal"><strong><?= ($estudio->grado_instruccion_representante == 3) ? '[*]' : null; ?></strong></span> </p>
+						<p>UNIVERSITARIO<span class="textoNormal"><strong><?= ($estudio->grado_instruccion_representante == 3) ? '[*]' : null; ?></strong></span> </p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
 					<td colspan="3" style="text-align:left;width:2.258cm; " class="ce137">
@@ -1761,26 +1738,24 @@ $nivelInstruccion = array(
 					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
 					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
 				</tr>
-				<tr class="ro5">
-					<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
-						<p>PROFESION:</p>
+				
+				<tr class="ro3">
+					<td colspan="6"  style="text-align:left;width:2.258cm; " class="ce104">
+						<p>PROFESION U OCUPACION:</p>
 						<span class="textoNormal">&nbsp;<?= $estudio->profesion_representante; ?></span>
 					</td>
-					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
-					<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<!--<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 						<p>OCUPACION:</p>
-						<span class="textoNormal">&nbsp;<?= $estudio->ocupacion_representante; ?></span>
-					</td>
-					<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
-					<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+						<span class="textoNormal">&nbsp;<?/*= $estudio->ocupacion_representante;*/ ?></span>
+					</td>-->
+					<td colspan="5"  style="text-align:left;width:2.258cm; " class="ce104">
 						<p>LUGAR DE TRABAJO:</p>
 						<span class="textoNormal">&nbsp;<?= $estudio->lugar_trabajo_representante; ?></span>
 					</td>
-					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
-					<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
+					<!--<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 						<p>INGRESO MENSUAL:</p>
-						<span class="textoNormal">&nbsp;<?= $estudio->ingreso_mensual_representante; ?></span>
-					</td>
+						<span class="textoNormal">&nbsp;<?/*= $estudio->ingreso_mensual_representante;*/ ?></span>
+					</td>-->
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
 				<tr class="ro5">
@@ -1811,6 +1786,76 @@ $nivelInstruccion = array(
 					<td colspan="4" style="text-align:left;width:2.258cm; " class="ce104">
 						<p>  CORREO ELECTRONICO:</p>
 						<span class="textoNormal">&nbsp;<?= $estudio->correo_e_representante; ?></span>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				
+				<tr class="ro2">
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+				</tr>
+				<tr class="ro3">
+					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>DIRECCION DE HABITACION:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->direccion_habitacion_representante; ?></span>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				<tr class="ro1">
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce8"> </td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				
+				<tr class="ro3">
+					<td colspan="7" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>TIPO DE CUENTA:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->tipo_cuenta_bancaria_representante; ?></span>
+					</td>
+					<td colspan="4" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>ENTIDAD BANCARIA:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->banco_representante; ?></span>
+					</td>
+					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
+				</tr>
+				
+				<tr class="ro2">
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:0.788cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce8"> </td>
+					<td style="text-align:left;width:0.762cm; " class="ce11"> </td>
+					<td style="text-align:left;width:2.258cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.531cm; " class="ce105"> </td>
+					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
+				</tr>
+				<tr class="ro3">
+					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce104">
+						<p>NUMERO CUENTA BANCARIA:</p>
+						<span class="textoNormal">&nbsp;<?= $estudio->cuenta_bancaria_representante; ?></span>
 					</td>
 					<!-- <td style="text-align:left;width:2.258cm; " class="Default"> </td> -->
 				</tr>
