@@ -25,17 +25,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?php //echo $form->field($model, 'rememberMe')->checkbox() ?>
 
-                <div style="color: red;margin:1em 0">
+                <!--<div style="color: red;margin:1em 0">
                     Si aún no tienes una cuenta registrate aquí <span class="glyphicon glyphicon-arrow-right"></span> <?= Html::a('REGISTRARSE', ['site/signup'], ['class' => 'btn btn-danger', 'role' => 'button']) ?>. NOTA: para crear un usuario debes usar un correo electrónico real y de uso frecuente.FUNDACITE Mérida utiliza el correo electrónico para informar sobre las etapas del Programa FORTALENTO.
-                </div>
-                <div style="color:#999;margin:1em 0">
+                </div>-->
+                <!--<div style="color:#999;margin:1em 0">
                     Si perdiste tu contraseña puedes <?= Html::a('recuperar tu contraseña', ['site/request-password-reset']) ?>.
+                </div>-->
+                <div style="color:#999;margin:1em 0">
+                    ¿Desea recuperar su contraseña? <?= Html::a('recuperar tu contraseña', ['site/request-password-reset']) ?>.
                 </div>
                 <div class="form-group">
                     <?= Html::submitButton('Ingresar', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
                 </div>
 
             <?php ActiveForm::end(); ?>
-        </div>
+		</div>
+		        <div class="col-lg-2">
+		</div>	 
+        <div class="col-lg-5">
+			<div><?= Html::img('@web/images/Banner_FORTALENTO_Convocatoria_2017-2018_pagina web.png',['width' => '80%'])?></div>
+		</div>	
     </div>
 </div>
