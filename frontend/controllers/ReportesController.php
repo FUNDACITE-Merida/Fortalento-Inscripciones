@@ -54,7 +54,7 @@ class ReportesController extends \yii\web\Controller
     }
 
     public function actionInscripcion($id_estudiante = NULL)
-    {   print_r($id_estudiante."hola"); exit();  
+    {   
 		
 		if (array_key_exists('Administrador', Yii::$app->authManager->getRolesByUser(Yii::$app->user->id)))
 		{
