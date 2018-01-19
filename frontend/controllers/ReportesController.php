@@ -54,7 +54,7 @@ class ReportesController extends \yii\web\Controller
     }
 
     public function actionInscripcion($id_estudiante = NULL)
-    {
+    {   
 		
 		if (array_key_exists('Administrador', Yii::$app->authManager->getRolesByUser(Yii::$app->user->id)))
 		{
@@ -212,7 +212,6 @@ class ReportesController extends \yii\web\Controller
 	<!-- ODF styles with no properties representable as CSS -->
 	.T8  { }
 	.textoNormal{font-size:10pt; font-style: normal; font-weight:normal;}';
-	$date=date('Y-m-d H:i:s');
 		$pdf = new Pdf([
 			// set to use core fonts only
 			'mode' => Pdf::MODE_UTF8, 
@@ -220,7 +219,7 @@ class ReportesController extends \yii\web\Controller
 			'format' => Pdf::FORMAT_LETTER, 
 			// portrait orientation
 			'orientation' => Pdf::ORIENT_PORTRAIT,
-			'filename' => 'inscripcionFORTALENTO'.$date.'.pdf',
+			'filename' => 'inscripcionFORTALENTO.pdf',
 			// stream to browser inline
 			//'destination' => Pdf::DEST_BROWSER,
 			'destination' => Pdf::DEST_DOWNLOAD, 
