@@ -364,7 +364,7 @@ $nivelInstruccion = array(
 				<tr class="ro7">
 					<td colspan="6" style="text-align:left;width:2.831cm; " class="ce13">
 						<p>Si esta optando por el 
-							<span class="T3">Premio Beca – Estímulo</span>, indique el promedio de notas obtenido en el grado/año culminado en julio 2015. Ejemplo: 18,358
+							<span class="T3">Premio Beca – Estímulo</span>, indique el promedio de notas obtenido en el grado/año culminado en julio 2017. Ejemplo: 18,358
 						</p>
 					</td>
 					<td colspan="2" style="text-align:center;width:2.258cm; " class="ce42">
