@@ -378,7 +378,7 @@ $grados = array(
 				],
 				'body' => '<strong>¡Importante!</strong> Para el caso de 4to, 5to y 6to grado de Educación Básica 
 							se deben hacer las siguientes equivalencias según el literal de calificación obtenido: 
-							A: entre 19 y 20 / B: entre 17 y 18 / C: entre 15 y 16',
+							A: entre 19 y 20 / B: entre 17 y 18',
 				'closeButton' => false,
 			]);
 		 ?>
