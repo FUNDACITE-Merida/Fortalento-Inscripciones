@@ -309,7 +309,7 @@ $nivelInstruccion = array(
 					<td colspan="2" style="text-align:left;width:2.831cm; " class="ce12">
 						<p>ULTIMO AÑO/GRADO CULMINADO:
 							<span class="T1">  </span>
-							<span class="T2">Rellenar el cuadro del grado o año culminado en Julio de 2015</span>
+							<span class="T2">Rellenar el cuadro del grado o año culminado en Julio de 2017</span>
 						</p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="ce32">
