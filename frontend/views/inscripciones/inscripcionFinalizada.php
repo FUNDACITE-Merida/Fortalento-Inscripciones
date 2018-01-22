@@ -3,8 +3,8 @@ use yii\helpers\Html;
 use yii\web\View;
 
 $this->title="Inscripción Finalizada";
-
-$urlImprimir = Yii::$app->urlManager->createUrl(['/reportes/inscripcion']);
+$mark = date("H-i-s");
+$urlImprimir = Yii::$app->urlManager->createUrl(['/reportes/inscripcion', 'mark'=>$mark]);
 $this->registerJS("
 	var url = '".$urlImprimir."';
     window.location.href = url;
