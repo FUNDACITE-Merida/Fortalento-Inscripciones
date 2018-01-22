@@ -1237,7 +1237,8 @@ $nivelInstruccion = array(
 				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
 				<td colspan="2" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
 					<p>GRADO O AÑO FINALIZADO:</p>
-					<span class="textoNormal">&nbsp;<?= $grados[$estudio->codigo_ultimo_grado]; ?></span>
+					<!--<span class="textoNormal">&nbsp;<?/*= $grados[$estudio->codigo_ultimo_grado];*/ ?></span>-->
+					<span class="textoNormal">&nbsp;<?= $grados[$inscripcion->codigo_ultimo_grado]; ?></span>
 				</td>
 				<td style="text-align:left;width:0.788cm; " class="ce105"> </td>
 				<td colspan="5" rowspan="2" style="text-align:left;width:2.258cm; " class="ce104">
