@@ -77,7 +77,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 			
 			[['nota1', 'nota2'], 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 0, 'max' => 20,
+				'min' => 10, 'max' => 20,
 				'message' => '{attribute} debe ser un número de dos enteros y tres decimales',
 				'when' => function ($model) {
 							return $model->postulado_para_premio == true;
@@ -109,7 +109,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 			 
 			 [['nota3'], 'number', 
 				'numberPattern' => $this->_patronNumero,
-				'min' => 0, 'max' => 20,
+				'min' => 10, 'max' => 20,
 				'message' => '{attribute} debe ser un número de dos enteros y tres decimales',
 				'when' => function ($model) {
 							return ($model->postulado_para_premio == true && $model->codigo_ultimo_grado != 11);
