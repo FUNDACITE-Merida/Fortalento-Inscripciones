@@ -34,7 +34,8 @@ $this->title = 'Lista de estudiantes por municipio';
                                         //'data-method' => 'post',
                                         //'data' => ['id'=>$model->id],
                                 ]);?>
-                 <?= Html::a('Imprimir Estudiantes', ['admin-reportes/municipio-estudiantes','cod_municipio'=>$municipio->cod_municipio], [
+                 <? $mark = date("H-i-s");?>               
+                 <?= Html::a('Imprimir Estudiantes', ['admin-reportes/municipio-estudiantes','cod_municipio'=>$municipio->cod_municipio,'mark'=>$mark], [
                                         'title' => '',
                                         'class' => 'btn btn-success',
                                         //'data-confirm' => '¿Está seguro de '.$label.' la inscripción?',
