@@ -654,7 +654,7 @@ $nivelInstruccion = array(
 			<!--</tr>
 			<tr class="ro12">
 				<td colspan="7" style="text-align:left;width:2.831cm; " class="ce20">
-					<p>->> <?/*= ($inscripcion->codigo_profesion_jefe_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; */?>    <?/*=$profesionJefeFamilia[2]*/?><!-- Profesiones técnicas especializadas--><!-- . </p>-->
+					<p>--> <?/*= ($inscripcion->codigo_profesion_jefe_familia == 2) ? "<span><strong>(2)</strong></span>" : " 2"; */?>    <?/*=$profesionJefeFamilia[2]*/?><!-- Profesiones técnicas especializadas--><!-- . </p>-->
 			<!--</td>
 				<td style="text-align:left;width:2.258cm; " class="ce21"> </td>
 				<td style="text-align:left;width:3.54cm; " class="ce21"> </td>-->
@@ -1898,7 +1898,6 @@ $nivelInstruccion = array(
 						<p>RECUERDA CONSIGNAR LOS SIGUIENTES DOCUMENTOS</p>
 					</td>
 					<td style="text-align:left;width:2.258cm; " class="Default"> </td>
-				</tr>
 				</tr>
 				<tr class="ro1">
 					<td colspan="11" style="text-align:left;width:2.258cm; " class="ce20">
