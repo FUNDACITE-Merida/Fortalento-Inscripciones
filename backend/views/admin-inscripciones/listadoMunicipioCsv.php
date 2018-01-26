@@ -34,7 +34,7 @@ $this->title = 'Lista de estudiantes por municipio';
                                         //'data-method' => 'post',
                                         //'data' => ['id'=>$model->id],
                                 ]);?>
-                 <? $mark = date("H-i-s");?>               
+                 <?php $mark = date("Y-m-d-H-i-s");?>               
                  <?= Html::a('Imprimir Estudiantes', ['admin-reportes/municipio-estudiantes','cod_municipio'=>$municipio->cod_municipio,'mark'=>$mark], [
                                         'title' => '',
                                         'class' => 'btn btn-success',

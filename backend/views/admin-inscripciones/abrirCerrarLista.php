@@ -132,7 +132,7 @@ $this->title = 'Abrir / Cerrar inscripción';
 					}
 					
 					if ($action === 'imprimir') {
-						$mark = date("H-i-s");
+						$mark = date("Y-m-d-H-i-s");
 						return Yii::$app->urlManager->createUrl(['/admin-reportes/inscripcion', 'id_estudiante'=>$model->id_estudiante,'mark'=>$mark]);
 					}
 				}
