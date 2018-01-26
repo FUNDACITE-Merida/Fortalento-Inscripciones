@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\web\View;
 
 $this->title="Inscripción Finalizada";
-$mark = date("H-i-s");
+$mark = date("Y-m-d-H-i-s");
 $urlImprimir = Yii::$app->urlManager->createUrl(['/reportes/inscripcion', 'mark'=>$mark]);
 $this->registerJS("
 	var url = '".$urlImprimir."';

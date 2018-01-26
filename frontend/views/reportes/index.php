@@ -92,7 +92,7 @@ $this->title = 'Reportes';
 			  ],
 			  'urlCreator' => function ($action, $model, $key, $index) {
 				if ($action === 'Imprimir') {
-					$mark = date("H-i-s");
+					$mark = date("Y-m-d-H-i-s");
 					$url =Yii::$app->urlManager->createUrl(['reportes/inscripcion', 'mark'=>$mark]);
 					return $url;
 				}
