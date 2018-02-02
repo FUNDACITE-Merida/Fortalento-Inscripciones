@@ -96,7 +96,7 @@ $bancos = array(
 				'options' => [
 					'class' => 'alert-info',
 				],
-				'body' => 'La inscripción se ha guardado exitosamente. Recuerda consignar solo la copia del boletín de acuerdo a la modalidad que este aspirando (Incentivo al Alto Rendimiento Estudiantil o Premio de Reconocimiento a la Excelencia), o enviarla al siguiente correo: programafortalento.fundacite@gmail.com. Por favor cierre la página haciendo click en el siguiente enlace. El sistema generará una planilla para su respaldo ' . Html::a('Cerrar', ['inscripciones/cerrar-e-imprimir'], ['class' => 'btn btn-danger', 'role' => 'button']),
+				'body' => 'La inscripción se ha guardado exitosamente. Recuerda consignar solo la copia del boletín de acuerdo a la modalidad que este aspirando (Incentivo al Alto Rendimiento Estudiantil o Premio de Reconocimiento a la Excelencia), o enviarla al siguiente correo: programafortalento.fundacite@gmail.com. Por favor cierre la página haciendo click en el siguiente enlace. El sistema generará una planilla para su respaldo ' . Html::a('Cerrar inscripción', ['inscripciones/cerrar-e-imprimir'], ['class' => 'btn btn-danger', 'role' => 'button']),
 				'closeButton' => false,
 			]);?>
 	<?php endif; ?>
