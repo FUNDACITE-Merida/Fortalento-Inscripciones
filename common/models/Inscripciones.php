@@ -114,7 +114,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 				'when' => function ($model) {
 							return ($model->postulado_para_premio == true && $model->codigo_ultimo_grado != 11);
 				}, 'whenClient' => "function (attribute, value) {
-						return ($('#inscripciones-postulado_para_premio').is(':checked') == true && $('#inscripciones-codigo_ultimo_grado').val != 11);
+						return ($('#inscripciones-postulado_para_premio').is(':checked') == true && $('#inscripciones-codigo_ultimo_grado').val() != 11);
 					}"
 			],
 						
@@ -122,7 +122,7 @@ class Inscripciones extends \yii\db\ActiveRecord
 				'when' => function ($model) {
 							return ($model->postulado_para_premio == true && $model->codigo_ultimo_grado != 11);
 				}, 'whenClient' => "function (attribute, value) {
-						return ($('#inscripciones-postulado_para_premio').is(':checked') == true && $('#inscripciones-codigo_ultimo_grado').val != 11);
+						return ($('#inscripciones-postulado_para_premio').is(':checked') == true && $('#inscripciones-codigo_ultimo_grado').val() != 11);
 					}"
 			],
 			 /***********************/ 
