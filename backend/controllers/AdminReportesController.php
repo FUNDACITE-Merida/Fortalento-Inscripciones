@@ -397,10 +397,10 @@ class AdminReportesController extends \yii\web\Controller
 					$archivo .= isset($inscripcion->idEstudiante->apellido) ? $inscripcion->idEstudiante->apellido . ";" : "No disponible" . ";";					
 					$archivo .= isset($inscripcion->idEstudiante->cedula) ? $inscripcion->idEstudiante->cedula . ";" :  "No disponible" . ";";
 					$archivo .= isset($inscripcion->idEstudiante->user->email) ? $inscripcion->idEstudiante->user->email . ";" : "No disponible" . ";";
-					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_solicitante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_solicitante . ";" : "No disponible" . ";";
-					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_solicitante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_solicitante . ";" : "No disponible" . ";";
-					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_representante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_fijo_representante . ";" : "No disponible" . ";";
-					$archivo .= isset($inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_representante) ? $inscripcion->idEstudiante->estudioSocioEconomico->telefono_celular_representante . ";" : "No disponible" . ";";
+					$archivo .= isset($inscripcion->estudioSocioEconomico->telefono_fijo_solicitante) ? $inscripcion->estudioSocioEconomico->telefono_fijo_solicitante . ";" : "No disponible" . ";";
+					$archivo .= isset($inscripcion->estudioSocioEconomico->telefono_celular_solicitante) ? $inscripcion->estudioSocioEconomico->telefono_celular_solicitante . ";" : "No disponible" . ";";
+					$archivo .= isset($inscripcion->estudioSocioEconomico->telefono_fijo_representante) ? $inscripcion->estudioSocioEconomico->telefono_fijo_representante . ";" : "No disponible" . ";";
+					$archivo .= isset($inscripcion->estudioSocioEconomico->telefono_celular_representante) ? $inscripcion->estudioSocioEconomico->telefono_celular_representante . ";" : "No disponible" . ";";
 					$archivo .= $plantel->nom_pla . ";";
 					$archivo .= isset($inscripcion->cerrada) ? $inscripcion->cerrada ? 'Cerrada': 'Abierta' : "No disponible" . ";";
 					$archivo .= "\n";
